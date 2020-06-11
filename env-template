@@ -1,0 +1,15 @@
+#####################
+# Client
+#####################
+
+#####################
+# Server
+#####################
+POSTGRES_PASSWORD=Fifty44MedTen22
+POSTGRES_USER=medcore
+POSTGRES_DB=medcore
+POSTGRES_HOST=localhost
+# 'localhost' for dev and name of docker container for production
+
+GOOGLE_CLOUD_KEYS_FILE=medcore-51fc05fed50e.json
+GOOGLE_CLOUD_BUCKET=medcore
