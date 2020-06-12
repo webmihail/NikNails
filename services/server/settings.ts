@@ -12,7 +12,7 @@ const requiredEnvVariables = [
 ];
 
 if (!isProduction) {
-  dotenv.config({ path: path.join(__dirname, '/../../.env') });
+  dotenv.config({ path: path.join(__dirname, '/../../../.env') });
 }
 
 const missingEnvs = requiredEnvVariables.filter(env => !process.env[env]);
