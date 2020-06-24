@@ -1,0 +1,94 @@
+@import 'color.scss';
+@import 'fonts.scss';
+@import 'animation.scss';
+@import 'slider.scss';
+
+html { 
+  overflow-y: hidden;
+}
+
+#header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background-color: $grey;
+  font-family: 'Montserrat-Regular', sans-serif;
+  color: $gold;
+  z-index: 100;
+}
+
+
+.header__logo {
+  height: 30px;
+  margin: 9px 5px 5px 5px;
+}
+
+.navbar__link {
+  color: $gold;
+  &:hover {
+    color: $gold;
+  }
+}
+
+.main__screen  {
+  font-family: 'Montserrat-Regular', sans-serif;
+}
+
+.screen__wrap {
+  display: flex;
+  position: relative;
+  top: 56px;
+  height: calc(100% - 56px);
+}
+
+.screen__block_left {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 60%;
+}
+
+.screen__header {
+  text-align: center;
+  margin-top: 5vh;
+  h1 {
+    font-family: 'Montserrat-Bold', sans-serif;
+    padding: 0 10px;
+    text-align: center;
+    color: $gold;
+  }
+
+  p {
+    margin-top: 30px;
+    color: $gold;
+  }
+}
+
+.screen__logo {
+  margin-bottom: 40px;
+  width: 50vh;
+	animation: pulse 4s infinite;
+}
+
+.screen__scroll {
+  width: 15vh;
+  animation: pulse-blinking 4s infinite;
+}
+
+.main__screen_1 {
+  background: url("../images/background.jpeg") no-repeat center center;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: $white;
+}
+
+.main__screen_2 {background: #A9A9A9;}
+.main__screen_3 {background: #2196F3;}
+.main__screen_4 {background: #44ff38;}
+.main__screen_5 {background: #ffe744;}
+.main__screen_6 {background: gray;}

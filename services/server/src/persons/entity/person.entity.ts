@@ -15,6 +15,6 @@ export class Person {
   @Column()
   phoneNumber: string;
 
-  @OneToMany(() => Record, (record: Record) => record.assignee)
-  public record: Record[];
+  @OneToMany(() => Record, (record: Record) => record.person)
+  public records: Record[];
 }

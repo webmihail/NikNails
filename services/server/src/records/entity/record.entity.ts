@@ -10,11 +10,11 @@ export class Record {
   date: Date;
 
   @Column()
-  status: string;
+  type: string;
 
   @Column()
-  price: number;
+  status: string;
 
-  @ManyToOne(() => Person, (assignee: Person) => assignee.record)
-  public assignee: Person
+  @ManyToOne(() => Person, (person: Person) => person.records)
+  public person: Person
 }
