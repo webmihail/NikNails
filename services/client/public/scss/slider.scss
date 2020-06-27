@@ -1,45 +1,31 @@
 .screen__slider {
-  display: flex;
-  justify-content: center;
-  padding: 0;
-  width: 98vw;
-  margin: 2vh auto;
+  margin: auto auto;
+  width: 100vw; 
+  height: 100vh;
+  overflow: hidden;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
 
-  &:hover {
-    li {
-      &:nth-child(4) {
-        width: 50px;
-      }
-    }
+  ul {
+    width: 2000px;
   }
 
   li {
-    float:left;
-    width: 50px;
-    overflow: hidden;
-    padding: 1px 1px 0;
-    cursor:pointer;
-    display:block;
-    box-shadow:1px 3px 15px #7e807e;
-    transition: all 1.5s;
+    position: relative;
+    display: block;
+    width: 70px;
+    float: left;
+    border-left: 1px solid #888;
+    box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s;
 
     &:hover {
-      width:600px;
-      box-shadow:1px 5px 15px #565756;
-      transition: all 1s;
-    }
-
-    &:nth-child(4) {
-      width:600px;
-      
-      &:hover {
-        width:600px;
-      }
+      width: 40vw;
     }
   }
 
   img{
-    width: 100%;
-    height: 105%;
+    display: block;
+    width: 40vw;
+    height: 102vh;
   }    
 }
