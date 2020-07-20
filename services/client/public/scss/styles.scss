@@ -1,0 +1,171 @@
+@import 'color.scss';
+@import 'fonts.scss';
+@import 'animation.scss';
+@import 'slider.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html { 
+  overflow-y: hidden;
+}
+
+#header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background-color: $grey;
+  font-family: 'Montserrat-Regular', sans-serif;
+  color: $gold;
+  z-index: 100;
+}
+
+
+.header__logo {
+  height: 30px;
+  margin: 9px 5px 5px 5px;
+}
+
+.navbar__link {
+  color: $gold;
+  &:hover {
+    color: $gold;
+  }
+}
+
+.main__screen  {
+  font-family: 'Montserrat-Regular', sans-serif;
+}
+
+.screen__wrap {
+  display: flex;
+  position: relative;
+  top: 56px;
+  height: calc(100% - 56px);
+}
+
+.screen__block_left {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 60%;
+}
+
+.screen__header {
+  text-align: center;
+  margin-top: 5vh;
+  h1 {
+    font-family: 'Montserrat-Bold', sans-serif;
+    padding: 0 10px;
+    text-align: center;
+    color: $gold;
+  }
+
+  p {
+    margin-top: 30px;
+    color: $gold;
+  }
+}
+
+.screen__logo {
+  margin-bottom: 40px;
+  width: 50vh;
+	animation: pulse 4s infinite;
+}
+
+.screen__scroll {
+  width: 15vh;
+  animation: pulse-blinking 4s infinite;
+}
+
+.main__screen_1 {
+  background: url("../images/background.jpeg") no-repeat center center;
+  background-size: cover;
+  color: $white;
+}
+
+.main__screen_2 {background: #777370;}
+.main__screen_3 {
+  background: #777370;
+  .price {
+    width: 100%;
+    .price__logo {
+      display: flex;
+      justify-content: center;
+      img {
+        height: 20vh;
+        margin: 30px auto;
+      }
+    }
+
+    .price__cost {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 30px;
+      border: 1px solid;
+      border-image-slice: 1;
+      border-width: 1px;
+      border-image-source: linear-gradient(to left, $gold, $gold-light);
+      color: $white;
+      margin: 0 30px;
+      height: 56vh;
+      .price__wrap {
+        width: 45%;
+        header, section {
+          display: flex;
+          justify-content: space-between;
+        }
+        header {
+          margin-top: 30px;
+          color: $gold;
+          h2 {
+            font-size: 3vh;
+          }
+        }
+        section {
+          span {
+            font-size: 2.2vh;
+          }
+        }
+      }
+    }
+  }
+}
+.main__screen_5 {
+  background: url("../images/background.jpeg") no-repeat center center;
+  background-size: cover;
+  color: $white;
+}
+.main__screen_6 {
+  position: relative;
+  background: gray;
+
+  .footer__logo {
+    height: 5vh;
+    margin: 1vh;
+  }
+
+  .footer__info {
+    width: 90vw;
+    display: flex;
+    justify-content: space-between;
+    background-color: $grey;
+    margin: 5px auto;
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .footer__copyright {
+    font-size: 2vh;
+    position: absolute;
+    width: 100%;
+    bottom: 1vh;
+    text-align: center;
+  }
+}
