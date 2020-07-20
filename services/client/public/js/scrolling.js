@@ -22,7 +22,7 @@ const scroll = (event) => {
       screenNumber = screenNumber > $(".main__screen").length ? $(".main__screen").length : screenNumber;
     }
 
-      if(screenNumber === 2) {
+      if(screenNumber === 2 || screenNumber === 6) {
         setTimeout(() => {
           $(".main__screen_" + screenNumber).animate({"padding-top": "54px"}, 900)
         }, 700)
