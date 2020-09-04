@@ -1,12 +1,12 @@
-let screenNumber = 1;
-let scrolling = false;
+var screenNumber = 1;
+var scrolling = false;
 
-const setScreenStyles = () => {
-  $(".main__screen").css('height', $(window).height())
+var setScreenStyles = () => {
+  $(".main__screen").css('height', $(window).height());
   $(".navbar__link_" + screenNumber).css("color","#100905");
 };
 
-const scroll = (event) => {
+var scroll = (event) => {
   $(".main__screen_" + screenNumber).css("paddingTop", "0px");
 
   if (!scrolling) {
@@ -24,15 +24,15 @@ const scroll = (event) => {
 
       if(screenNumber === 2 || screenNumber === 6) {
         setTimeout(() => {
-          $(".main__screen_" + screenNumber).animate({"padding-top": "54px"}, 900)
-        }, 700)
+          $(".main__screen_" + screenNumber).animate({"padding-top": "54px"}, 900);
+        }, 700);
       }
 
-    setTimeout(() => showAnimation(screenNumber), 150)
+    setTimeout(() => showAnimation(screenNumber), 150);
   }
 }
 
-const showAnimation = (showScreenNumber) => {
+var showAnimation = (showScreenNumber) => {
   $('html, body').animate({
     scrollTop: $(".main__screen_" + showScreenNumber).offset().top
   }, 500, "linear", () => scrolling = false);
@@ -40,7 +40,7 @@ const showAnimation = (showScreenNumber) => {
   $(".navbar__link_" + screenNumber).css("color","#eec97c");
   $(".navbar__link_" + showScreenNumber).css("color","#100905");
 
-  screenNumber = showScreenNumber
+  screenNumber = showScreenNumber;
 }
 
 $(window).resize(setScreenStyles);
