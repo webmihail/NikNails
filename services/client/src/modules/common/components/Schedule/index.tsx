@@ -1,10 +1,11 @@
 import React from 'react';
-import { ScheduleData, Record, ScheduleSettings } from '../../../calendar/types';
+import { ScheduleData, Record, ScheduleSettings, RootState } from '../../../calendar/types';
 import { Spin, Button } from 'antd';
 import { LeftCircleOutlined, RightCircleOutlined } from '@ant-design/icons'
 import styles from './schedule.module.scss';
 import moment from 'moment';
 import { scheduleBuilder } from '../../utils/scheduleBuilder';
+import { useSelector } from 'react-redux';
 
 interface ScheduleProps {
   scheduleData: ScheduleData;
@@ -26,10 +27,12 @@ const Schedule = ({
   onChangeDate
 }: any ) => {
 
+  const calendar = useSelector((state: RootState) => state.calendar);
+  
   return (
     <Spin spinning={loading}>
       <nav className={styles.navigationWrapper}>
-        <Button className={styles.navigation} onClick={() => onChangeDate(-7)}>
+        <Button className={styles.navigation} onClick={() => onChangeDate(-calendar.scheduleSettings.dateRange)}>
           <LeftCircleOutlined className={styles.buttonIcon}/>
           <div>
             {`${scheduleSettings.currentDate
@@ -45,7 +48,7 @@ const Schedule = ({
           {moment().format('DD.MM.YY')}
         </Button>
 
-        <Button className={styles.navigation} onClick={() => onChangeDate(7)}>
+        <Button className={styles.navigation} onClick={() => onChangeDate(calendar.scheduleSettings.dateRange)}>
           <div>
             {`${scheduleSettings.currentDate
               .clone()
@@ -63,13 +66,14 @@ const Schedule = ({
 
       <div className={styles.scheduleWrapper}>
         {Object.keys(scheduleBuilder(scheduleSettings)).map(key => {
-          console.log(scheduleBuilder(scheduleSettings)[key])
           return (
             <div className={styles.scheduleItemWrapper} key={key}>
               <div className={styles.date}>{key}</div>
               <div className={styles.recordWrapper}>
                 {scheduleBuilder(scheduleSettings)[key].map((date:Record) => {
-                  return (<Button className={styles.record} key={key + date.time}>{date.time}</Button>)
+                  return (<Button 
+                    className={styles.record} 
+                    key={key + date.time} onClick={() => onFreeClick(key, date.time)}>{date.time}</Button>)
                 })}
               </div>
             </div>

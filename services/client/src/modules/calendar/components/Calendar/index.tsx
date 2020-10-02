@@ -1,20 +1,33 @@
 import React from 'react';
-import moment from 'moment';
 import Schedule from '../../../common/components/Schedule';
 import styles from './calendar.module.scss';
-
-const scheduleSettings = {
-  currentDate: moment(),
-  dateRange: 10,
-  startTime: moment().clone().set('hour', 9).set('minute', 0o0),
-  endTime: moment().clone().set('hour', 17).set('minute', 0o0),
-  timeRange: 3
-}
+import { useDispatch, useSelector } from 'react-redux';
+import { changeModal, setCalendarBeginDate } from '../../actions';
+import { Record, RootState } from '../../types';
+import moment from 'moment';
 
 const Calendar = () => {
+  const records = useSelector((state: RootState) => state.records);
+  const calendar = useSelector((state: RootState) => state.calendar);
+  const dispatch = useDispatch();
+
   return (
     <div className={styles.scheduleWrapper}>
-      <Schedule scheduleSettings={scheduleSettings}/>
+      <Schedule 
+        scheduleSettings={calendar.scheduleSettings} 
+        scheduleData={records} 
+        onResetDate={() => dispatch(setCalendarBeginDate(moment()))}
+        onChangeDate={(amount: number) => dispatch(setCalendarBeginDate(calendar.scheduleSettings.currentDate.add(amount, 'days')))}
+        onFreeClick={(data: string, time: string) => dispatch(changeModal(
+          {type: 'OPEN_FORM_MODAL', payload: {
+            isOpen: true,
+            data: data + ' ' + time
+          }}))}
+        onBusyClick={(record: Record) => changeModal(
+          {type: 'OPEN_INFO_MODAL', payload: {
+            isOpen: true,
+            data: record
+          }})}/>
     </div>
   )
 }
