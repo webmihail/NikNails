@@ -1,12 +1,21 @@
 import { Moment } from "moment"
 import { Dispatch } from "redux"
 
-interface actionChangeModalsOwnProps {
+interface actionOwnProps {
   type: string;
   payload: any;
 }
 
-export const changeModal = (value: actionChangeModalsOwnProps) => {
+export const changeModal = (value: actionOwnProps) => {
+  return async (dispatch: Dispatch) => {
+    dispatch({
+      type: value.type,
+      payload: value.payload
+    })
+  }
+}
+
+export const setActiveTab = (value: actionOwnProps) => {
   return async (dispatch: Dispatch) => {
     dispatch({
       type: value.type,

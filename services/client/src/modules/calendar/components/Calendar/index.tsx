@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeModal, setCalendarBeginDate } from '../../actions';
 import { Record, RootState } from '../../types';
 import moment from 'moment';
+import CreateRecordModal from '../CreateRecordModal';
 
 const Calendar = () => {
   const records = useSelector((state: RootState) => state.records);
@@ -28,6 +29,8 @@ const Calendar = () => {
             isOpen: true,
             data: record
           }})}/>
+          
+        <CreateRecordModal />
     </div>
   )
 }

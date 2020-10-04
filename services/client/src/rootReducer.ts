@@ -1,4 +1,4 @@
-import { records, loading, recordFormModal, recordInfoModal, calendar } from './modules/calendar/reducers';
+import { records, loading, recordFormModal, recordInfoModal, calendar, activeTab } from './modules/calendar/reducers';
 import { combineReducers } from 'redux';
 
 export const rootReducer = combineReducers(
@@ -7,6 +7,7 @@ export const rootReducer = combineReducers(
     loading,
     calendar,
     recordFormModal,
-    recordInfoModal
+    recordInfoModal,
+    activeTab
   }
 )

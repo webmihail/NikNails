@@ -3,11 +3,13 @@ import { recordFormModal } from './recordFormModal';
 import { recordInfoModal } from './recordInfoModal';
 import { loading } from './loading';
 import { calendar } from './calendar';
+import { activeTab } from './setActiveTab';
 
 export {
   records,
   loading,
   calendar,
   recordFormModal,
-  recordInfoModal
+  recordInfoModal,
+  activeTab
 }

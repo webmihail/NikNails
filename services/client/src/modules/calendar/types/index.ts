@@ -1,4 +1,5 @@
 import { Moment } from "moment";
+import { TABS } from "../constants/Tabs";
 
 export enum CALENDAR_TIME_STATUSES {
   BLOCKED = 'Заблокировано',
@@ -9,6 +10,13 @@ export enum CALENDAR_TIME_STATUSES {
 export enum RECORD_TYPE {
   MANICURE = 'Маникюр',
   PEDICURE = 'Педикюр'
+}
+
+export interface Person {
+  id?: number;
+  phoneNumber: string;
+  firstName: string;
+  lastName: string;
 }
 
 export interface ScheduleData {
@@ -24,8 +32,9 @@ export interface ScheduleSettings {
 }
 
 export interface Record {
+  personId: number | null;
   time: string;
-  status: CALENDAR_TIME_STATUSES;
+  status?: CALENDAR_TIME_STATUSES;
   type: RECORD_TYPE;
 }
 
@@ -57,4 +66,5 @@ export interface RootState {
     data: string;
     isOpen: boolean;
   };
+  activeTab: TABS
 }
