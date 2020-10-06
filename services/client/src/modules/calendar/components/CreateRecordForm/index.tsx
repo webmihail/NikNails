@@ -8,7 +8,11 @@ import { changeModal } from '../../actions';
 import { useSelector } from 'react-redux';
 import { Person, Record, RootState } from '../../types';
 import SelectField from '../../../common/components/SelectField';
-import { getAllPersons } from '../../../../api/persons/actions';
+import { getAllPersons } from '../../../../api/persons';
+import { createRecords } from '../../../../api/records';
+import { InputDelay } from '../../../common/utils/inputDelay';
+
+const inputDelay = new InputDelay();
 
 interface CreateRecordFormOwnProps {
   dispatch: (value: any) => void
@@ -26,9 +30,8 @@ const CreateRecordForm = ({
   const recordFormModal = useSelector((state: RootState) => state.recordFormModal);
 
   useEffect(() => {
-    setFieldValue('time', recordFormModal.data)
-    dispatch(getAllPersons());
-  }, [dispatch, setFieldValue, recordFormModal.data])
+    setFieldValue('time', recordFormModal.data);
+  }, [setFieldValue, recordFormModal.data])
 
   const persons = useSelector((state: RootState) => state.persons);
   
@@ -36,15 +39,46 @@ const CreateRecordForm = ({
     <form onSubmit={handleSubmit}>
       <div className={styles.form}>
         <SelectField 
-          title="Клиент"
+          filterOption={false}
+          title="Поиск клиент"
           value={values.personId ? values.personId : undefined} 
           allowClear={true}
-          options={persons ? persons.map((person: Person) => {
+          showSearch={true}
+          dropdownRender={(menu: any) => {
+            return (
+              <div>
+                {menu}
+                <div className={styles.selectDropdown}>
+                  Всего найдено: {persons && persons.count}
+                </div>
+              </div>
+            );
+          }}
+          options={persons && persons.data ? persons.data.map((person: Person) => {
             return { value: person.id, name: `${person.firstName} ${person.lastName}`}
           }) : null}
+
+          onSearch={(value: any) => {
+            inputDelay.onSearch(value, () => {
+              dispatch(getAllPersons({
+                search: value || null,
+                skip:0,
+                take:8
+              }));
+            });
+          }}
           errorMessage={touched.personId && errors.personId}
           onBlur={() => setFieldTouched('personId')}
-          onChange={(value: string) => {setFieldValue('personId', value ? value : '')}}
+          onChange={(value: string) => {
+            if (!value) {
+              dispatch(getAllPersons({
+                search: null,
+                skip:0,
+                take:8
+              }));
+            }
+            setFieldValue('personId', value ? value : '')
+          }}
         />
 
         <SelectField 
@@ -87,7 +121,7 @@ const CreateRecordFormWithFormik = withFormik<CreateRecordFormOwnProps, any>({
     time: ''
   }),
   handleSubmit: (values, { props:{ dispatch } }) => {
-    console.log({...values, status: 'BUSY'})
+    dispatch(createRecords({...values, status: 'BUSY'}));
     dispatch(changeModal(
       {type: 'CHANGE_FORM_MODAL', payload: {
         isOpen: false,

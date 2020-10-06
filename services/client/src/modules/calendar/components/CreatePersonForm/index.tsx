@@ -8,7 +8,7 @@ import { changeModal, setActiveTab } from '../../actions';
 import InputField from '../../../common/components/InputField';
 import { Person } from '../../types';
 import { phoneRegExp } from '../../../common/constants/regExps';
-import { createPerson } from '../../../../api/persons/actions';
+import { createPerson } from '../../../../api/persons';
 import { TABS } from '../../constants/Tabs';
 
 interface CreatePersonFormOwnProps {

@@ -19,6 +19,17 @@ export interface Person {
   lastName: string;
 }
 
+export interface GetPersonsByFilter {
+  data: Person[] | null,
+  count: number;
+}
+
+export interface PersonsFilter {
+  take?: number;
+  skip?: number;
+  search?: string | null;
+}
+
 export interface ScheduleData {
   [date: string]: Record[];
 }
@@ -57,7 +68,7 @@ export interface CalendarProps {
 
 export interface RootState {
   records: ScheduleData;
-  persons: Person[];
+  persons: GetPersonsByFilter;
   calendar: CalendarProps;
   recordFormModal: {
     data: string;

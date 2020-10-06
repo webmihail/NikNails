@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { getAll } from '../../modules/calendar/actions';
-import { Person } from '../../modules/calendar/types';
+import { Person, PersonsFilter } from '../../modules/calendar/types';
 import settings from '../../settings';
 
-export const getAllPersons = () => {
+export const getAllPersons = (filter: PersonsFilter) => {
   return (dispatch: any) => {
-    axios.get(`${settings.apiUrlV1}/api/v1/persons`).then(res => dispatch(getAll({ type: 'GET_ALL_PERSONS', payload: res.data })))
+    axios.post(`${settings.apiUrlV1}/api/v1/persons/filter`, filter).then(res => dispatch(getAll({ type: 'GET_ALL_PERSONS', payload: res.data })))
   }
 }
 

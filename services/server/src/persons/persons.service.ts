@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { Person } from './entity/person.entity';
-import { PersonDTO } from './persons.dto';
+import { PersonDTO, PersonsFilter } from './persons.dto';
 
 @Injectable()
 export class PersonsService {
@@ -11,8 +11,24 @@ export class PersonsService {
     private personRepository: Repository<Person>
   ) {}
 
-  async getAllPersons() {
-    return await this.personRepository.find();
+  async getAllPersons(filter: PersonsFilter) {
+    const [result, total] = await this.personRepository.findAndCount(
+      {
+        where: [
+          { firstName: Like('%' + filter.search + '%') }, 
+          { lastName: Like('%' + filter.search + '%') },
+          { phoneNumber: Like('%' + filter.search + '%') }
+        ],
+        order: { firstName: "DESC", lastName: "DESC", phoneNumber: "DESC"},
+        take: filter.take,
+        skip: filter.skip
+      }
+    )
+
+    return {
+      data: result, 
+      count: total 
+    }
   }
 
   async createPerson(data: PersonDTO) {

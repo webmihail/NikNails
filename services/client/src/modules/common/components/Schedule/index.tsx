@@ -70,10 +70,10 @@ const Schedule = ({
             <div className={styles.scheduleItemWrapper} key={key}>
               <div className={styles.date}>{key}</div>
               <div className={styles.recordWrapper}>
-                {scheduleBuilder(scheduleSettings)[key].map((date:Record) => {
+                {scheduleBuilder(scheduleSettings)[key].map((data:Record) => {
                   return (<Button 
-                    className={styles.record} 
-                    key={key + date.time} onClick={() => onFreeClick(key, date.time)}>{date.time}</Button>)
+                    className={styles.record}
+                    key={key + data.time} onClick={() => onFreeClick(key, data.time)}>{data.time}</Button>)
                 })}
               </div>
             </div>

@@ -20,6 +20,6 @@ export class Record extends GenericEntity{
     (person: Person) => person.records, 
     {onUpdate: 'CASCADE', onDelete: 'CASCADE'})
 
-  @JoinColumn({name: 'person_id'})
+  @JoinColumn({name: 'personId'})
   public person: Person 
 }
