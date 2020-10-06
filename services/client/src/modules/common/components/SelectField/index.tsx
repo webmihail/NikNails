@@ -1,6 +1,5 @@
 import React from 'react';
 import { Select } from 'antd';
-import { SelectProps } from 'antd/lib/select';
 
 import styles from './selectField.module.scss';
 import InputFieldTitle from '../InputFieldTitle';
@@ -10,10 +9,10 @@ type SelectFieldProps = {
   wrapperStyle?: React.CSSProperties;
   wrapperClassName?: string;
   showValue?: boolean;
-  options: Array<{ value: string | number; name: string; title?: string }>;
+  options: Array<{ value: string | number; name: string; title?: string }> | null;
   errorMessage?: string | boolean;
   required?: boolean;
-} & SelectProps<any>;
+} & any;
 
 const SelectField = ({
   title,
@@ -33,11 +32,11 @@ const SelectField = ({
       className={wrapperClassName}
     >
       <Select {...props} className={styles.select}>
-        {options.map((option:any) => (
+        {options ? options.map((option:any) => (
           <Select.Option key={option.value} value={option.value} title={option.title}>
             {props.showValue ? option.value + ' ' + option.name : option.name}
           </Select.Option>
-        ))}
+        )) : null}
       </Select>
     </InputFieldTitle>
   );

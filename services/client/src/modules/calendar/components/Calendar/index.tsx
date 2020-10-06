@@ -20,12 +20,12 @@ const Calendar = () => {
         onResetDate={() => dispatch(setCalendarBeginDate(moment()))}
         onChangeDate={(amount: number) => dispatch(setCalendarBeginDate(calendar.scheduleSettings.currentDate.add(amount, 'days')))}
         onFreeClick={(data: string, time: string) => dispatch(changeModal(
-          {type: 'OPEN_FORM_MODAL', payload: {
+          {type: 'CHANGE_FORM_MODAL', payload: {
             isOpen: true,
             data: data + ' ' + time
           }}))}
         onBusyClick={(record: Record) => changeModal(
-          {type: 'OPEN_INFO_MODAL', payload: {
+          {type: 'CHANGE_INFO_MODAL', payload: {
             isOpen: true,
             data: record
           }})}/>

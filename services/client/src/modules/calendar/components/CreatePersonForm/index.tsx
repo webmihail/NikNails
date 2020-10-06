@@ -4,11 +4,12 @@ import * as yup from 'yup';
 
 import styles from './createPersonForm.module.scss';
 import { Button } from 'antd';
-import { changeModal } from '../../actions';
+import { changeModal, setActiveTab } from '../../actions';
 import InputField from '../../../common/components/InputField';
 import { Person } from '../../types';
 import { phoneRegExp } from '../../../common/constants/regExps';
 import { createPerson } from '../../../../api/persons/actions';
+import { TABS } from '../../constants/Tabs';
 
 interface CreatePersonFormOwnProps {
   dispatch: (value: any) => void
@@ -55,7 +56,7 @@ const CreatePersonForm = ({
       </div>
       <div className={styles.buttonGroup}>
         <Button type="primary" onClick={() => dispatch(changeModal(
-          {type: 'OPEN_FORM_MODAL', payload: {
+          {type: 'CHANGE_FORM_MODAL', payload: {
             isOpen: false,
             data: ''
           }}))}>Закрыть</Button>
@@ -79,6 +80,10 @@ const CreatePersonFormWithFormik = withFormik<CreatePersonFormOwnProps, any>({
   }),
   handleSubmit: (values, { props:{ dispatch } }) => {
     dispatch(createPerson(values));
+    dispatch(setActiveTab({
+      type: 'CREATE_RECORD_FORM',
+      payload: TABS.CREATE_RECORD_FORM
+    }))
   },
   validationSchema: yup.object().shape<any>({
     phoneNumber: yup

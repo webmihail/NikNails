@@ -14,7 +14,6 @@ const CreateRecordModal = () => {
   const activeTab = useSelector((state: RootState) => state.activeTab);
   const dispatch = useDispatch();
 
-  console.log(activeTab)
   const getForm = () => {
     switch (activeTab) {
       case TABS.CREATE_PERSON_FORM:

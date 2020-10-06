@@ -57,6 +57,7 @@ export interface CalendarProps {
 
 export interface RootState {
   records: ScheduleData;
+  persons: Person[];
   calendar: CalendarProps;
   recordFormModal: {
     data: string;

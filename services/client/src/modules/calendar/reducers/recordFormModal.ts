@@ -12,9 +12,7 @@ const initialState = {
 
 export const recordFormModal = (state: ModalOwnProps = initialState, action: ActionProps) => {
   switch(action.type) {
-    case 'OPEN_FORM_MODAL':
-      return action.payload;
-    case 'CLOSE_FORM_MODAL':
+    case 'CHANGE_FORM_MODAL':
       return action.payload;
     default:
       return state;
