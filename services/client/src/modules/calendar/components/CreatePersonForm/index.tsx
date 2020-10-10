@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { withFormik, FormikProps } from 'formik';
 import * as yup from 'yup';
 
@@ -24,10 +24,6 @@ const CreatePersonForm = ({
   setFieldValue,
   dispatch
 }: FormikProps<Person> & CreatePersonFormOwnProps) => {
-
-  useEffect(() => {
-    
-  }, [])
   
   return (
     <form onSubmit={handleSubmit}>

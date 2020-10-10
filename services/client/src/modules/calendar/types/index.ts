@@ -70,6 +70,7 @@ export interface RootState {
   records: ScheduleData;
   persons: GetPersonsByFilter;
   calendar: CalendarProps;
+  loading: boolean;
   recordFormModal: {
     data: string;
     isOpen: boolean;

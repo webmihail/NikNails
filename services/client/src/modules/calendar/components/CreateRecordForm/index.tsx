@@ -10,7 +10,7 @@ import { Person, Record, RootState } from '../../types';
 import SelectField from '../../../common/components/SelectField';
 import { getAllPersons } from '../../../../api/persons';
 import { createRecords } from '../../../../api/records';
-import { InputDelay } from '../../../common/utils/inputDelay';
+import { InputDelay } from '../../../common/utils';
 
 const inputDelay = new InputDelay();
 

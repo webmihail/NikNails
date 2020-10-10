@@ -8,5 +8,9 @@ export const setCalendarBeginDate = (value: Moment) => {
       type: 'SET_CALENDAR_BEGIN_DATE',
       payload: value
     })
+    dispatch({
+      type: 'HIDE_LOADER',
+      payload: null
+    })
   }
 }

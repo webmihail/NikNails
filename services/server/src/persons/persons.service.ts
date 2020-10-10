@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { capitalize } from 'src/common/utils';
 import { Like, Repository } from 'typeorm';
 import { Person } from './entity/person.entity';
 import { PersonDTO, PersonsFilter } from './persons.dto';
@@ -15,8 +16,8 @@ export class PersonsService {
     const [result, total] = await this.personRepository.findAndCount(
       {
         where: [
-          { firstName: Like('%' + filter.search + '%') }, 
-          { lastName: Like('%' + filter.search + '%') },
+          { firstName: Like('%' + capitalize(filter.search) + '%') }, 
+          { lastName: Like('%' + capitalize(filter.search) + '%') },
           { phoneNumber: Like('%' + filter.search + '%') }
         ],
         order: { firstName: "DESC", lastName: "DESC", phoneNumber: "DESC"},
@@ -32,7 +33,11 @@ export class PersonsService {
   }
 
   async createPerson(data: PersonDTO) {
-    const person = await this.personRepository.create(data);
+    const person = await this.personRepository.create({
+      ...data,
+      firstName: capitalize(data.firstName),
+      lastName: capitalize(data.lastName)
+    });
     await this.personRepository.save(person);
     return person;
   }

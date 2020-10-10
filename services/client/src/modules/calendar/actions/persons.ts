@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { Person, PersonsFilter } from "../types";
+import { Person } from "../types";
 
 interface GetAllPersonsOwnProps {
   type: string;

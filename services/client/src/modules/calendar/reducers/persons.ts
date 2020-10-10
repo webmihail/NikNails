@@ -1,4 +1,4 @@
-import { ActionProps, GetPersonsByFilter, Person } from "../types";
+import { ActionProps, GetPersonsByFilter } from "../types";
 
 export const persons = (state: GetPersonsByFilter | null = null, action: ActionProps) => {
   switch(action.type) {

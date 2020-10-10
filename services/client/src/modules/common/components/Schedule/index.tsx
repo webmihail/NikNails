@@ -4,7 +4,7 @@ import { Spin, Button } from 'antd';
 import { LeftCircleOutlined, RightCircleOutlined } from '@ant-design/icons'
 import styles from './schedule.module.scss';
 import moment from 'moment';
-import { scheduleBuilder } from '../../utils/scheduleBuilder';
+import { scheduleBuilder } from '../../utils';
 import { useSelector } from 'react-redux';
 
 interface ScheduleProps {
@@ -12,8 +12,8 @@ interface ScheduleProps {
   scheduleSettings: ScheduleSettings;
   loading: boolean;
   onResetDate: () => void;
-  onBusyClick: (record: Record) => void | null;
-  onFreeClick: (time: string) => void | null;
+  onBusyClick: (record: Record) => void;
+  onFreeClick: (data: string, time: string) => void | null;
   onChangeDate: (amount: number) => void;
 }
 
@@ -25,12 +25,12 @@ const Schedule = ({
   onBusyClick,
   onFreeClick,
   onChangeDate
-}: any ) => {
+}: ScheduleProps ) => {
 
   const calendar = useSelector((state: RootState) => state.calendar);
   
   return (
-    <Spin spinning={loading}>
+    <Spin spinning={loading} className={styles.spin}>
       <nav className={styles.navigationWrapper}>
         <Button className={styles.navigation} onClick={() => onChangeDate(-calendar.scheduleSettings.dateRange)}>
           <LeftCircleOutlined className={styles.buttonIcon}/>
