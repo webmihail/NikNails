@@ -1,12 +1,12 @@
 import { Dispatch } from "redux";
-import { Person } from "../types";
+import { Record } from "../types";
 
-interface GetAllPersonsOwnProps {
+interface GetAllRecordsOwnProps {
   type: string;
-  payload: Person[];
+  payload: Record[];
 }
 
-export const getAllPersonsAction = (values: GetAllPersonsOwnProps) => {
+export const getAllRecordsAction = (values: GetAllRecordsOwnProps) => {
   return async (dispatch: Dispatch) => {
     dispatch({
       type: values.type,

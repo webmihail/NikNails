@@ -16,7 +16,6 @@ const Calendar = () => {
   const loading = useSelector((state: RootState) => state.loading);
   const dispatch = useDispatch();
 
-  console.log(loading);
   useEffect(() => {
     dispatch(getAllRecords());
   }, [dispatch]);
@@ -26,7 +25,7 @@ const Calendar = () => {
       <Schedule 
         scheduleSettings={calendar.scheduleSettings} 
         loading={loading}
-        scheduleData={records} 
+        recordsData={records}
         onResetDate={() => {
           dispatch(setLoading('SHOW_LOADER'));
           setTimeout(() => {

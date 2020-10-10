@@ -8,6 +8,7 @@ import CreatePersonForm from '../CreatePersonForm';
 import styles from './createRecordForm.module.scss';
 import { Button } from 'antd';
 import classNames from 'classnames';
+import moment from 'moment';
 
 const CreateRecordModal = () => {
   const recordFormModal = useSelector((state: RootState) => state.recordFormModal);
@@ -21,7 +22,7 @@ const CreateRecordModal = () => {
       case TABS.CREATE_RECORD_FORM:
         return (
           <div>
-            <div className={styles.title}>{`Запись: ${recordFormModal.data.split(' ')[0]} на ${recordFormModal.data.split(' ')[1]}`}</div>
+            <div className={styles.title}>{`Запись: ${moment(new Date(recordFormModal.data.split(' ')[0])).format('DD.MM.YY')} на ${recordFormModal.data.split(' ')[1]}`}</div>
             <br />
             <CreateRecordForm dispatch={dispatch}  />
           </div>

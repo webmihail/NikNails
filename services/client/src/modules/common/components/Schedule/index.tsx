@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScheduleData, Record, ScheduleSettings, RootState } from '../../../calendar/types';
+import { Record, ScheduleSettings, RootState } from '../../../calendar/types';
 import { Spin, Button } from 'antd';
 import { LeftCircleOutlined, RightCircleOutlined } from '@ant-design/icons'
 import styles from './schedule.module.scss';
@@ -8,7 +8,7 @@ import { scheduleBuilder } from '../../utils';
 import { useSelector } from 'react-redux';
 
 interface ScheduleProps {
-  scheduleData: ScheduleData;
+  recordsData: any;
   scheduleSettings: ScheduleSettings;
   loading: boolean;
   onResetDate: () => void;
@@ -18,7 +18,7 @@ interface ScheduleProps {
 }
 
 const Schedule = ({
-  scheduleData,
+  recordsData,
   scheduleSettings,
   loading = false,
   onResetDate,
@@ -68,12 +68,24 @@ const Schedule = ({
         {Object.keys(scheduleBuilder(scheduleSettings)).map(key => {
           return (
             <div className={styles.scheduleItemWrapper} key={key}>
-              <div className={styles.date}>{key}</div>
+              <div className={styles.date}>{moment(new Date(key)).format('DD.MM.YY')}</div>
               <div className={styles.recordWrapper}>
-                {scheduleBuilder(scheduleSettings)[key].map((data:Record) => {
-                  return (<Button 
-                    className={styles.record}
-                    key={key + data.time} onClick={() => onFreeClick(key, data.time)}>{data.time}</Button>)
+                {scheduleBuilder(scheduleSettings)[key].map((data: Record) => {
+                  if(recordsData && recordsData.length) {
+                    const currentDataTime = moment(new Date(key + ' ' + data.time)).add(3, 'hours').toISOString();
+                    const record: Record = recordsData.find((recordData: Record) => currentDataTime === recordData.time);
+                    if(record){
+                      return (<Button 
+                        className={styles.busyRecord}
+                        key={key + data.time} onClick={() => onBusyClick(record)}>{data.time}</Button>)
+                    } else {
+                      return (<Button 
+                        className={styles.freeRecord}
+                        key={key + data.time} onClick={() => onFreeClick(key, data.time)}>{data.time}</Button>)
+                    }
+                  }
+                  
+                  return null;
                 })}
               </div>
             </div>

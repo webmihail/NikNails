@@ -12,7 +12,7 @@ export const scheduleBuilder = (scheduleSettings: ScheduleSettings) => {
       })
     }
     
-    schedule[`${scheduleSettings.currentDate.clone().add(range, 'days').format('DD.MM.YY')}`] = arrayOfTime;
+    schedule[`${scheduleSettings.currentDate.clone().add(range, 'days').format('YYYY.MM.DD')}`] = arrayOfTime;
   }
 
   return schedule;

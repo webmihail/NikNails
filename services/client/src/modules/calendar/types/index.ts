@@ -43,9 +43,11 @@ export interface ScheduleSettings {
 }
 
 export interface Record {
-  personId: number | null;
+  id?: number;
+  personId?: number | null;
   time: string;
-  status?: CALENDAR_TIME_STATUSES;
+  person?: Person;
+  status: CALENDAR_TIME_STATUSES;
   type: RECORD_TYPE;
 }
 
