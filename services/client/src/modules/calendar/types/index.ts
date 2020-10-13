@@ -1,16 +1,7 @@
 import { Moment } from "moment";
+import { CALENDAR_TIME_STATUSES } from "../constants/CalendarTimeStatuses";
+import { RECORD_TYPES } from "../constants/RecordTypes";
 import { TABS } from "../constants/Tabs";
-
-export enum CALENDAR_TIME_STATUSES {
-  BLOCKED = 'Заблокировано',
-  BUSY = 'Занято',
-  FREE = 'Свободно'
-}
-
-export enum RECORD_TYPE {
-  MANICURE = 'Маникюр',
-  PEDICURE = 'Педикюр'
-}
 
 export interface Person {
   id?: number;
@@ -48,7 +39,7 @@ export interface Record {
   time: string;
   person: Person;
   status: CALENDAR_TIME_STATUSES;
-  type: RECORD_TYPE;
+  type: RECORD_TYPES;
 }
 
 export interface ActionProps {

@@ -12,7 +12,14 @@ const InfoRecordModal = () => {
   const recordInfoModal = useSelector((state: RootState) => state.recordInfoModal);
   const dispatch = useDispatch();
 
-  console.log(recordInfoModal.data)
+  const getRecordTypes = (type: string) => {
+    switch(type) {
+      case 'MANICURE':
+        return 'Маникюр';
+      case 'PEDICURE':
+        return 'Педикюр';
+    }
+  }
 
   return (
     recordInfoModal.isOpen ? <div className={styles.modalWrapper}>
@@ -29,7 +36,7 @@ const InfoRecordModal = () => {
           },
           {
             title: 'Услуга',
-            description: recordInfoModal.data.type
+            description: getRecordTypes(recordInfoModal.data.type)
           }
         ]}/> : null}
 
