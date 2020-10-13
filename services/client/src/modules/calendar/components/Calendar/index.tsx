@@ -9,6 +9,7 @@ import CreateRecordModal from '../CreateRecordModal';
 import { TABS } from '../../constants/Tabs';
 import { getAllRecords } from '../../../../api/records';
 import { setLoading } from '../../actions/loading';
+import InfoRecordModal from '../InfoRecordModal';
 
 const Calendar = () => {
   const records = useSelector((state: RootState) => state.records);
@@ -56,6 +57,7 @@ const Calendar = () => {
           }}))}/>
           
         <CreateRecordModal />
+        <InfoRecordModal />
     </div>
   )
 }

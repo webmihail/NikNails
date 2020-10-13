@@ -46,7 +46,7 @@ export interface Record {
   id?: number;
   personId?: number | null;
   time: string;
-  person?: Person;
+  person: Person;
   status: CALENDAR_TIME_STATUSES;
   type: RECORD_TYPE;
 }
@@ -78,7 +78,7 @@ export interface RootState {
     isOpen: boolean;
   };
   recordInfoModal: {
-    data: string;
+    data: Record;
     isOpen: boolean;
   };
   activeTab: TABS
