@@ -19,6 +19,7 @@
     "eslint-plugin-react": "^7.21.4",
     "formik": "^2.1.7",
     "history": "^5.0.0",
+    "lint-staged": "^10.4.0",
     "moment": "^2.27.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
@@ -31,11 +32,21 @@
     "yup": "^0.29.3"
   },
   "scripts": {
-    "dev": "env-cmd -f ../../.env react-scripts start",
+    "dev": "env-cmd -f ../../.env react-scripts start eslint '*/**/*.{js,ts,tsx}'",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*/**/*.{js,ts,tsx}": [
+      "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -59,6 +70,7 @@
     "@typescript-eslint/parser": "^4.4.1",
     "eslint-config-prettier": "^6.12.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.3.0",
     "prettier": "^2.1.2"
   }
 }
