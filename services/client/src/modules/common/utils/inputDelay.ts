@@ -3,11 +3,11 @@ export class InputDelay {
   public numberOfMs: number;
 
   constructor(numberOfMs: number = 500) {
-    this.numberOfMs = numberOfMs
+    this.numberOfMs = numberOfMs;
   }
 
-  public onSearch = <T = any>(data: T, callback:(data: T) => void) => {
-    if(this.timer !== null) {
+  public onSearch = <T = any>(data: T, callback: (data: T) => void) => {
+    if (this.timer !== null) {
       clearTimeout(this.timer);
       this.timer = null;
     }

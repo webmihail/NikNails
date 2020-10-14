@@ -22,37 +22,57 @@ const CreateRecordModal = () => {
       case TABS.CREATE_RECORD_FORM:
         return (
           <div>
-            <div className={styles.title}>{`Запись: ${moment(new Date(recordFormModal.data.split(' ')[0])).format('DD.MM.YY')} на ${recordFormModal.data.split(' ')[1]}`}</div>
+            <div className={styles.title}>{`Запись: ${moment(new Date(recordFormModal.data.split(' ')[0])).format(
+              'DD.MM.YY',
+            )} на ${recordFormModal.data.split(' ')[1]}`}</div>
             <br />
-            <CreateRecordForm dispatch={dispatch}  />
+            <CreateRecordForm dispatch={dispatch} />
           </div>
         );
       default:
         return null;
     }
-  }
+  };
 
-  return (
-    recordFormModal.isOpen ? <div className={styles.modalWrapper}>
+  return recordFormModal.isOpen ? (
+    <div className={styles.modalWrapper}>
       <div className={styles.buttonWrapper}>
-        <Button className={classNames(styles.button, {
-          [styles.buttonChecked]: TABS.CREATE_RECORD_FORM === activeTab
-        })} onClick={() => dispatch(setActiveTab({
-          type: 'CREATE_RECORD_FORM',
-          payload: TABS.CREATE_RECORD_FORM
-        }))}>Создать запись</Button>
+        <Button
+          className={classNames(styles.button, {
+            [styles.buttonChecked]: TABS.CREATE_RECORD_FORM === activeTab,
+          })}
+          onClick={() =>
+            dispatch(
+              setActiveTab({
+                type: 'CREATE_RECORD_FORM',
+                payload: TABS.CREATE_RECORD_FORM,
+              }),
+            )
+          }
+        >
+          Создать запись
+        </Button>
 
-        <Button className={classNames(styles.button, {
-          [styles.buttonChecked]: TABS.CREATE_PERSON_FORM === activeTab
-        })} onClick={() => dispatch(setActiveTab({
-          type: 'CREATE_PERSON_FORM',
-          payload: TABS.CREATE_PERSON_FORM
-        }))}>Создать клиента</Button>
+        <Button
+          className={classNames(styles.button, {
+            [styles.buttonChecked]: TABS.CREATE_PERSON_FORM === activeTab,
+          })}
+          onClick={() =>
+            dispatch(
+              setActiveTab({
+                type: 'CREATE_PERSON_FORM',
+                payload: TABS.CREATE_PERSON_FORM,
+              }),
+            )
+          }
+        >
+          Создать клиента
+        </Button>
       </div>
 
       {getForm()}
-    </div> : null
-  );
-}
+    </div>
+  ) : null;
+};
 
 export default CreateRecordModal;

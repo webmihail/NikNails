@@ -13,44 +13,62 @@ const InfoRecordModal = () => {
   const dispatch = useDispatch();
 
   const getRecordTypes = (type: string) => {
-    switch(type) {
+    switch (type) {
       case 'MANICURE':
         return 'Маникюр';
       case 'PEDICURE':
         return 'Педикюр';
     }
-  }
+  };
 
-  return (
-    recordInfoModal.isOpen ? <div className={styles.modalWrapper}>
-      {recordInfoModal.data ? <InfoList 
-        title={`Запись ${moment(recordInfoModal.data.time).format('DD.MM.YYYY')} на ${moment(recordInfoModal.data.time).subtract(3, 'hours').format('LT')}`} 
-        items={[
-          {
-            title: 'Имя',
-            description: recordInfoModal.data.person.firstName
-          },
-          {
-            title: 'Фамилия',
-            description: recordInfoModal.data.person.lastName
-          },
-          {
-            title: 'Услуга',
-            description: getRecordTypes(recordInfoModal.data.type)
-          }
-        ]}/> : null}
+  return recordInfoModal.isOpen ? (
+    <div className={styles.modalWrapper}>
+      {recordInfoModal.data ? (
+        <InfoList
+          title={`Запись ${moment(recordInfoModal.data.time).format('DD.MM.YYYY')} на ${moment(
+            recordInfoModal.data.time,
+          )
+            .subtract(3, 'hours')
+            .format('LT')}`}
+          items={[
+            {
+              title: 'Имя',
+              description: recordInfoModal.data.person.firstName,
+            },
+            {
+              title: 'Фамилия',
+              description: recordInfoModal.data.person.lastName,
+            },
+            {
+              title: 'Услуга',
+              description: getRecordTypes(recordInfoModal.data.type),
+            },
+          ]}
+        />
+      ) : null}
 
       <br />
 
       <div className={styles.buttonWrapper}>
-        <Button type="primary" onClick={() => dispatch(changeModal(
-          {type: 'CHANGE_INFO_MODAL', payload: {
-            isOpen: false,
-            data: ''
-          }}))}>Закрыть</Button>
+        <Button
+          type="primary"
+          onClick={() =>
+            dispatch(
+              changeModal({
+                type: 'CHANGE_INFO_MODAL',
+                payload: {
+                  isOpen: false,
+                  data: '',
+                },
+              }),
+            )
+          }
+        >
+          Закрыть
+        </Button>
       </div>
-    </div> : null
-  );
-}
+    </div>
+  ) : null;
+};
 
 export default InfoRecordModal;

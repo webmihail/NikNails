@@ -1,7 +1,7 @@
-import { Moment } from "moment";
-import { CALENDAR_TIME_STATUSES } from "../constants/CalendarTimeStatuses";
-import { RECORD_TYPES } from "../constants/RecordTypes";
-import { TABS } from "../constants/Tabs";
+import { Moment } from 'moment';
+import { CALENDAR_TIME_STATUSES } from '../constants/CalendarTimeStatuses';
+import { RECORD_TYPES } from '../constants/RecordTypes';
+import { TABS } from '../constants/Tabs';
 
 export interface Person {
   id?: number;
@@ -11,7 +11,7 @@ export interface Person {
 }
 
 export interface GetPersonsByFilter {
-  data: Person[] | null,
+  data: Person[] | null;
   count: number;
 }
 
@@ -72,5 +72,5 @@ export interface RootState {
     data: Record;
     isOpen: boolean;
   };
-  activeTab: TABS
+  activeTab: TABS;
 }

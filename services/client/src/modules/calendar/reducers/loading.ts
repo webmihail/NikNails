@@ -1,11 +1,12 @@
-import { ActionProps } from "../types";
+import { ActionProps } from '../types';
 
 export const loading = (state: boolean = false, action: ActionProps) => {
   switch (action.type) {
-    case 'SHOW_LOADER': 
+    case 'SHOW_LOADER':
       return true;
-    case 'HIDE_LOADER': 
+    case 'HIDE_LOADER':
       return false;
-    default: return state
+    default:
+      return state;
   }
-}
+};

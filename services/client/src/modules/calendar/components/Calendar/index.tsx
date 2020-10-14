@@ -23,8 +23,8 @@ const Calendar = () => {
 
   return (
     <div className={styles.scheduleWrapper}>
-      <Schedule 
-        scheduleSettings={calendar.scheduleSettings} 
+      <Schedule
+        scheduleSettings={calendar.scheduleSettings}
         loading={loading}
         recordsData={records}
         onResetDate={() => {
@@ -40,26 +40,40 @@ const Calendar = () => {
           }, 300);
         }}
         onFreeClick={(data: string, time: string) => {
-          dispatch(changeModal({type: 'CHANGE_FORM_MODAL', payload: {
-            isOpen: true,
-            data: data + ' ' + time
-          }}))
+          dispatch(
+            changeModal({
+              type: 'CHANGE_FORM_MODAL',
+              payload: {
+                isOpen: true,
+                data: data + ' ' + time,
+              },
+            }),
+          );
 
-          dispatch(setActiveTab({
-            type: 'CREATE_PERSON_FORM',
-            payload: TABS.CREATE_PERSON_FORM
-          }))
+          dispatch(
+            setActiveTab({
+              type: 'CREATE_PERSON_FORM',
+              payload: TABS.CREATE_PERSON_FORM,
+            }),
+          );
         }}
-        onBusyClick={(record: Record) => dispatch(changeModal(
-          {type: 'CHANGE_INFO_MODAL', payload: {
-            isOpen: true,
-            data: record
-          }}))}/>
-          
-        <CreateRecordModal />
-        <InfoRecordModal />
+        onBusyClick={(record: Record) =>
+          dispatch(
+            changeModal({
+              type: 'CHANGE_INFO_MODAL',
+              payload: {
+                isOpen: true,
+                data: record,
+              },
+            }),
+          )
+        }
+      />
+
+      <CreateRecordModal />
+      <InfoRecordModal />
     </div>
-  )
-}
+  );
+};
 
 export default Calendar;

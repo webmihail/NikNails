@@ -1,5 +1,5 @@
-import { Dispatch } from "redux";
-import { Record } from "../types";
+import { Dispatch } from 'redux';
+import { Record } from '../types';
 
 interface GetAllRecordsOwnProps {
   type: string;
@@ -10,7 +10,7 @@ export const getAllRecordsAction = (values: GetAllRecordsOwnProps) => {
   return async (dispatch: Dispatch) => {
     dispatch({
       type: values.type,
-      payload: values.payload
-    })
-  }
-}
+      payload: values.payload,
+    });
+  };
+};

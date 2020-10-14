@@ -32,11 +32,13 @@ const SelectField = ({
       className={wrapperClassName}
     >
       <Select {...props} className={styles.select}>
-        {options ? options.map((option:any) => (
-          <Select.Option key={option.value} value={option.value} title={option.title}>
-            {props.showValue ? option.value + ' ' + option.name : option.name}
-          </Select.Option>
-        )) : null}
+        {options
+          ? options.map((option: any) => (
+              <Select.Option key={option.value} value={option.value} title={option.title}>
+                {props.showValue ? option.value + ' ' + option.name : option.name}
+              </Select.Option>
+            ))
+          : null}
       </Select>
     </InputFieldTitle>
   );

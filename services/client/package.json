@@ -15,6 +15,8 @@
     "antd": "^4.6.2",
     "axios": "^0.20.0",
     "env-cmd": "^10.1.0",
+    "eslint": "6.6.0",
+    "eslint-plugin-react": "^7.21.4",
     "formik": "^2.1.7",
     "history": "^5.0.0",
     "moment": "^2.27.0",
@@ -30,6 +32,7 @@
   },
   "scripts": {
     "dev": "env-cmd -f ../../.env react-scripts start",
+    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -51,6 +54,11 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.10",
-    "@types/react": "^16.9.50"
+    "@types/react": "^16.9.50",
+    "@typescript-eslint/eslint-plugin": "^4.4.1",
+    "@typescript-eslint/parser": "^4.4.1",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.1.2"
   }
 }

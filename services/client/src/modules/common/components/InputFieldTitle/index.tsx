@@ -21,7 +21,7 @@ const InputFieldTitle = ({
   errorMessage,
   className,
   children,
-  style
+  style,
 }: PropsWithChildren<InputFieldProps>) => {
   return (
     <div className={classnames([styles.inputWrapper, className])} style={style}>

@@ -1,6 +1,6 @@
-import { Dispatch } from "redux"
+import { Dispatch } from 'redux';
 
-import { TABS } from "../constants/Tabs"
+import { TABS } from '../constants/Tabs';
 
 interface ChangeModalOwnProps {
   type: string;
@@ -19,16 +19,16 @@ export const changeModal = (values: ChangeModalOwnProps) => {
   return async (dispatch: Dispatch) => {
     dispatch({
       type: values.type,
-      payload: values.payload
-    })
-  }
-}
+      payload: values.payload,
+    });
+  };
+};
 
 export const setActiveTab = (values: SetActiveTabOwnProps) => {
   return async (dispatch: Dispatch) => {
     dispatch({
       type: values.type,
-      payload: values.payload
-    })
-  }
-}
+      payload: values.payload,
+    });
+  };
+};

@@ -15,17 +15,17 @@ const InfoList = ({ title, items, className }: InfoListProps) => {
   const columns = [
     {
       dataIndex: 'title',
-      className: styles.title
+      className: styles.title,
     },
     {
-      dataIndex: 'description'
-    }
+      dataIndex: 'description',
+    },
   ];
 
-  const tableData = items.map(item => ({
+  const tableData = items.map((item) => ({
     key: item.title,
     title: item.title,
-    description: item.description
+    description: item.description,
   }));
 
   return (

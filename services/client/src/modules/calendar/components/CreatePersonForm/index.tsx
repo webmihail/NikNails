@@ -12,7 +12,7 @@ import { createPerson } from '../../../../api/persons';
 import { TABS } from '../../constants/Tabs';
 
 interface CreatePersonFormOwnProps {
-  dispatch: (value: any) => void
+  dispatch: (value: any) => void;
 }
 
 const CreatePersonForm = ({
@@ -22,9 +22,8 @@ const CreatePersonForm = ({
   touched,
   errors,
   setFieldValue,
-  dispatch
+  dispatch,
 }: FormikProps<Person> & CreatePersonFormOwnProps) => {
-  
   return (
     <form onSubmit={handleSubmit}>
       <div className={styles.form}>
@@ -51,15 +50,23 @@ const CreatePersonForm = ({
         />
       </div>
       <div className={styles.buttonGroup}>
-        <Button type="primary" onClick={() => dispatch(changeModal(
-          {type: 'CHANGE_FORM_MODAL', payload: {
-            isOpen: false,
-            data: ''
-          }}))}>Закрыть</Button>
         <Button
           type="primary"
-          onClick={() => handleSubmit()}
+          onClick={() =>
+            dispatch(
+              changeModal({
+                type: 'CHANGE_FORM_MODAL',
+                payload: {
+                  isOpen: false,
+                  data: '',
+                },
+              }),
+            )
+          }
         >
+          Закрыть
+        </Button>
+        <Button type="primary" onClick={() => handleSubmit()}>
           Создать
         </Button>
       </div>
@@ -72,14 +79,16 @@ const CreatePersonFormWithFormik = withFormik<CreatePersonFormOwnProps, any>({
   mapPropsToValues: () => ({
     phoneNumber: '+380',
     firstName: '',
-    lastName: ''
+    lastName: '',
   }),
-  handleSubmit: (values, { props:{ dispatch } }) => {
+  handleSubmit: (values, { props: { dispatch } }) => {
     dispatch(createPerson(values));
-    dispatch(setActiveTab({
-      type: 'CREATE_RECORD_FORM',
-      payload: TABS.CREATE_RECORD_FORM
-    }))
+    dispatch(
+      setActiveTab({
+        type: 'CREATE_RECORD_FORM',
+        payload: TABS.CREATE_RECORD_FORM,
+      }),
+    );
   },
   validationSchema: yup.object().shape<any>({
     phoneNumber: yup
@@ -87,9 +96,9 @@ const CreatePersonFormWithFormik = withFormik<CreatePersonFormOwnProps, any>({
       .required('Це поле не може бути порожнім!')
       .matches(phoneRegExp, 'Номер телефону недійсний! (+380..)'),
     firstName: yup.string().required('Це поле не може бути порожнім!'),
-    lastName: yup.string().required('Це поле не може бути порожнім!')
+    lastName: yup.string().required('Це поле не може бути порожнім!'),
   }),
-  displayName: 'CreatePersonForm'
+  displayName: 'CreatePersonForm',
 })(CreatePersonForm);
 
 export default CreatePersonFormWithFormik;
