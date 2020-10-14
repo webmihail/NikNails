@@ -36,7 +36,9 @@ const Calendar = () => {
         onChangeDate={(amount: number) => {
           dispatch(setLoading('SHOW_LOADER'));
           setTimeout(() => {
-            dispatch(setCalendarBeginDate(calendar.scheduleSettings.currentDate.add(amount, 'days')));
+            dispatch(
+              setCalendarBeginDate(calendar.scheduleSettings.currentDate.add(amount, 'days')),
+            );
           }, 300);
         }}
         onFreeClick={(data: string, time: string) => {

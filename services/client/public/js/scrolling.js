@@ -19,7 +19,8 @@ var scroll = (event) => {
     } else {
       $('.navbar__link_' + screenNumber).css('color', '#eec97c');
       screenNumber++;
-      screenNumber = screenNumber > $('.main__screen').length ? $('.main__screen').length : screenNumber;
+      screenNumber =
+        screenNumber > $('.main__screen').length ? $('.main__screen').length : screenNumber;
     }
 
     if (screenNumber === 2 || screenNumber === 6) {

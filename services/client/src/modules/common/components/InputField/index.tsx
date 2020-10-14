@@ -35,7 +35,15 @@ const InputField = ({
     >
       <Input
         {...props}
-        suffix={errorMessage ? <Icon className={styles.suffixIco} type="warning" /> : suffix ? suffix : <span />}
+        suffix={
+          errorMessage ? (
+            <Icon className={styles.suffixIco} type="warning" />
+          ) : suffix ? (
+            suffix
+          ) : (
+            <span />
+          )
+        }
       />
     </InputFieldTitle>
   );
