@@ -1,15 +1,16 @@
 #####################
 # Client
 #####################
+REACT_APP_API_URL=http://localhost:3090
 
 #####################
 # Server
 #####################
-POSTGRES_PASSWORD=Fifty44MedTen22
-POSTGRES_USER=medcore
-POSTGRES_DB=medcore
+POSTGRES_PASSWORD=qwepoi2207
+POSTGRES_USER=niknails
+POSTGRES_DB=niknails
 POSTGRES_HOST=localhost
 # 'localhost' for dev and name of docker container for production
 
-GOOGLE_CLOUD_KEYS_FILE=medcore-51fc05fed50e.json
-GOOGLE_CLOUD_BUCKET=medcore
+GOOGLE_CLOUD_KEYS_FILE=niknails-...json
+GOOGLE_CLOUD_BUCKET=niknails
