@@ -1,5 +1,6 @@
 var screenNumber = 1;
 var scrolling = false;
+let hideMagic = false;
 
 var setScreenStyles = () => {
   $('.main__screen').css('height', $(window).height());
@@ -27,6 +28,11 @@ var scroll = (event) => {
       setTimeout(() => {
         $('.main__screen_' + screenNumber).animate({ 'padding-top': '54px' }, 900);
       }, 700);
+    }
+
+    if (screenNumber === 5) {
+      if (!hideMagic) makeMagicText();
+      hideMagic = true;
     }
 
     setTimeout(() => showAnimation(screenNumber), 150);

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AACE,gBADc,CACd,gBAAgB,AAAC,CACf,gBAAgB,CAAE,sBAAuB,CACzC,YAAY,CAAE,GAAG,CAAA,UAAU,CAC3B,aAAa,CAAE,GAAG,CAAA,UAAU,CAC7B,AALH,AAOE,gBAPc,CAOd,eAAe,AAAC,CACd,MAAM,CAAE,CAAC,CAAA,UAAU,CACpB",
+    "sources": [
+        "../../src/modules/common/components/InfoList/infoList.global.scss"
+    ],
+    "names": [],
+    "file": "infoList.global.css"
+}

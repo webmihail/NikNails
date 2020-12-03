@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,gBAAgB,AAAC,CACf,QAAQ,CAAE,QAAQ,CAClB,MAAM,CAAE,IAAI,CACZ,gBAAgB,CAAE,IAAkB,CACrC",
+    "sources": [
+        "../../src/modules/calendar/components/Calendar/calendar.module.scss"
+    ],
+    "names": [],
+    "file": "calendar.module.css"
+}
