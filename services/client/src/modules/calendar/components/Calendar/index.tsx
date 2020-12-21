@@ -3,7 +3,7 @@ import Schedule from '../../../common/components/Schedule';
 import styles from './calendar.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeModal, setActiveTab, setCalendarBeginDate } from '../../actions';
-import { Record, RootState } from '../../types';
+import { RootState } from '../../types';
 import moment from 'moment';
 import CreateRecordModal from '../CreateRecordModal';
 import { TABS } from '../../constants/Tabs';
@@ -36,7 +36,9 @@ const Calendar = () => {
         onChangeDate={(amount: number) => {
           dispatch(setLoading('SHOW_LOADER'));
           setTimeout(() => {
-            dispatch(setCalendarBeginDate(calendar.scheduleSettings.currentDate.add(amount, 'days')));
+            dispatch(
+              setCalendarBeginDate(calendar.scheduleSettings.currentDate.add(amount, 'days')),
+            );
           }, 300);
         }}
         onFreeClick={(data: string, time: string) => {
@@ -57,17 +59,18 @@ const Calendar = () => {
             }),
           );
         }}
-        onBusyClick={(record: Record) =>
-          dispatch(
-            changeModal({
-              type: 'CHANGE_INFO_MODAL',
-              payload: {
-                isOpen: true,
-                data: record,
-              },
-            }),
-          )
-        }
+        //TODO: Need it when we get OWNER RORE
+        // onBusyClick={(record: Record) =>
+        //   dispatch(
+        //     changeModal({
+        //       type: 'CHANGE_INFO_MODAL',
+        //       payload: {
+        //         isOpen: true,
+        //         data: record,
+        //       },
+        //     }),
+        //   )
+        // }
       />
 
       <CreateRecordModal />

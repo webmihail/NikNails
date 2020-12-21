@@ -48,7 +48,9 @@ const CreateRecordForm = ({
             return (
               <div>
                 {menu}
-                <div className={styles.selectDropdown}>Всего найдено: {persons && persons.count}</div>
+                <div className={styles.selectDropdown}>
+                  Всего найдено: {persons && persons.count}
+                </div>
               </div>
             );
           }}

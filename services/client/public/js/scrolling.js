@@ -1,5 +1,6 @@
 var screenNumber = 1;
 var scrolling = false;
+let hideMagic = false;
 
 var setScreenStyles = () => {
   $('.main__screen').css('height', $(window).height());
@@ -19,13 +20,13 @@ var scroll = (event) => {
     } else {
       $('.navbar__link_' + screenNumber).css('color', '#eec97c');
       screenNumber++;
-      screenNumber = screenNumber > $('.main__screen').length ? $('.main__screen').length : screenNumber;
+      screenNumber =
+        screenNumber > $('.main__screen').length ? $('.main__screen').length : screenNumber;
     }
 
-    if (screenNumber === 2 || screenNumber === 6) {
-      setTimeout(() => {
-        $('.main__screen_' + screenNumber).animate({ 'padding-top': '54px' }, 900);
-      }, 700);
+    if (screenNumber === 5) {
+      if (!hideMagic) makeMagicText();
+      hideMagic = true;
     }
 
     setTimeout(() => showAnimation(screenNumber), 150);

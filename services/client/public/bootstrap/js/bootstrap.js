@@ -13,7 +13,8 @@
   'use strict';
 
   $ = $ && Object.prototype.hasOwnProperty.call($, 'default') ? $['default'] : $;
-  Popper = Popper && Object.prototype.hasOwnProperty.call(Popper, 'default') ? Popper['default'] : Popper;
+  Popper =
+    Popper && Object.prototype.hasOwnProperty.call(Popper, 'default') ? Popper['default'] : Popper;
 
   function _defineProperties(target, props) {
     for (var i = 0; i < props.length; i++) {
@@ -193,7 +194,9 @@
 
       transitionDuration = transitionDuration.split(',')[0];
       transitionDelay = transitionDelay.split(',')[0];
-      return (parseFloat(transitionDuration) + parseFloat(transitionDelay)) * MILLISECONDS_MULTIPLIER;
+      return (
+        (parseFloat(transitionDuration) + parseFloat(transitionDelay)) * MILLISECONDS_MULTIPLIER
+      );
     },
     reflow: function reflow(element) {
       return element.offsetHeight;
@@ -265,7 +268,9 @@
         (version[0] === minMajor && version[1] === minMinor && version[2] < minPatch) ||
         version[0] >= maxMajor
       ) {
-        throw new Error("Bootstrap's JavaScript requires at least jQuery v1.9.1 but less than v4.0.0");
+        throw new Error(
+          "Bootstrap's JavaScript requires at least jQuery v1.9.1 but less than v4.0.0",
+        );
       }
     },
   };
@@ -503,9 +508,14 @@
         }
       }
 
-      if (!(this._element.hasAttribute('disabled') || this._element.classList.contains('disabled'))) {
+      if (
+        !(this._element.hasAttribute('disabled') || this._element.classList.contains('disabled'))
+      ) {
         if (addAriaPressed) {
-          this._element.setAttribute('aria-pressed', !this._element.classList.contains(CLASS_NAME_ACTIVE));
+          this._element.setAttribute(
+            'aria-pressed',
+            !this._element.classList.contains(CLASS_NAME_ACTIVE),
+          );
         }
 
         if (triggerChangeEvent) {
@@ -565,7 +575,10 @@
       } else {
         var inputBtn = button.querySelector(SELECTOR_INPUT);
 
-        if (inputBtn && (inputBtn.hasAttribute('disabled') || inputBtn.classList.contains('disabled'))) {
+        if (
+          inputBtn &&
+          (inputBtn.hasAttribute('disabled') || inputBtn.classList.contains('disabled'))
+        ) {
           event.preventDefault(); // work around Firefox bug #1540995
 
           return;
@@ -715,7 +728,8 @@
       this._config = this._getConfig(config);
       this._element = element;
       this._indicatorsElement = this._element.querySelector(SELECTOR_INDICATORS);
-      this._touchSupported = 'ontouchstart' in document.documentElement || navigator.maxTouchPoints > 0;
+      this._touchSupported =
+        'ontouchstart' in document.documentElement || navigator.maxTouchPoints > 0;
       this._pointerEvent = Boolean(window.PointerEvent || window.MSPointerEvent);
 
       this._addEventListeners();
@@ -733,7 +747,11 @@
     _proto.nextWhenVisible = function nextWhenVisible() {
       // Don't call next when the page isn't visible
       // or the carousel or its parent isn't visible
-      if (!document.hidden && $(this._element).is(':visible') && $(this._element).css('visibility') !== 'hidden') {
+      if (
+        !document.hidden &&
+        $(this._element).is(':visible') &&
+        $(this._element).css('visibility') !== 'hidden'
+      ) {
         this.next();
       }
     };
@@ -964,7 +982,9 @@
 
     _proto._getItemIndex = function _getItemIndex(element) {
       this._items =
-        element && element.parentNode ? [].slice.call(element.parentNode.querySelectorAll(SELECTOR_ITEM)) : [];
+        element && element.parentNode
+          ? [].slice.call(element.parentNode.querySelectorAll(SELECTOR_ITEM))
+          : [];
       return this._items.indexOf(element);
     };
 
@@ -975,7 +995,9 @@
       var activeIndex = this._getItemIndex(activeElement);
 
       var lastItemIndex = this._items.length - 1;
-      var isGoingToWrap = (isPrevDirection && activeIndex === 0) || (isNextDirection && activeIndex === lastItemIndex);
+      var isGoingToWrap =
+        (isPrevDirection && activeIndex === 0) ||
+        (isNextDirection && activeIndex === lastItemIndex);
 
       if (isGoingToWrap && !this._config.wrap) {
         return activeElement;
@@ -1021,7 +1043,8 @@
 
       var activeElementIndex = this._getItemIndex(activeElement);
 
-      var nextElement = element || (activeElement && this._getItemByDirection(direction, activeElement));
+      var nextElement =
+        element || (activeElement && this._getItemByDirection(direction, activeElement));
 
       var nextElementIndex = this._getItemIndex(nextElement);
 
@@ -1091,7 +1114,9 @@
             $(nextElement)
               .removeClass(directionalClassName + ' ' + orderClassName)
               .addClass(CLASS_NAME_ACTIVE$1);
-            $(activeElement).removeClass(CLASS_NAME_ACTIVE$1 + ' ' + orderClassName + ' ' + directionalClassName);
+            $(activeElement).removeClass(
+              CLASS_NAME_ACTIVE$1 + ' ' + orderClassName + ' ' + directionalClassName,
+            );
             _this4._isSliding = false;
             setTimeout(function () {
               return $(_this4._element).trigger(slidEvent);
@@ -1276,9 +1301,11 @@
       for (var i = 0, len = toggleList.length; i < len; i++) {
         var elem = toggleList[i];
         var selector = Util.getSelectorFromElement(elem);
-        var filterElement = [].slice.call(document.querySelectorAll(selector)).filter(function (foundElem) {
-          return foundElem === element;
-        });
+        var filterElement = [].slice
+          .call(document.querySelectorAll(selector))
+          .filter(function (foundElem) {
+            return foundElem === element;
+          });
 
         if (selector !== null && filterElement.length > 0) {
           this._selector = selector;
@@ -1320,13 +1347,15 @@
       var activesData;
 
       if (this._parent) {
-        actives = [].slice.call(this._parent.querySelectorAll(SELECTOR_ACTIVES)).filter(function (elem) {
-          if (typeof _this._config.parent === 'string') {
-            return elem.getAttribute('data-parent') === _this._config.parent;
-          }
+        actives = [].slice
+          .call(this._parent.querySelectorAll(SELECTOR_ACTIVES))
+          .filter(function (elem) {
+            if (typeof _this._config.parent === 'string') {
+              return elem.getAttribute('data-parent') === _this._config.parent;
+            }
 
-          return elem.classList.contains(CLASS_NAME_COLLAPSE);
-        });
+            return elem.classList.contains(CLASS_NAME_COLLAPSE);
+          });
 
         if (actives.length === 0) {
           actives = null;
@@ -1428,7 +1457,10 @@
       var complete = function complete() {
         _this2.setTransitioning(false);
 
-        $(_this2._element).removeClass(CLASS_NAME_COLLAPSING).addClass(CLASS_NAME_COLLAPSE).trigger(EVENT_HIDDEN);
+        $(_this2._element)
+          .removeClass(CLASS_NAME_COLLAPSING)
+          .addClass(CLASS_NAME_COLLAPSE)
+          .trigger(EVENT_HIDDEN);
       };
 
       this._element.style[dimension] = '';
@@ -1605,7 +1637,9 @@
 
   var RIGHT_MOUSE_BUTTON_WHICH = 3; // MouseEvent.which value for the right button (assuming a right-handed mouse)
 
-  var REGEXP_KEYDOWN = new RegExp(ARROW_UP_KEYCODE + '|' + ARROW_DOWN_KEYCODE + '|' + ESCAPE_KEYCODE);
+  var REGEXP_KEYDOWN = new RegExp(
+    ARROW_UP_KEYCODE + '|' + ARROW_DOWN_KEYCODE + '|' + ESCAPE_KEYCODE,
+  );
   var EVENT_HIDE$1 = 'hide' + EVENT_KEY$4;
   var EVENT_HIDDEN$1 = 'hidden' + EVENT_KEY$4;
   var EVENT_SHOW$1 = 'show' + EVENT_KEY$4;
@@ -1743,7 +1777,10 @@
       // only needed because of broken event delegation on iOS
       // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
 
-      if ('ontouchstart' in document.documentElement && $(parent).closest(SELECTOR_NAVBAR_NAV).length === 0) {
+      if (
+        'ontouchstart' in document.documentElement &&
+        $(parent).closest(SELECTOR_NAVBAR_NAV).length === 0
+      ) {
         $(document.body).children().on('mouseover', null, $.noop);
       }
 
@@ -1926,7 +1963,8 @@
     Dropdown._clearMenus = function _clearMenus(event) {
       if (
         event &&
-        (event.which === RIGHT_MOUSE_BUTTON_WHICH || (event.type === 'keyup' && event.which !== TAB_KEYCODE))
+        (event.which === RIGHT_MOUSE_BUTTON_WHICH ||
+          (event.type === 'keyup' && event.which !== TAB_KEYCODE))
       ) {
         return;
       }
@@ -2032,7 +2070,10 @@
       event.preventDefault();
       event.stopPropagation();
 
-      if (!isActive || (isActive && (event.which === ESCAPE_KEYCODE || event.which === SPACE_KEYCODE))) {
+      if (
+        !isActive ||
+        (isActive && (event.which === ESCAPE_KEYCODE || event.which === SPACE_KEYCODE))
+      ) {
         if (event.which === ESCAPE_KEYCODE) {
           $(parent.querySelector(SELECTOR_DATA_TOGGLE$2)).trigger('focus');
         }
@@ -2041,9 +2082,11 @@
         return;
       }
 
-      var items = [].slice.call(parent.querySelectorAll(SELECTOR_VISIBLE_ITEMS)).filter(function (item) {
-        return $(item).is(':visible');
-      });
+      var items = [].slice
+        .call(parent.querySelectorAll(SELECTOR_VISIBLE_ITEMS))
+        .filter(function (item) {
+          return $(item).is(':visible');
+        });
 
       if (items.length === 0) {
         return;
@@ -2402,7 +2445,9 @@
 
       if (transition) {
         var transitionDuration = Util.getTransitionDurationFromElement(this._dialog);
-        $(this._dialog).one(Util.TRANSITION_END, transitionComplete).emulateTransitionEnd(transitionDuration);
+        $(this._dialog)
+          .one(Util.TRANSITION_END, transitionComplete)
+          .emulateTransitionEnd(transitionDuration);
       } else {
         transitionComplete();
       }
@@ -2526,7 +2571,9 @@
         }
 
         var backdropTransitionDuration = Util.getTransitionDurationFromElement(this._backdrop);
-        $(this._backdrop).one(Util.TRANSITION_END, callback).emulateTransitionEnd(backdropTransitionDuration);
+        $(this._backdrop)
+          .one(Util.TRANSITION_END, callback)
+          .emulateTransitionEnd(backdropTransitionDuration);
       } else if (!this._isShown && this._backdrop) {
         $(this._backdrop).removeClass(CLASS_NAME_SHOW$3);
 
@@ -2541,7 +2588,9 @@
         if ($(this._element).hasClass(CLASS_NAME_FADE$1)) {
           var _backdropTransitionDuration = Util.getTransitionDurationFromElement(this._backdrop);
 
-          $(this._backdrop).one(Util.TRANSITION_END, callbackRemove).emulateTransitionEnd(_backdropTransitionDuration);
+          $(this._backdrop)
+            .one(Util.TRANSITION_END, callbackRemove)
+            .emulateTransitionEnd(_backdropTransitionDuration);
         } else {
           callbackRemove();
         }
@@ -2746,7 +2795,16 @@
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
-  var uriAttrs = ['background', 'cite', 'href', 'itemtype', 'longdesc', 'poster', 'src', 'xlink:href'];
+  var uriAttrs = [
+    'background',
+    'cite',
+    'href',
+    'itemtype',
+    'longdesc',
+    'poster',
+    'src',
+    'xlink:href',
+  ];
   var ARIA_ATTRIBUTE_PATTERN = /^aria-[\w-]*$/i;
   var DefaultWhitelist = {
     // Global attributes allowed on any supplied element below.
@@ -2801,7 +2859,9 @@
 
     if (allowedAttributeList.indexOf(attrName) !== -1) {
       if (uriAttrs.indexOf(attrName) !== -1) {
-        return Boolean(attr.nodeValue.match(SAFE_URL_PATTERN) || attr.nodeValue.match(DATA_URL_PATTERN));
+        return Boolean(
+          attr.nodeValue.match(SAFE_URL_PATTERN) || attr.nodeValue.match(DATA_URL_PATTERN),
+        );
       }
 
       return true;
@@ -2903,7 +2963,9 @@
   var Default$4 = {
     animation: true,
     template:
-      '<div class="tooltip" role="tooltip">' + '<div class="arrow"></div>' + '<div class="tooltip-inner"></div></div>',
+      '<div class="tooltip" role="tooltip">' +
+      '<div class="arrow"></div>' +
+      '<div class="tooltip-inner"></div></div>',
     trigger: 'hover focus',
     title: '',
     delay: 0,
@@ -3227,7 +3289,10 @@
       var title = this.element.getAttribute('data-original-title');
 
       if (!title) {
-        title = typeof this.config.title === 'function' ? this.config.title.call(this.element) : this.config.title;
+        title =
+          typeof this.config.title === 'function'
+            ? this.config.title.call(this.element)
+            : this.config.title;
       }
 
       return title;
@@ -3304,14 +3369,20 @@
       var triggers = this.config.trigger.split(' ');
       triggers.forEach(function (trigger) {
         if (trigger === 'click') {
-          $(_this5.element).on(_this5.constructor.Event.CLICK, _this5.config.selector, function (event) {
+          $(_this5.element).on(_this5.constructor.Event.CLICK, _this5.config.selector, function (
+            event,
+          ) {
             return _this5.toggle(event);
           });
         } else if (trigger !== TRIGGER_MANUAL) {
           var eventIn =
-            trigger === TRIGGER_HOVER ? _this5.constructor.Event.MOUSEENTER : _this5.constructor.Event.FOCUSIN;
+            trigger === TRIGGER_HOVER
+              ? _this5.constructor.Event.MOUSEENTER
+              : _this5.constructor.Event.FOCUSIN;
           var eventOut =
-            trigger === TRIGGER_HOVER ? _this5.constructor.Event.MOUSELEAVE : _this5.constructor.Event.FOCUSOUT;
+            trigger === TRIGGER_HOVER
+              ? _this5.constructor.Event.MOUSELEAVE
+              : _this5.constructor.Event.FOCUSOUT;
           $(_this5.element)
             .on(eventIn, _this5.config.selector, function (event) {
               return _this5._enter(event);
@@ -3366,7 +3437,10 @@
         context._activeTrigger[event.type === 'focusin' ? TRIGGER_FOCUS : TRIGGER_HOVER] = true;
       }
 
-      if ($(context.getTipElement()).hasClass(CLASS_NAME_SHOW$4) || context._hoverState === HOVER_STATE_SHOW) {
+      if (
+        $(context.getTipElement()).hasClass(CLASS_NAME_SHOW$4) ||
+        context._hoverState === HOVER_STATE_SHOW
+      ) {
         context._hoverState = HOVER_STATE_SHOW;
         return;
       }
@@ -3868,7 +3942,8 @@
     _proto.refresh = function refresh() {
       var _this2 = this;
 
-      var autoMethod = this._scrollElement === this._scrollElement.window ? METHOD_OFFSET : METHOD_POSITION;
+      var autoMethod =
+        this._scrollElement === this._scrollElement.window ? METHOD_OFFSET : METHOD_POSITION;
       var offsetMethod = this._config.method === 'auto' ? autoMethod : this._config.method;
       var offsetBase = offsetMethod === METHOD_POSITION ? this._getScrollTop() : 0;
       this._offsets = [];
@@ -3922,7 +3997,10 @@
     }; // Private
 
     _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread2(_objectSpread2({}, Default$6), typeof config === 'object' && config ? config : {});
+      config = _objectSpread2(
+        _objectSpread2({}, Default$6),
+        typeof config === 'object' && config ? config : {},
+      );
 
       if (typeof config.target !== 'string' && Util.isElement(config.target)) {
         var id = $(config.target).attr('id');
@@ -3940,17 +4018,22 @@
     };
 
     _proto._getScrollTop = function _getScrollTop() {
-      return this._scrollElement === window ? this._scrollElement.pageYOffset : this._scrollElement.scrollTop;
+      return this._scrollElement === window
+        ? this._scrollElement.pageYOffset
+        : this._scrollElement.scrollTop;
     };
 
     _proto._getScrollHeight = function _getScrollHeight() {
       return (
-        this._scrollElement.scrollHeight || Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)
+        this._scrollElement.scrollHeight ||
+        Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)
       );
     };
 
     _proto._getOffsetHeight = function _getOffsetHeight() {
-      return this._scrollElement === window ? window.innerHeight : this._scrollElement.getBoundingClientRect().height;
+      return this._scrollElement === window
+        ? window.innerHeight
+        : this._scrollElement.getBoundingClientRect().height;
     };
 
     _proto._process = function _process() {
@@ -4006,7 +4089,10 @@
       var $link = $([].slice.call(document.querySelectorAll(queries.join(','))));
 
       if ($link.hasClass(CLASS_NAME_DROPDOWN_ITEM)) {
-        $link.closest(SELECTOR_DROPDOWN).find(SELECTOR_DROPDOWN_TOGGLE).addClass(CLASS_NAME_ACTIVE$2);
+        $link
+          .closest(SELECTOR_DROPDOWN)
+          .find(SELECTOR_DROPDOWN_TOGGLE)
+          .addClass(CLASS_NAME_ACTIVE$2);
         $link.addClass(CLASS_NAME_ACTIVE$2);
       } else {
         // Set triggered link as active
@@ -4171,7 +4257,9 @@
 
       if (listElement) {
         var itemSelector =
-          listElement.nodeName === 'UL' || listElement.nodeName === 'OL' ? SELECTOR_ACTIVE_UL : SELECTOR_ACTIVE$2;
+          listElement.nodeName === 'UL' || listElement.nodeName === 'OL'
+            ? SELECTOR_ACTIVE_UL
+            : SELECTOR_ACTIVE$2;
         previous = $.makeArray($(listElement).find(itemSelector));
         previous = previous[previous.length - 1];
       }
@@ -4277,7 +4365,9 @@
         var dropdownElement = $(element).closest(SELECTOR_DROPDOWN$1)[0];
 
         if (dropdownElement) {
-          var dropdownToggleList = [].slice.call(dropdownElement.querySelectorAll(SELECTOR_DROPDOWN_TOGGLE$1));
+          var dropdownToggleList = [].slice.call(
+            dropdownElement.querySelectorAll(SELECTOR_DROPDOWN_TOGGLE$1),
+          );
           $(dropdownToggleList).addClass(CLASS_NAME_ACTIVE$3);
         }
 
@@ -4430,7 +4520,9 @@
 
       if (this._config.animation) {
         var transitionDuration = Util.getTransitionDurationFromElement(this._element);
-        $(this._element).one(Util.TRANSITION_END, complete).emulateTransitionEnd(transitionDuration);
+        $(this._element)
+          .one(Util.TRANSITION_END, complete)
+          .emulateTransitionEnd(transitionDuration);
       } else {
         complete();
       }
@@ -4495,7 +4587,9 @@
 
       if (this._config.animation) {
         var transitionDuration = Util.getTransitionDurationFromElement(this._element);
-        $(this._element).one(Util.TRANSITION_END, complete).emulateTransitionEnd(transitionDuration);
+        $(this._element)
+          .one(Util.TRANSITION_END, complete)
+          .emulateTransitionEnd(transitionDuration);
       } else {
         complete();
       }

@@ -25,7 +25,6 @@ html {
   z-index: 100;
 }
 
-
 .header__logo {
   height: 30px;
   margin: 9px 5px 5px 28px;
@@ -45,7 +44,7 @@ html {
 .screen__wrap {
   display: flex;
   position: relative;
-  top: 56px;
+  top: 54px;
   height: calc(100% - 56px);
 }
 
@@ -137,13 +136,54 @@ html {
   }
 }
 .main__screen_5 {
-  background: url("../images/background.jpeg") no-repeat center center;
+  background: url("../images/background-about.jpeg") no-repeat center center;
   background-size: cover;
   color: $white;
+  position: relative;
+  .about {
+    position: absolute;
+    top: 5vh;
+    right: 0;
+    padding: 20px;
+    font-size: 1.3em;
+    color: black;
+    width: 65%;
+
+    .magic-wave {
+      color: $black;
+      animation: 15s color infinite;
+    }
+    
+    @keyframes color {
+      50% {
+        color: $gold;
+      }
+    }
+  }
+  .about__diploms{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    padding: 20px;
+
+    .diplom__border {
+      width: 18%;
+      box-shadow:
+        0px 0px 0px 2px rgba(0,0,0,0.6),
+        0px 0px 0px 14px #fff,
+        0px 0px 0px 18px rgba(0,0,0,0.2),
+        6px 6px 8px 17px #555;
+
+      .diplom {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
 }
 .main__screen_6 {
   position: relative;
-  background: gray;
+  background: $silver;
 
   .footer__logo {
     height: 5vh;
@@ -151,21 +191,16 @@ html {
   }
 
   .footer__info {
-    width: 90vw;
+    width: 100%;
+    height: 8.5vh;
+    margin-top: -5px;
+    padding: 0 60px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background-color: $grey;
-    margin: 5px auto;
     a {
       text-decoration: none;
     }
-  }
-
-  .footer__copyright {
-    font-size: 2vh;
-    position: absolute;
-    width: 100%;
-    bottom: 1vh;
-    text-align: center;
   }
 }

@@ -12,7 +12,8 @@ interface ScheduleProps {
   scheduleSettings: ScheduleSettings;
   loading: boolean;
   onResetDate: () => void;
-  onBusyClick: (record: Record) => void;
+  //TODO: Need it when we get OWNER RORE
+  // onBusyClick: (record: Record) => void;
   onFreeClick: (data: string, time: string) => void | null;
   onChangeDate: (amount: number) => void;
 }
@@ -22,7 +23,7 @@ const Schedule = ({
   scheduleSettings,
   loading = false,
   onResetDate,
-  onBusyClick,
+  // onBusyClick,
   onFreeClick,
   onChangeDate,
 }: ScheduleProps) => {
@@ -31,10 +32,16 @@ const Schedule = ({
   return (
     <Spin spinning={loading} className={styles.spin}>
       <nav className={styles.navigationWrapper}>
-        <Button className={styles.navigation} onClick={() => onChangeDate(-calendar.scheduleSettings.dateRange)}>
+        <Button
+          className={styles.navigation}
+          onClick={() => onChangeDate(-calendar.scheduleSettings.dateRange)}
+        >
           <LeftCircleOutlined className={styles.buttonIcon} />
           <div>
-            {`${scheduleSettings.currentDate.clone().add(-scheduleSettings.dateRange, 'days').format('DD.MM.YY')}
+            {`${scheduleSettings.currentDate
+              .clone()
+              .add(-scheduleSettings.dateRange, 'days')
+              .format('DD.MM.YY')}
             -
             ${scheduleSettings.currentDate.format('DD.MM.YY')}`}
           </div>
@@ -44,9 +51,15 @@ const Schedule = ({
           {moment().format('DD.MM.YY')}
         </Button>
 
-        <Button className={styles.navigation} onClick={() => onChangeDate(calendar.scheduleSettings.dateRange)}>
+        <Button
+          className={styles.navigation}
+          onClick={() => onChangeDate(calendar.scheduleSettings.dateRange)}
+        >
           <div>
-            {`${scheduleSettings.currentDate.clone().add(scheduleSettings.dateRange, 'days').format('DD.MM.YY')} 
+            {`${scheduleSettings.currentDate
+              .clone()
+              .add(scheduleSettings.dateRange, 'days')
+              .format('DD.MM.YY')} 
             -
             ${scheduleSettings.currentDate
               .clone()
@@ -74,7 +87,12 @@ const Schedule = ({
 
                     if (record) {
                       return (
-                        <Button className={styles.busyRecord} key={key + data.time} onClick={() => onBusyClick(record)}>
+                        <Button
+                          className={styles.busyRecord}
+                          key={key + data.time}
+                          //TODO: Need it when we get OWNER RORE
+                          // onClick={() => onBusyClick(record)}
+                        >
                           {data.time}
                         </Button>
                       );
