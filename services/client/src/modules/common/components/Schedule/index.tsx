@@ -12,7 +12,8 @@ interface ScheduleProps {
   scheduleSettings: ScheduleSettings;
   loading: boolean;
   onResetDate: () => void;
-  onBusyClick: (record: Record) => void;
+  //TODO: Need it when we get OWNER RORE
+  // onBusyClick: (record: Record) => void;
   onFreeClick: (data: string, time: string) => void | null;
   onChangeDate: (amount: number) => void;
 }
@@ -22,7 +23,7 @@ const Schedule = ({
   scheduleSettings,
   loading = false,
   onResetDate,
-  onBusyClick,
+  // onBusyClick,
   onFreeClick,
   onChangeDate,
 }: ScheduleProps) => {
@@ -89,7 +90,8 @@ const Schedule = ({
                         <Button
                           className={styles.busyRecord}
                           key={key + data.time}
-                          onClick={() => onBusyClick(record)}
+                          //TODO: Need it when we get OWNER RORE
+                          // onClick={() => onBusyClick(record)}
                         >
                           {data.time}
                         </Button>

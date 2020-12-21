@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,MAAM,AAAC,CACL,gBAAgB,CAAE,sBAAuB,CAC1C",
-    "sources": [
-        "../../src/modules/common/components/InfoList/infoList.module.scss"
-    ],
-    "names": [],
-    "file": "infoList.module.css"
-}

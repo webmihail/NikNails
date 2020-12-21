@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,KAAK,AAAC,CACJ,UAAU,CAAE,GAAG,CAChB,AAED,AAAA,YAAY,AAAC,CACX,UAAU,CAAE,GAAG,CACf,OAAO,CAAE,IAAI,CACb,eAAe,CAAE,aAAa,CAC/B",
-    "sources": [
-        "../../src/modules/calendar/components/CreatePersonForm/createPersonForm.module.scss"
-    ],
-    "names": [],
-    "file": "createPersonForm.module.css"
-}
