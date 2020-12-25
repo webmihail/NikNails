@@ -6,7 +6,7 @@ import styles from './createRecordForm.module.scss';
 import { Button } from 'antd';
 import { changeModal } from '../../actions';
 import { useSelector } from 'react-redux';
-import { Person, Record, RootState } from '../../types';
+import { Person, Record, CalendarStore } from '../../types';
 import SelectField from '../../../common/components/SelectField';
 import { getAllPersons } from '../../../../api/persons';
 import { createRecords } from '../../../../api/records';
@@ -27,13 +27,13 @@ const CreateRecordForm = ({
   setFieldValue,
   dispatch,
 }: FormikProps<Record> & CreateRecordFormOwnProps) => {
-  const recordFormModal = useSelector((state: RootState) => state.recordFormModal);
+  const recordFormModal = useSelector((state: CalendarStore) => state.recordFormModal);
 
   useEffect(() => {
     setFieldValue('time', recordFormModal.data);
   }, [setFieldValue, recordFormModal.data]);
 
-  const persons = useSelector((state: RootState) => state.persons);
+  const persons = useSelector((state: CalendarStore) => state.persons);
 
   return (
     <form onSubmit={handleSubmit}>

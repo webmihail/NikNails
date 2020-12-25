@@ -3,18 +3,18 @@ import Schedule from '../../../common/components/Schedule';
 import styles from './calendar.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeModal, setActiveTab, setCalendarBeginDate } from '../../actions';
-import { RootState } from '../../types';
+import { CalendarStore } from '../../types';
 import moment from 'moment';
 import CreateRecordModal from '../CreateRecordModal';
-import { TABS } from '../../constants/Tabs';
+import { TABS } from '../../constants';
 import { getAllRecords } from '../../../../api/records';
 import { setLoading } from '../../actions/loading';
 import InfoRecordModal from '../InfoRecordModal';
 
 const Calendar = () => {
-  const records = useSelector((state: RootState) => state.records);
-  const calendar = useSelector((state: RootState) => state.calendar);
-  const loading = useSelector((state: RootState) => state.loading);
+  const records = useSelector((state: CalendarStore) => state.records);
+  const calendar = useSelector((state: CalendarStore) => state.calendar);
+  const loading = useSelector((state: CalendarStore) => state.loading);
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -1,0 +1,22 @@
+.modalWrapper {
+  padding-top: 5vh;
+}
+
+.buttonsWrapper {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Montserrat-Regular', sans-serif;
+}
+
+.button {
+  width: 100%;
+  height: 5vh;
+}
+
+.buttonChecked {
+  border: 1px solid #374856;
+}

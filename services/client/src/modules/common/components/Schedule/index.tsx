@@ -1,5 +1,5 @@
 import React from 'react';
-import { Record, ScheduleSettings, RootState } from '../../../calendar/types';
+import { Record, ScheduleSettings, CalendarStore } from '../../../calendar/types';
 import { Spin, Button } from 'antd';
 import { LeftCircleOutlined, RightCircleOutlined } from '@ant-design/icons';
 import styles from './schedule.module.scss';
@@ -27,7 +27,7 @@ const Schedule = ({
   onFreeClick,
   onChangeDate,
 }: ScheduleProps) => {
-  const calendar = useSelector((state: RootState) => state.calendar);
+  const calendar = useSelector((state: CalendarStore) => state.calendar);
 
   return (
     <Spin spinning={loading} className={styles.spin}>

@@ -9,7 +9,7 @@ import InputField from '../../../common/components/InputField';
 import { Person } from '../../types';
 import { phoneRegExp } from '../../../common/constants/regExps';
 import { createPerson } from '../../../../api/persons';
-import { TABS } from '../../constants/Tabs';
+import { TABS } from '../../constants';
 
 interface CreatePersonFormOwnProps {
   dispatch: (value: any) => void;

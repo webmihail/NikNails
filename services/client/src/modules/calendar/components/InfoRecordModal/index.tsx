@@ -4,12 +4,12 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import InfoList from '../../../common/components/InfoList';
 import { changeModal } from '../../actions';
-import { RootState } from '../../types';
+import { CalendarStore } from '../../types';
 
 import styles from './infoRecordForm.module.scss';
 
 const InfoRecordModal = () => {
-  const recordInfoModal = useSelector((state: RootState) => state.recordInfoModal);
+  const recordInfoModal = useSelector((state: CalendarStore) => state.recordInfoModal);
   const dispatch = useDispatch();
 
   const getRecordTypes = (type: string) => {

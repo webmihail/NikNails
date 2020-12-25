@@ -7,6 +7,7 @@ import 'antd/dist/antd.css';
 import 'moment/locale/ru';
 import CalendarPage from './modules/calendar';
 import { rootReducer } from './rootReducer';
+import Authentication from './modules/authentication';
 
 const store = createStore(
   rootReducer,
@@ -19,6 +20,7 @@ const store = createStore(
 const App = () => {
   return (
     <Provider store={store}>
+      <Authentication />
       <CalendarPage />
     </Provider>
   );

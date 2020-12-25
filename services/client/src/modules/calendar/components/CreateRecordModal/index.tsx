@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setActiveTab } from '../../actions';
-import { TABS } from '../../constants/Tabs';
-import { RootState } from '../../types';
+import { TABS } from '../../constants';
+import { CalendarStore } from '../../types';
 import CreateRecordForm from '../CreateRecordForm';
 import CreatePersonForm from '../CreatePersonForm';
 import styles from './createRecordForm.module.scss';
@@ -11,8 +11,8 @@ import classNames from 'classnames';
 import moment from 'moment';
 
 const CreateRecordModal = () => {
-  const recordFormModal = useSelector((state: RootState) => state.recordFormModal);
-  const activeTab = useSelector((state: RootState) => state.activeTab);
+  const recordFormModal = useSelector((state: CalendarStore) => state.recordFormModal);
+  const activeTab = useSelector((state: CalendarStore) => state.recordFormModalActiveTab);
   const dispatch = useDispatch();
 
   const getForm = () => {
@@ -36,7 +36,7 @@ const CreateRecordModal = () => {
 
   return recordFormModal.isOpen ? (
     <div className={styles.modalWrapper}>
-      <div className={styles.buttonWrapper}>
+      <div className={styles.buttonsWrapper}>
         <Button
           className={classNames(styles.button, {
             [styles.buttonChecked]: TABS.CREATE_RECORD_FORM === activeTab,

@@ -4,9 +4,11 @@ import {
   recordFormModal,
   recordInfoModal,
   calendar,
-  activeTab,
+  recordFormModalActiveTab,
   persons,
 } from './modules/calendar/reducers';
+
+import { authenticationFormModalActiveTab } from './modules/authentication/reducers';
 
 import { combineReducers } from 'redux';
 
@@ -16,6 +18,7 @@ export const rootReducer = combineReducers({
   calendar,
   recordFormModal,
   recordInfoModal,
-  activeTab,
+  recordFormModalActiveTab,
   persons,
+  authenticationFormModalActiveTab,
 });
