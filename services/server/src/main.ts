@@ -3,11 +3,11 @@ import { AppModule } from './app.module';
 import * as moment from 'moment-timezone';
 
 async function startServer() {
-  moment.tz.setDefault('Europe/Kiev')
-  
+  moment.tz.setDefault('Europe/Kiev');
+
   const app = await NestFactory.create(AppModule);
   app.enableCors();
-  app.setGlobalPrefix('/api/v1')
+  app.setGlobalPrefix('/api/v1');
   await app.listen(process.env.PORT || 3090);
 }
 startServer();

@@ -4,15 +4,15 @@ import { RecordDTO } from './records.dto';
 
 @Controller('records')
 export class RecordsController {
-  constructor(private recordsService: RecordsService){}
+  constructor(private recordsService: RecordsService) {}
 
   @Get()
-  getAllRecords(){
+  getAllRecords() {
     return this.recordsService.getAllRecords();
   }
 
   @Post()
-  createRecords(@Body() data: RecordDTO){
+  createRecords(@Body() data: RecordDTO) {
     return this.recordsService.createRecord(data);
   }
 }

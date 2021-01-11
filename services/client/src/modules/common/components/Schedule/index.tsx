@@ -81,6 +81,7 @@ const Schedule = ({
                     const currentDataTime = moment(new Date(key + ' ' + data.time))
                       .add(3, 'hours')
                       .toISOString();
+
                     const record: Record = recordsData.find(
                       (recordData: Record) => currentDataTime === recordData.time,
                     );
@@ -109,7 +110,15 @@ const Schedule = ({
                     }
                   }
 
-                  return null;
+                  return (
+                    <Button
+                      className={styles.freeRecord}
+                      key={key + data.time}
+                      onClick={() => onFreeClick(key, data.time)}
+                    >
+                      {data.time}
+                    </Button>
+                  );
                 })}
               </div>
             </div>

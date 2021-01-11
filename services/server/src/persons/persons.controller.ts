@@ -1,10 +1,18 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { PersonDTO, PersonsFilter } from './persons.dto';
 import { PersonsService } from './persons.service';
 
 @Controller('persons')
 export class PersonsController {
-  constructor(private personeService: PersonsService){}
+  constructor(private personeService: PersonsService) {}
 
   @Post('/filter')
   getAllPersons(@Body() filter: PersonsFilter) {

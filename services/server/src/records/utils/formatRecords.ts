@@ -11,8 +11,8 @@ export const formatRecords = (records: Record[]) => {
         id: record.person.id,
         firstName: record.person.firstName,
         lastName: record.person.lastName,
-        phoneNumber: record.person.phoneNumber
-      }
-    }
-  })
-}
+        phoneNumber: record.person.phoneNumber,
+      },
+    };
+  });
+};

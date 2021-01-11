@@ -2,8 +2,8 @@ import { GenericEntity } from 'src/generic/generic.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { Record } from '../../records/entity/record.entity';
 
-@Entity({name: 'persons'})
-export class Person extends GenericEntity{
+@Entity({ name: 'persons' })
+export class Person extends GenericEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -16,6 +16,9 @@ export class Person extends GenericEntity{
   @Column()
   phoneNumber: string;
 
-  @OneToMany(() => Record, (record: Record) => record.person)
+  @OneToMany(
+    () => Record,
+    (record: Record) => record.person,
+  )
   public records: Record[];
 }

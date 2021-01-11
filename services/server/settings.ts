@@ -7,6 +7,8 @@ const requiredEnvVariables = [
   'POSTGRES_USER',
   'POSTGRES_DB',
   'POSTGRES_HOST',
+  'TELEGRAM_BOT_ID',
+  'TELEGRAM_CHAT_ID',
   'GOOGLE_CLOUD_KEYS_FILE',
   'GOOGLE_CLOUD_BUCKET'
 ];
@@ -32,6 +34,10 @@ const settings = {
   googleCloud: {
     keysFileName: process.env.GOOGLE_CLOUD_KEYS_FILE,
     bucket: process.env.GOOGLE_CLOUD_BUCKET
+  },
+  telegramMsgSettings: {
+    botId: process.env.TELEGRAM_BOT_ID,
+    chatId: process.env.TELEGRAM_CHAT_ID
   }
 };
 

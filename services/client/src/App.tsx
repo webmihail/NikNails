@@ -17,7 +17,7 @@ const store = createStore(
   ),
 );
 
-const App = () => {
+const App: React.FC = (): JSX.Element => {
   return (
     <Provider store={store}>
       <Authentication />
