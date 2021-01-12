@@ -3,14 +3,10 @@ import * as dotenv from 'dotenv';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const requiredEnvVariables = [
-  'POSTGRES_PASSWORD',
-  'POSTGRES_USER',
-  'POSTGRES_DB',
-  'POSTGRES_HOST',
   'TELEGRAM_BOT_ID',
   'TELEGRAM_CHAT_ID',
   'GOOGLE_CLOUD_KEYS_FILE',
-  'GOOGLE_CLOUD_BUCKET'
+  'GOOGLE_CLOUD_BUCKET',
 ];
 
 if (!isProduction) {
@@ -25,12 +21,6 @@ if (missingEnvs.length) {
 
 const settings = {
   isProduction,
-  postgres : {
-    password: process.env.POSTGRES_PASSWORD,
-    user: process.env.POSTGRES_USER,
-    database: process.env.POSTGRES_DB,
-    host: process.env.POSTGRES_HOST,
-  },
   googleCloud: {
     keysFileName: process.env.GOOGLE_CLOUD_KEYS_FILE,
     bucket: process.env.GOOGLE_CLOUD_BUCKET

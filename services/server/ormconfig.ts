@@ -1,18 +1,41 @@
-import settings from './settings';
+// import settings from 'settings';
+import { ConnectionOptions } from 'typeorm';
+import * as dotenv from 'dotenv';
+import * as path from 'path';
 
-const typeOrmConfig = {
-  type: 'postgres',
-  host: settings.postgres.host,
-  port: 5432,
-  username: settings.postgres.user,
-  password: settings.postgres.password,
-  database: settings.postgres.database,
-  entities: ['dist/**/*.entity{.ts,.js}'],
-  migrations: ['src/database/migrations/*.{.ts,.js}'],
-  cli: {
-    migrationsDir: 'src/database/migrations'
-  },
-  synchronize: true,
+const isProduction = process.env.NODE_ENV === 'production';
+const requiredEnvVariables = [
+  'POSTGRES_PASSWORD',
+  'POSTGRES_USER',
+  'POSTGRES_DB',
+  'POSTGRES_HOST',
+];
+
+if (!isProduction) {
+  dotenv.config({ path: path.join(__dirname, '/../../.env') });
 }
 
-export default typeOrmConfig;
+const missingEnvs = requiredEnvVariables.filter(env => !process.env[env]);
+
+if (missingEnvs.length) {
+  throw Error(
+    `Please set up necessary env variables: ${missingEnvs.join(', ')}`,
+  );
+}
+
+const typeOrmConfig: ConnectionOptions = {
+  type: 'postgres',
+  port: 5432,
+  password: process.env.POSTGRES_PASSWORD,
+  username: process.env.POSTGRES_USER,
+  database: process.env.POSTGRES_DB,
+  host: process.env.POSTGRES_HOST,
+  entities: ['dist/**/*.entity{.ts,.js}'],
+  migrations: [path.join(__dirname, './src/dbMigrations/*{.ts,.js}')],
+  cli: {
+    migrationsDir: 'src/dbMigrations',
+  },
+  synchronize: false,
+};
+
+export = typeOrmConfig;

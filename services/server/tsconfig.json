@@ -14,7 +14,8 @@
   },
   "compileOnSave": true,
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "ormconfig.ts"
   ],
   "exclude": [
     ".vscode",
