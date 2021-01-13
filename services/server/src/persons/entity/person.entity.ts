@@ -1,6 +1,6 @@
-import { GenericEntity } from 'src/generic/generic.entity';
+import { GenericEntity } from 'src/generic';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { Record } from '../../records/entity/record.entity';
+import { Record } from '../../records/entity';
 
 @Entity({ name: 'persons' })
 export class Person extends GenericEntity {

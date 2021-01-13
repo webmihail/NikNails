@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { capitalize } from 'src/common/utils';
 import { Like, Repository } from 'typeorm';
-import { Person } from './entity/person.entity';
-import { PersonDTO, PersonsFilter } from './persons.dto';
+import { Person } from './entity';
+import { PersonDTO, PersonsFilter } from './dtos';
 
 @Injectable()
 export class PersonsService {
@@ -12,7 +12,12 @@ export class PersonsService {
     private personRepository: Repository<Person>,
   ) {}
 
-  async getAllPersons(filter: PersonsFilter) {
+  async getAllPersons(
+    filter: PersonsFilter,
+  ): Promise<{
+    data: Person[];
+    count: number;
+  }> {
     const [result, total] = await this.personRepository.findAndCount({
       where: [
         { firstName: Like('%' + capitalize(filter.search) + '%') },
@@ -30,7 +35,7 @@ export class PersonsService {
     };
   }
 
-  async createPerson(data: PersonDTO) {
+  async createPerson(data: PersonDTO): Promise<Person> {
     const person = await this.personRepository.create({
       ...data,
       firstName: capitalize(data.firstName),
@@ -40,16 +45,20 @@ export class PersonsService {
     return person;
   }
 
-  async getPerson(id: number) {
+  async getPerson(id: number): Promise<Person> {
     return await this.personRepository.findOne({ where: { id } });
   }
 
-  async updatePerson(id: number, data: Partial<PersonDTO>) {
+  async updatePerson(id: number, data: Partial<PersonDTO>): Promise<Person> {
     await this.personRepository.update({ id }, data);
     return await this.personRepository.findOne({ id });
   }
 
-  async deletePerson(id: number) {
+  async deletePerson(
+    id: number,
+  ): Promise<{
+    deleted: boolean;
+  }> {
     await this.personRepository.delete({ id });
     return { deleted: true };
   }

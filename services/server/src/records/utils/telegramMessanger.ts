@@ -1,6 +1,6 @@
 import * as moment from 'moment';
 import settings from 'settings';
-import { Record } from '../entity/record.entity';
+import { Record } from '../entity';
 
 const Telegraf = require('telegraf');
 const app = new Telegraf(settings.telegramMsgSettings.botId);

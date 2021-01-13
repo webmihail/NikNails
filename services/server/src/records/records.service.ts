@@ -1,12 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as moment from 'moment';
-import { Person } from 'src/persons/entity/person.entity';
+import { Person } from 'src/persons/entity';
 import { Repository, getConnectionManager } from 'typeorm';
-import { Record } from './entity/record.entity';
-import { RecordDTO } from './records.dto';
-import { formatRecords } from './utils';
-import { telegramMesenger } from './utils/telegramMessanger';
+import { Record } from './entity';
+import { FormatRecords, RecordDTO } from './dtos';
+import { formatRecords, telegramMesenger } from './utils';
 
 @Injectable()
 export class RecordsService {
@@ -15,14 +14,14 @@ export class RecordsService {
     private recordRepository: Repository<Record>,
   ) {}
 
-  async getAllRecords() {
+  async getAllRecords(): Promise<FormatRecords[]> {
     const allRecords = await this.recordRepository.find({
       relations: ['person'],
     });
     return formatRecords(allRecords);
   }
 
-  async createRecord(data: RecordDTO) {
+  async createRecord(data: RecordDTO): Promise<Record> {
     const connection = getConnectionManager().get('default');
     const personRepository = connection.getRepository(Person);
     const person = await personRepository.findOne({

@@ -1,6 +1,7 @@
-import { Record } from '../entity/record.entity';
+import { FormatRecords } from '../dtos';
+import { Record } from '../entity';
 
-export const formatRecords = (records: Record[]) => {
+export const formatRecords = (records: Record[]): FormatRecords[] => {
   return records.map((record: Record) => {
     return {
       id: record.id,
