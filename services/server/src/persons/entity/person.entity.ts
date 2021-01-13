@@ -7,13 +7,13 @@ export class Person extends GenericEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({name: 'first_name', type: 'varchar', length:255})
   firstName: string;
 
-  @Column()
+  @Column({name: 'last_name', type: 'varchar', length:255})
   lastName: string;
 
-  @Column()
+  @Column({name: 'phone_number', type: 'varchar', length:255})
   phoneNumber: string;
 
   @OneToMany(

@@ -18,6 +18,7 @@ export class RecordsService {
     const allRecords = await this.recordRepository.find({
       relations: ['person'],
     });
+
     return formatRecords(allRecords);
   }
 

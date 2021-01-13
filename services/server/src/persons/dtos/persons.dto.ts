@@ -3,8 +3,6 @@ export interface PersonDTO {
   firstName: string;
   lastName: string;
   phoneNumber: string;
-  created_at?: string;
-  update_at?: string;
 }
 
 export interface PersonsFilter {
