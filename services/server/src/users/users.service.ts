@@ -22,6 +22,14 @@ export class UsersService {
     return user;
   }
 
+  async getUserByEmail(email: string): Promise<UserDTO> {
+    return await this.usersRepository
+      .createQueryBuilder('user')
+      .where({ email })
+      .addSelect('user.password')
+      .getOne();
+  }
+
   async createUser(data: UserDTO): Promise<UserDTO> {
     const userExist = await this.usersRepository.findOne({ email: data.email });
     if (userExist)

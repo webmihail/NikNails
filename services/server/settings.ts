@@ -7,6 +7,7 @@ const requiredEnvVariables = [
   'TELEGRAM_CHAT_ID',
   'GOOGLE_CLOUD_KEYS_FILE',
   'GOOGLE_CLOUD_BUCKET',
+  'JWT_TOKEN'
 ];
 
 if (!isProduction) {
@@ -28,6 +29,9 @@ const settings = {
   telegramMsgSettings: {
     botId: process.env.TELEGRAM_BOT_ID,
     chatId: process.env.TELEGRAM_CHAT_ID
+  },
+  jwtProps: {
+    secret: process.env.JWT_TOKEN
   }
 };
 
