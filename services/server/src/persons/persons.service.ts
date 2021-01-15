@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { capitalize } from 'src/common/utils';
-import { Like, Repository } from 'typeorm';
+import { DeleteResult, Like, Repository } from 'typeorm';
 import { Person } from './entity';
-import { PersonDTO, PersonsFilter } from './dtos';
+import { PersonDTO, PersonsFilterDTO, EditPersonDTO } from './dtos';
+import { NotFoundException } from '@nestjs/common';
 
 @Injectable()
 export class PersonsService {
@@ -13,9 +14,9 @@ export class PersonsService {
   ) {}
 
   async getAllPersons(
-    filter: PersonsFilter,
+    filter: PersonsFilterDTO,
   ): Promise<{
-    data: Person[];
+    data: PersonDTO[];
     count: number;
   }> {
     const [result, total] = await this.personRepository.findAndCount({
@@ -35,31 +36,43 @@ export class PersonsService {
     };
   }
 
-  async createPerson(data: PersonDTO): Promise<Person> {
-    const person = await this.personRepository.create({
+  async createPerson(data: PersonDTO): Promise<PersonDTO> {
+    const personExist = await this.personRepository.findOne({
+      phoneNumber: data.phoneNumber,
+    });
+    if (personExist)
+      throw new NotFoundException('Person already registered with phone');
+
+    const newPerson = await this.personRepository.create({
       ...data,
       firstName: capitalize(data.firstName),
       lastName: capitalize(data.lastName),
     });
-    await this.personRepository.save(person);
+
+    const person = await this.personRepository.save(newPerson);
+
+    delete person.phoneNumber;
     return person;
   }
 
-  async getPerson(id: number): Promise<Person> {
-    return await this.personRepository.findOne({ where: { id } });
+  async getPerson(id: number): Promise<PersonDTO> {
+    const person = await this.personRepository.findOne(id);
+    if (!person) throw new NotFoundException('user dont exists');
+
+    return person;
   }
 
-  async updatePerson(id: number, data: Partial<PersonDTO>): Promise<Person> {
-    await this.personRepository.update({ id }, data);
-    return await this.personRepository.findOne({ id });
+  async updatePerson(id: number, data: EditPersonDTO): Promise<PersonDTO> {
+    const person = await this.getPerson(id);
+    const editPerson = Object.assign(person, data);
+    const savePerson = await this.personRepository.save(editPerson);
+
+    delete savePerson.phoneNumber;
+    return savePerson;
   }
 
-  async deletePerson(
-    id: number,
-  ): Promise<{
-    deleted: boolean;
-  }> {
-    await this.personRepository.delete({ id });
-    return { deleted: true };
+  async deletePerson(id: number): Promise<DeleteResult> {
+    const persone = await this.getPerson(id);
+    return await this.personRepository.delete(persone);
   }
 }

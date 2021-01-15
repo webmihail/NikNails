@@ -12,7 +12,7 @@ async function bootstrap() {
 
   const app = await NestFactory.create(AppModule, {
     // logger: Boolean(process.env.ENABLELOGGING),
-    // logger: console,
+    logger: console,
   });
 
   app.enableCors();

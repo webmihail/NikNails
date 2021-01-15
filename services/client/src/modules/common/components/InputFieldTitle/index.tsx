@@ -3,12 +3,10 @@ import { Form } from 'antd';
 import classnames from 'classnames';
 
 import styles from './inputFieldTitle.module.scss';
-import Icon from '@ant-design/icons';
 
 interface InputFieldProps {
   title: string;
   errorMessage?: string | boolean;
-  iconType?: string;
   required?: boolean;
   style?: any;
   className?: any;
@@ -16,7 +14,6 @@ interface InputFieldProps {
 
 const InputFieldTitle = ({
   title,
-  iconType,
   required = true,
   errorMessage,
   className,
@@ -27,11 +24,6 @@ const InputFieldTitle = ({
     <div className={classnames([styles.inputWrapper, className])} style={style}>
       <div className={styles.inputInfo}>
         {required && <span className={styles.asterisk}>*</span>} <span>{title}</span>
-        {iconType && (
-          <span>
-            <Icon type={iconType} />
-          </span>
-        )}
       </div>
       <Form.Item
         className={errorMessage ? styles.errorMassage : ''}

@@ -1,12 +1,26 @@
-export interface PersonDTO {
-  id?: number;
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-}
+import {
+  IsString,
+  IsNumber,
+  IsOptional,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 
-export interface PersonsFilter {
-  take?: number;
-  skip?: number;
-  search?: string | null;
+export class PersonDTO {
+  @IsOptional()
+  @IsNumber()
+  id: number;
+
+  @IsString()
+  @MaxLength(255)
+  firstName: string;
+
+  @IsString()
+  @MaxLength(255)
+  lastName: string;
+
+  @IsString()
+  @MinLength(6)
+  @MaxLength(128)
+  phoneNumber: string;
 }

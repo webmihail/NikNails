@@ -1,18 +1,20 @@
+import { PersonDTO } from 'src/persons/dtos';
 import {
   IsNumber,
   IsOptional,
+  IsDate,
   IsString,
   ValidateNested,
 } from 'class-validator';
-import { PersonDTO } from 'src/persons/dtos';
 
-export class RecordDTO {
+export class FormatRecordsDTO {
   @IsOptional()
   @IsNumber()
   id: number;
 
   @IsOptional()
-  date: Date;
+  @IsDate()
+  time: Date;
 
   @IsString()
   type: string;

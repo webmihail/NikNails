@@ -7,13 +7,19 @@ export class Person extends GenericEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({name: 'first_name', type: 'varchar', length:255})
+  @Column({ name: 'first_name', type: 'varchar', length: 255 })
   firstName: string;
 
-  @Column({name: 'last_name', type: 'varchar', length:255})
+  @Column({ name: 'last_name', type: 'varchar', length: 255 })
   lastName: string;
 
-  @Column({name: 'phone_number', type: 'varchar', length:255})
+  @Column({
+    name: 'phone_number',
+    type: 'varchar',
+    length: 128,
+    nullable: false,
+    select: true,
+  })
   phoneNumber: string;
 
   @OneToMany(
