@@ -1,4 +1,4 @@
-import { PersonDTO } from 'src/persons/dtos';
+import { PersonFormatDTO } from 'src/persons/dtos';
 import {
   IsNumber,
   IsOptional,
@@ -23,5 +23,5 @@ export class FormatRecordsDTO {
   status: string;
 
   @ValidateNested()
-  person: PersonDTO;
+  person: PersonFormatDTO;
 }

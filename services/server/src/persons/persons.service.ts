@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { capitalize } from 'src/common/utils';
 import { DeleteResult, Like, Repository } from 'typeorm';
 import { Person } from './entity';
-import { PersonDTO, PersonsFilterDTO, EditPersonDTO } from './dtos';
+import { PersonDTO, PersonsFilterDTO, EditPersonDTO, PersonFormatDTO } from './dtos';
 import { NotFoundException } from '@nestjs/common';
 
 @Injectable()
@@ -16,7 +16,7 @@ export class PersonsService {
   async getAllPersons(
     filter: PersonsFilterDTO,
   ): Promise<{
-    data: PersonDTO[];
+    data: PersonFormatDTO[];
     count: number;
   }> {
     const [result, total] = await this.personRepository.findAndCount({
@@ -30,10 +30,23 @@ export class PersonsService {
       skip: filter.skip,
     });
 
+    const formatResult = result.map((person: PersonDTO) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const{phoneNumber, ...rest} = person;
+      return rest
+    })
+
     return {
-      data: result,
+      data: formatResult,
       count: total,
     };
+  }
+
+  async getPerson(id: number): Promise<PersonDTO> {
+    const person = await this.personRepository.findOne(id);
+    if (!person) throw new NotFoundException('user dont exists');
+
+    return person;
   }
 
   async createPerson(data: PersonDTO): Promise<PersonDTO> {
@@ -52,13 +65,6 @@ export class PersonsService {
     const person = await this.personRepository.save(newPerson);
 
     delete person.phoneNumber;
-    return person;
-  }
-
-  async getPerson(id: number): Promise<PersonDTO> {
-    const person = await this.personRepository.findOne(id);
-    if (!person) throw new NotFoundException('user dont exists');
-
     return person;
   }
 

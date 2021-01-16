@@ -2,10 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as moment from 'moment';
 import { Person } from 'src/persons/entity';
-import { Repository, getConnectionManager } from 'typeorm';
+import { Repository, getConnectionManager, DeleteResult } from 'typeorm';
 import { Record } from './entity';
 import { DataRecordDTO, FormatRecordsDTO, RecordDTO } from './dtos';
 import { formatRecords, telegramMesenger } from './utils';
+import { NotFoundException } from '@nestjs/common';
 
 @Injectable()
 export class RecordsService {
@@ -20,6 +21,13 @@ export class RecordsService {
     });
 
     return formatRecords(allRecords);
+  }
+
+  async getRecord(id: number): Promise<RecordDTO> {
+    const record = await this.recordRepository.findOne(id);
+    if (!record) throw new NotFoundException('record dont exists');
+
+    return record;
   }
 
   async createRecord(data: DataRecordDTO): Promise<RecordDTO> {
@@ -41,6 +49,21 @@ export class RecordsService {
     await this.recordRepository.save(record);
     telegramMesenger(record);
 
+    delete record.person.phoneNumber
     return record;
+  }
+
+  async updateRecord(id: number, data: { status: string }): Promise<RecordDTO> {
+    const record = await this.getRecord(id);
+    const editRecord = Object.assign(record, data);
+    const saveRecord: RecordDTO = await this.recordRepository.save(editRecord);
+
+    delete saveRecord.person.phoneNumber;
+    return saveRecord;
+  }
+
+  async deleteRecord(id: number): Promise<DeleteResult> {
+    const record = await this.getRecord(id);
+    return await this.recordRepository.delete(record);
   }
 }

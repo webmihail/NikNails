@@ -1,5 +1,6 @@
 import { UsePipes } from '@nestjs/common';
 import { ValidationPipe } from '@nestjs/common';
+import { UseGuards } from '@nestjs/common';
 import {
   Body,
   Controller,
@@ -9,8 +10,9 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/guards';
 import { DeleteResult } from 'typeorm';
-import { PersonDTO, PersonsFilterDTO, EditPersonDTO } from './dtos';
+import { PersonDTO, PersonsFilterDTO, EditPersonDTO, PersonFormatDTO } from './dtos';
 import { PersonsService } from './persons.service';
 
 @Controller('persons')
@@ -22,15 +24,10 @@ export class PersonsController {
   getAllPersons(
     @Body() filter: PersonsFilterDTO,
   ): Promise<{
-    data: PersonDTO[];
+    data: PersonFormatDTO[];
     count: number;
   }> {
     return this.personeService.getAllPersons(filter);
-  }
-
-  @Post()
-  createPerson(@Body() data: PersonDTO): Promise<PersonDTO> {
-    return this.personeService.createPerson(data);
   }
 
   @Get(':id')
@@ -38,6 +35,12 @@ export class PersonsController {
     return this.personeService.getPerson(id);
   }
 
+  @Post()
+  createPerson(@Body() data: PersonDTO): Promise<PersonDTO> {
+    return this.personeService.createPerson(data);
+  }
+
+  @UseGuards(JwtAuthGuard)
   @Put(':id')
   updatePerson(
     @Param('id') id: number,
@@ -46,6 +49,7 @@ export class PersonsController {
     return this.personeService.updatePerson(id, data);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   deletePerson(@Param('id') id: number): Promise<DeleteResult> {
     return this.personeService.deletePerson(id);

@@ -11,7 +11,6 @@ export const formatRecords = (records: RecordDTO[]): FormatRecordsDTO[] => {
         id: record.person.id,
         firstName: record.person.firstName,
         lastName: record.person.lastName,
-        phoneNumber: record.person.phoneNumber,
       },
     };
   });
