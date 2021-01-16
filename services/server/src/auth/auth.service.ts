@@ -11,11 +11,14 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async validateUser(email: string, password: string): Promise<UserDTO | null> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async validateUser(email: string, password: string): Promise<any> {
     const user = await this.usersService.getUserByEmail(email);
 
     if (user && (await compare(password, user.password))) {
-      return user;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { password, ...rest } = user;
+      return rest;
     }
 
     return null;
