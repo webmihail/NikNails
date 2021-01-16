@@ -28,14 +28,14 @@ const CreatePersonForm = ({
     <form onSubmit={handleSubmit}>
       <div className={styles.form}>
         <InputField
-          title="Прізвіще"
+          title="Фамилия"
           value={values.lastName}
           errorMessage={touched.lastName && errors.lastName}
           onBlur={() => setFieldTouched('lastName')}
           onChange={(event: any) => setFieldValue('lastName', event.target.value)}
         />
         <InputField
-          title="Iм’я"
+          title="Имя"
           value={values.firstName}
           errorMessage={touched.firstName && errors.firstName}
           onBlur={() => setFieldTouched('firstName')}
@@ -74,7 +74,7 @@ const CreatePersonForm = ({
   );
 };
 
-const CreatePersonFormWithFormik = withFormik<CreatePersonFormOwnProps, any>({
+const CreatePersonFormWithFormik = withFormik<CreatePersonFormOwnProps, Person>({
   enableReinitialize: true,
   mapPropsToValues: () => ({
     phoneNumber: '+380',
@@ -90,13 +90,13 @@ const CreatePersonFormWithFormik = withFormik<CreatePersonFormOwnProps, any>({
       }),
     );
   },
-  validationSchema: yup.object().shape<any>({
+  validationSchema: yup.object().shape<Person>({
     phoneNumber: yup
       .string()
-      .required('Це поле не може бути порожнім!')
-      .matches(phoneRegExp, 'Номер телефону недійсний! (+380..)'),
-    firstName: yup.string().required('Це поле не може бути порожнім!'),
-    lastName: yup.string().required('Це поле не може бути порожнім!'),
+      .required('Это поле не может быть пустым!')
+      .matches(phoneRegExp, 'Номер телефона не действительный! (+380..)'),
+    firstName: yup.string().required('Это поле не может быть пустым!'),
+    lastName: yup.string().required('Это поле не может быть пустым!'),
   }),
   displayName: 'CreatePersonForm',
 })(CreatePersonForm);

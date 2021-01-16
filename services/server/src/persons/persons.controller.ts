@@ -1,6 +1,3 @@
-import { UsePipes } from '@nestjs/common';
-import { ValidationPipe } from '@nestjs/common';
-import { UseGuards } from '@nestjs/common';
 import {
   Body,
   Controller,
@@ -9,6 +6,9 @@ import {
   Param,
   Post,
   Put,
+  UsePipes,
+  ValidationPipe,
+  UseGuards,
 } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/guards';
 import { DeleteResult } from 'typeorm';
@@ -30,6 +30,7 @@ export class PersonsController {
     return this.personeService.getAllPersons(filter);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   getPerson(@Param('id') id: number): Promise<PersonDTO> {
     return this.personeService.getPerson(id);

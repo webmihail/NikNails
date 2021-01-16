@@ -27,9 +27,9 @@ const AuthenticationModal = () => {
   const getForm = () => {
     switch (activeTab) {
       case TABS.SIGN_IN_FORM:
-        return <SignInForm />;
+        return <SignInForm dispatch={dispatch} />;
       case TABS.SIGN_UP_FORM:
-        return <SignUpForm />;
+        return <SignUpForm dispatch={dispatch} />;
       case TABS.RECOVERY_PASSWORD_FORM:
         return <RecoveryPasswordForm />;
       default:

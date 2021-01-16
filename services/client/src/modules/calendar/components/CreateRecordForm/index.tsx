@@ -40,7 +40,7 @@ const CreateRecordForm = ({
       <div className={styles.form}>
         <SelectField
           filterOption={false}
-          title="Поиск клиент"
+          title="Клиент"
           value={values.personId ? values.personId : undefined}
           allowClear={true}
           showSearch={true}
@@ -150,8 +150,8 @@ const CreateRecordFormWithFormik = withFormik<CreateRecordFormOwnProps, any>({
     );
   },
   validationSchema: yup.object().shape<any>({
-    personId: yup.number().nullable().required('Це поле не може бути порожнім!'),
-    type: yup.string().required('Це поле не може бути порожнім!'),
+    personId: yup.number().nullable().required('Это поле не может быть пустым!'),
+    type: yup.string().required('Это поле не может быть пустым!'),
   }),
   displayName: 'CreateRecordForm',
 })(CreateRecordForm);
