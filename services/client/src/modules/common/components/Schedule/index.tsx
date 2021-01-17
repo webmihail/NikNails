@@ -29,6 +29,12 @@ const Schedule = ({
 }: ScheduleProps) => {
   const calendar = useSelector((state: CalendarStore) => state.calendar);
 
+  const converDateForSafari = (key: any) => {
+    const formatDateForSafari = moment(key, 'YYYY-MM-DD HH:mm').toISOString();
+    const date = moment(new Date(formatDateForSafari)).format('DD.MM').toString();
+    return date;
+  };
+
   return (
     <Spin spinning={loading} className={styles.spin}>
       <nav className={styles.navigationWrapper}>
@@ -74,11 +80,12 @@ const Schedule = ({
         {Object.keys(scheduleBuilder(scheduleSettings)).map((key) => {
           return (
             <div className={styles.scheduleItemWrapper} key={key}>
-              <div className={styles.date}>{moment(new Date(key)).format('DD.MM')}</div>
+              <div className={styles.date}>{converDateForSafari(key)}</div>
               <div className={styles.recordWrapper}>
                 {scheduleBuilder(scheduleSettings)[key].map((data: Record) => {
                   if (recordsData && recordsData.length) {
-                    const currentDataTime = moment(new Date(key + ' ' + data.time))
+                    const formatDate = moment(key + ' ' + data.time, 'YYYY-MM-DD HH:mm').toDate();
+                    const currentDataTime = moment(new Date(formatDate))
                       .add(3, 'hours')
                       .toISOString();
 
