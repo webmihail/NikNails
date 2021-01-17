@@ -6,7 +6,8 @@ import classnames from 'classnames';
 import { TABS } from '../../constants';
 import SignInForm from '../SignInForm';
 import SignUpForm from '../SignUpForm';
-import RecoveryPasswordForm from '../RecoveryPasswordForm';
+//TODO: When we added recovery pass
+// import RecoveryPasswordForm from '../RecoveryPasswordForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthenticationState } from '../../types';
 import { setActiveTab } from '../../actions';
@@ -30,8 +31,9 @@ const AuthenticationModal = () => {
         return <SignInForm dispatch={dispatch} />;
       case TABS.SIGN_UP_FORM:
         return <SignUpForm dispatch={dispatch} />;
-      case TABS.RECOVERY_PASSWORD_FORM:
-        return <RecoveryPasswordForm />;
+      //TODO: When we added recovery pass
+      // case TABS.RECOVERY_PASSWORD_FORM:
+      //   return <RecoveryPasswordForm />;
       default:
         return null;
     }
@@ -89,7 +91,8 @@ const AuthenticationModal = () => {
           >
             Регистрация
           </Button>
-          <Button
+          {/* TODO: When we added recovery pass */}
+          {/* <Button
             className={classnames(styles.button, {
               [styles.buttonChecked]: TABS.RECOVERY_PASSWORD_FORM === activeTab,
             })}
@@ -103,7 +106,7 @@ const AuthenticationModal = () => {
             }}
           >
             Восстановление пароля
-          </Button>
+          </Button> */}
         </div>
 
         {getForm()}

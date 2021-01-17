@@ -41,14 +41,14 @@ const Schedule = ({
             {`${scheduleSettings.currentDate
               .clone()
               .add(-scheduleSettings.dateRange, 'days')
-              .format('DD.MM.YY')}
+              .format('DD.MM')}
             -
-            ${scheduleSettings.currentDate.format('DD.MM.YY')}`}
+            ${scheduleSettings.currentDate.format('DD.MM')}`}
           </div>
         </Button>
 
         <Button className={styles.navigation} onClick={() => onResetDate()}>
-          {moment().format('DD.MM.YY')}
+          {moment().format('DD.MM')}
         </Button>
 
         <Button
@@ -59,12 +59,12 @@ const Schedule = ({
             {`${scheduleSettings.currentDate
               .clone()
               .add(scheduleSettings.dateRange, 'days')
-              .format('DD.MM.YY')} 
+              .format('DD.MM')} 
             -
             ${scheduleSettings.currentDate
               .clone()
               .add(scheduleSettings.dateRange * 2, 'days')
-              .format('DD.MM.YY')}`}
+              .format('DD.MM')}`}
           </div>
           <RightCircleOutlined className={styles.buttonIcon} />
         </Button>
@@ -74,7 +74,7 @@ const Schedule = ({
         {Object.keys(scheduleBuilder(scheduleSettings)).map((key) => {
           return (
             <div className={styles.scheduleItemWrapper} key={key}>
-              <div className={styles.date}>{moment(new Date(key)).format('DD.MM.YY')}</div>
+              <div className={styles.date}>{moment(new Date(key)).format('DD.MM')}</div>
               <div className={styles.recordWrapper}>
                 {scheduleBuilder(scheduleSettings)[key].map((data: Record) => {
                   if (recordsData && recordsData.length) {

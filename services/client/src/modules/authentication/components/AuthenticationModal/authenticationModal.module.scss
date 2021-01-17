@@ -13,9 +13,16 @@
 }
 
 .button {
+  width: 100%;
   height: 5vh;
 }
 
 .buttonChecked {
   border: 1px solid #374856;
+}
+
+@media(max-width: 750px) {
+  .modal {
+    max-width: 70vw;
+  }
 }

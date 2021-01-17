@@ -1,0 +1,18 @@
+@media (max-width: 1024px) {
+  .main__screen_1, .main__screen_2, .main__screen_3, .main__screen_5, .main__screen_6 {
+    display: none;
+  }
+
+  #header .header__navbar, .navbar {
+    display: none;
+  }
+  
+  #header {
+    padding: 9px 0;
+  }
+
+  #header .header__logo {
+    height: 25px;
+    margin: 5px 10px 5px 0px;
+  }
+}

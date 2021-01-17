@@ -42,3 +42,10 @@ Button {
   text-align: center;
   border: 1px solid rgb(0, 0, 0);
 }
+
+@media(max-width: 750px) {
+  .modalWrapper {
+    right: 3%;
+    left: 3%;
+  }
+}

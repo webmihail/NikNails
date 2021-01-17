@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,MAAM,EAAC,SAAS,EAAE,KAAK,EACrB,AAAA,aAAa,AAAC,CACZ,KAAK,CAAE,CAAC,CACR,IAAI,CAAE,CAAC,CACR",
+    "sources": [
+        "../../src/modules/calendar/components/CreateRecordModal/mediaQueries.scss"
+    ],
+    "names": [],
+    "file": "mediaQueries.css"
+}

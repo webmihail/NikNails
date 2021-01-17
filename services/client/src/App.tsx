@@ -9,17 +9,25 @@ import CalendarPage from './modules/calendar';
 import { rootReducer } from './rootReducer';
 import Authentication from './modules/authentication';
 
-const store = createStore(
-  rootReducer,
-  compose(
-    applyMiddleware(thunk),
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__(),
-  ),
-);
+//react devtools create error for safari
+const storeForBrowser = () => {
+  if (window.navigator.userAgent.includes('Chrome')) {
+    return createStore(
+      rootReducer,
+      compose(
+        applyMiddleware(thunk),
+        (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
+          (window as any).__REDUX_DEVTOOLS_EXTENSION__(),
+      ),
+    );
+  } else {
+    return createStore(rootReducer, compose(applyMiddleware(thunk)));
+  }
+};
 
 const App: React.FC = (): JSX.Element => {
   return (
-    <Provider store={store}>
+    <Provider store={storeForBrowser()}>
       <Authentication />
       <CalendarPage />
     </Provider>
