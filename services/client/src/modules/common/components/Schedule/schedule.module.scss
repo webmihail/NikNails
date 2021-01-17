@@ -37,7 +37,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.5vh;
-  margin: 1.4vh;
+  margin: 1.3vh;
 }
 
 .recordWrapper {
@@ -71,7 +71,7 @@
 
   .freeRecord, .busyRecord {
     font-size: 0.8em;
-    max-width: 25vw;
+    width: 23vw;
   }
 }
 
@@ -81,15 +81,26 @@
   }
 
   .navigation {
-    min-width: 28vw;
-    max-width: 34vw;
+    width: 32vw;
   }
 
   .buttonIcon {
-    max-height: 13px;
+    height: 13px;
   }
 
   .date {
-    min-width: 12vw;
+    margin-right: 2vw;
+  }
+}
+
+@media (min-height: 1024px) {
+  .freeRecord, .busyRecord {
+    height: 6vh;
+  }
+}
+
+@media (min-height: 1200px) {
+  .freeRecord, .busyRecord {
+    height: 6.3vh;
   }
 }
