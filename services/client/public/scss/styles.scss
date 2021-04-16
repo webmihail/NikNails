@@ -9,8 +9,9 @@
   padding: 0;
 }
 
-html { 
-  overflow-y: hidden;
+body {
+  height: 100vh;
+  overflow: hidden;
 }
 
 #header {
@@ -20,7 +21,7 @@ html {
   position: fixed;
   width: 100%;
   top: 0;
-  background-color: $grey;
+  background-color: $transparent-gray;
   font-family: 'Montserrat-Regular', sans-serif;
   color: $gold;
   z-index: 100;
@@ -31,22 +32,44 @@ html {
   margin: 9px 5px 5px 28px;
 }
 
+.navbar__nav {
+  display: flex;
+  margin: 0;
+}
+
+.navbar__item {
+  margin: 0 15px;
+  list-style-type: none;
+}
+
 .navbar__link {
   color: $gold;
   &:hover {
-    color: $gold;
+    color: $black;
   }
+}
+
+#main {
+  width: 100%;
+  height: 100%;
+  /* CSS Smooth Scroll */
+  overflow-y: scroll; 
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
 }
 
 .main__screen  {
   font-family: 'Montserrat-Regular', sans-serif;
+  width: 100%;
+  height: 100vh;
+  /* Scroll Snap */
+  scroll-snap-align: center;
 }
 
 .screen__wrap {
   display: flex;
   position: relative;
-  top: 54px;
-  height: calc(100% - 56px);
+  padding-top: 44px;
 }
 
 .screen__block_left {
@@ -63,11 +86,13 @@ html {
     font-family: 'Montserrat-Bold', sans-serif;
     padding: 0 10px;
     text-align: center;
+    font-size: 3em;
     color: $gold;
   }
 
   p {
     margin-top: 30px;
+    font-size: 1.2em;
     color: $gold;
   }
 }
@@ -141,9 +166,10 @@ html {
   background-size: cover;
   color: $white;
   position: relative;
+  
   .about {
     position: absolute;
-    top: 5vh;
+    top: 10vh;
     right: 0;
     padding: 20px;
     font-size: 1.3em;
@@ -161,6 +187,7 @@ html {
       }
     }
   }
+  
   .about__diploms{
     display: flex;
     justify-content: space-between;
