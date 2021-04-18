@@ -1,6 +1,5 @@
 @import 'color.scss';
 @import 'fonts.scss';
-@import 'animation.scss';
 @import 'slider.scss';
 @import 'media-queries.scss';
 
@@ -20,16 +19,93 @@ body {
   align-items: center;
   position: fixed;
   width: 100%;
-  top: 0;
+  height: 60px;
   background-color: $transparent-gray;
+  top: 0;
   font-family: 'Montserrat-Regular', sans-serif;
   color: $gold;
-  z-index: 100;
+  z-index: 1;
+}
+
+.header__background {
+  position: absolute;
+  background-color: $transparent-gray;
+  width: 100%;
+  height: 60px;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
 .header__logo {
   height: 30px;
   margin: 9px 5px 5px 28px;
+}
+
+//burger-button with animation
+.header__burger {
+  position: relative;
+  display: none;
+  width: 30px;
+  height: 30px;
+  background-color: $transparent-gray;
+  box-shadow: 0 0 1px 1px $gold-light;
+  border-radius: 3px;
+  border: none;
+  
+  &:hover {
+    box-shadow: 0 0 1px 1px $gold;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.header__burger span, .header__burger span::before, .header__burger span::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background-color: $gold;
+}
+
+.header__burger span::before, .header__burger span::after {
+  transition-duration: 0.3s, 0.3s;
+  transition-delay: 0s, 0.3s;
+}
+
+.header__burger.active span::before {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+.header__burger.active span {
+  background: none;
+}
+
+.header__burger.active span::after {
+  bottom: 0;
+  transform: rotate(45deg);
+}
+
+.header__burger.active span::before, .header__burger.active span::after {
+  transition-duration: 0.3s, 0.3s;
+  transition-delay: 0s, 0.3s;
+}
+
+.header__burger span {
+  top: 14px;
+  left: 5px;
+}
+
+.header__burger span::before {
+  top: 6px;
+}
+
+.header__burger span::after {
+  bottom: 6px;
 }
 
 .navbar__nav {
@@ -68,30 +144,31 @@ body {
 
 .screen__wrap {
   display: flex;
+  align-items: center;
   position: relative;
-  padding-top: 44px;
+  padding-top: 60px;
+  height: 100vh;
 }
 
 .screen__block_left {
-  position: absolute;
-  right: 0;
-  height: 100%;
-  width: 60%;
+  width: 100%;
+  display: flex;
+  justify-content:flex-end;
+  align-items: center;
 }
 
 .screen__header {
   text-align: center;
-  margin-top: 5vh;
+  height: fit-content;
+  width: 55%;
   h1 {
     font-family: 'Montserrat-Bold', sans-serif;
-    padding: 0 10px;
     text-align: center;
-    font-size: 3em;
+    font-size: 3.2em;
     color: $gold;
   }
 
   p {
-    margin-top: 30px;
     font-size: 1.2em;
     color: $gold;
   }
@@ -99,13 +176,44 @@ body {
 
 .screen__logo {
   margin-bottom: 40px;
-  width: 50vh;
+  width: 45%;
 	animation: pulse 4s infinite;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+	}
+
+	70% {
+		transform: scale(1);
+	}
+
+	100% {
+		transform: scale(0.95);
+	}
 }
 
 .screen__scroll {
   width: 15vh;
   animation: pulse-blinking 4s infinite;
+}
+
+@keyframes pulse-blinking {
+	0% {
+    transform: scale(0.95);
+    opacity: 1;
+	}
+
+	70% {
+    transform: scale(1);
+    opacity: 0.2;
+	}
+
+	100% {
+    transform: scale(0.95);
+    opacity: 1;
+	}
 }
 
 .main__screen_1 {
@@ -114,62 +222,68 @@ body {
   color: $white;
 }
 
-.main__screen_2 {background: #777370;}
+.main__screen_2 {background: $gold-dark;}
 .main__screen_3 {
-  background: #777370;
+  background: $gold-dark;
   .price {
     width: 100%;
     .price__logo {
       display: flex;
       justify-content: center;
       img {
-        height: 20vh;
-        margin: 30px auto;
+        height: 10vh;
+        margin: 20px auto;
       }
     }
 
     .price__cost {
       display: flex;
       justify-content: space-between;
-      padding: 0 30px;
+      flex-wrap: wrap;
+      padding: 30px;
       border: 1px solid;
       border-image-slice: 1;
       border-width: 1px;
       border-image-source: linear-gradient(to left, $gold, $gold-light);
       color: $white;
       margin: 0 30px;
-      height: 56vh;
+      height: fit-content;
       .price__wrap {
         width: 45%;
+        margin-bottom: 5px;
         header, section {
           display: flex;
           justify-content: space-between;
         }
         header {
-          margin-top: 30px;
           color: $gold;
           h2 {
-            font-size: 3vh;
+            font-size: 3vi;
           }
         }
         section {
           span {
-            font-size: 2.2vh;
+            font-size: 2.2vi;
           }
         }
       }
     }
   }
 }
+
+.main__screen_4 {
+  background-color: rgb(238, 238, 238);
+}
+
 .main__screen_5 {
   background: url("../images/background-about.jpeg") no-repeat center center;
   background-size: cover;
   color: $white;
   position: relative;
   
-  .about {
+  .about__wrap {
     position: absolute;
-    top: 10vh;
+    top: 15vh;
     right: 0;
     padding: 20px;
     font-size: 1.3em;
@@ -188,6 +302,12 @@ body {
     }
   }
   
+  .about__logo {
+    display: none;
+    width: 40%;
+    margin-bottom: 40px;
+  }
+
   .about__diploms{
     display: flex;
     justify-content: space-between;
@@ -213,7 +333,7 @@ body {
   position: relative;
   background: $silver;
 
-  .footer__logo {
+  .footer__logo, .social__logo {
     height: 5vh;
     margin: 1vh;
   }
@@ -221,9 +341,9 @@ body {
   .footer__info {
     position: absolute;
     bottom: 0;
-    height:  calc(100vh - 54px - 85%);
+    height: 8vh;
     width: 100%;
-    padding: 10px 60px;
+    padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;

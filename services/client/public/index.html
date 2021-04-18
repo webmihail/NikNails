@@ -16,12 +16,15 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"></script>
     <script type="text/javascript" src="%PUBLIC_URL%/js/intersectionObserver.js"></script>
     <script type="text/javascript" src="%PUBLIC_URL%/js/printTextAnimation.js"></script>
+    <script type="text/javascript" src="%PUBLIC_URL%/js/burgerAnimation.js"></script>
     <title>NikNails</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <header id="header">
+      <div class="header__background"></div>
       <img class="header__logo" src="images/logo.png" alt="NikNails logo"/>
+      <button class="header__burger"><span></span></button>
       <nav class="header__navbar">
         <ul class="navbar__nav">
           <li class="navbar__item">
@@ -189,9 +192,10 @@
           <div id="root"></div>
         </section>
       </section>
-      <section class="main__screen main__screen_5 animate">
+      <section id="about" class="main__screen main__screen_5 animate">
         <section class="screen__wrap">
-          <section class="about">
+          <section class="about__wrap">
+            <img class="about__logo" src="images/logo-horizontal.png" alt="NikNails logo"/>
             <section class="about__diploms">
               <div class="diplom__border">
                 <img class="diplom diplom" src="./images/diplom.jpg"/>
@@ -206,37 +210,39 @@
                 <img class="diplom diplom4" src="./images/diplom4.jpg"/>
               </div>
             </section>
-            <blockquote class="magic-wrapper">
-              <p class="magic-text">
-                Обладаю самыми современными знаниями и постоянно совершенствую их, обучаясь на различных тренингах, семинарах и курсах.
-                Всегда в курсе о последних тенденциях моды ногтевой индустрии.
-                Ваш маникюр всегда будет аккуратным, практичным и идеально подойдет к вашему стилю.
-                Особое внимание в работе уделяется безопасности здоровья клиентов, а также строго соблюдаются все санитарные нормы.
-                Перед каждым маникюром проводится дезинфекция и стерилизация инструментов и рабочей поверхности.
-              </p>
-            </blockquote>
+            <section class="about__text">
+              <blockquote class="magic-wrapper">
+                <p class="magic-text">
+                  Обладаю самыми современными знаниями и постоянно совершенствую их, обучаясь на различных тренингах, семинарах и курсах.
+                  Всегда в курсе о последних тенденциях моды ногтевой индустрии.
+                  Ваш маникюр всегда будет аккуратным, практичным и идеально подойдет к вашему стилю.
+                  Особое внимание в работе уделяется безопасности здоровья клиентов, а также строго соблюдаются все санитарные нормы.
+                  Перед каждым маникюром проводится дезинфекция и стерилизация инструментов и рабочей поверхности.
+                </p>
+              </blockquote>
+            </section>
           </section>
         </section>
       </section>
       <footer id="contact" class="main__screen main__screen_6">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2638.462917978752!2d34.570324715972575!3d48.600981679263114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40dbd716c3fc6b05%3A0xda9c18450aca3b28!2z0LHRg9C7LiDQodGC0YDQvtC40YLQtdC70LXQuSwgMjUsINCa0LDQvNC10L3RgdC60L7QtSwg0JTQvdC10L_RgNC-0L_QtdGC0YDQvtCy0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwsIDUxOTA5!5e0!3m2!1sru!2sua!4v1593342190605!5m2!1sru!2sua" width="100%" height="86.5%" frameborder="0" style="border:0; margin-top: 44px" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2638.462917978752!2d34.570324715972575!3d48.600981679263114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40dbd716c3fc6b05%3A0xda9c18450aca3b28!2z0LHRg9C7LiDQodGC0YDQvtC40YLQtdC70LXQuSwgMjUsINCa0LDQvNC10L3RgdC60L7QtSwg0JTQvdC10L_RgNC-0L_QtdGC0YDQvtCy0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwsIDUxOTA5!5e0!3m2!1sru!2sua!4v1593342190605!5m2!1sru!2sua" width="100%" height="87.5%" frameborder="0" style="border:0; margin-top: 60px" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
         <section class="footer__info">
           <img class="footer__logo" src="images/logo.png" alt="NikNails logo"/>
           <div class="footer__social">
             <a href="tel:+380637654901">
-              <img class="footer__logo footer__logo_telephone" src="images/social/telephone.png" alt="telephone logo"/>
+              <img class="social__logo footer__logo_telephone" src="images/social/telephone.png" alt="telephone logo"/>
             </a>
             <a href="https://teleg.run/DonskayaViktoriya">
-              <img class="footer__logo footer__logo_telegram" src="images/social/telegram.png" alt="telegram logo"/>
+              <img class="social__logo footer__logo_telegram" src="images/social/telegram.png" alt="telegram logo"/>
             </a>
             <a href="viber://chat?number=380637654901">
-              <img class="footer__logo footer__logo_viber" src="images/social/viber.png" alt="viber logo"/>
+              <img class="social__logo footer__logo_viber" src="images/social/viber.png" alt="viber logo"/>
             </a>
             <a href="https://instagram.com/donskayavikki_nails?igshid=zmr7d7uupjof">
-              <img class="footer__logo footer__logo_instagram" src="images/social/insta.png" alt="instagram logo"/>
+              <img class="social__logo footer__logo_instagram" src="images/social/insta.png" alt="instagram logo"/>
             </a>
             <a href="mailto:viktoriad477@gmail.com">
-              <img class="footer__logo footer__logo_facebook" src="images/social/gmail.png" alt="gmail logo"/>
+              <img class="social__logo footer__logo_facebook" src="images/social/gmail.png" alt="gmail logo"/>
             </a>
           </div>
         </section>
