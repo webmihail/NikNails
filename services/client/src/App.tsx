@@ -8,6 +8,7 @@ import 'moment/locale/ru';
 import CalendarPage from './modules/calendar';
 import { rootReducer } from './rootReducer';
 import Authentication from './modules/authentication';
+import './modules/common/styles/styles.global.scss';
 
 //react devtools create error for safari
 const storeForBrowser = () => {

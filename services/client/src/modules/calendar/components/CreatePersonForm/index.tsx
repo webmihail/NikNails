@@ -4,7 +4,7 @@ import * as yup from 'yup';
 
 import styles from './createPersonForm.module.scss';
 import { Button } from 'antd';
-import { changeModal, setActiveTab } from '../../actions';
+import { setActiveTab } from '../../actions';
 import InputField from '../../../common/components/InputField';
 import { Person } from '../../types';
 import { phoneRegExp } from '../../../common/constants/regExps';
@@ -50,22 +50,6 @@ const CreatePersonForm = ({
         />
       </div>
       <div className={styles.buttonGroup}>
-        <Button
-          type="primary"
-          onClick={() =>
-            dispatch(
-              changeModal({
-                type: 'CHANGE_FORM_MODAL',
-                payload: {
-                  isOpen: false,
-                  data: '',
-                },
-              }),
-            )
-          }
-        >
-          Закрыть
-        </Button>
         <Button type="primary" onClick={() => handleSubmit()}>
           Создать
         </Button>

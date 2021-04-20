@@ -1,0 +1,38 @@
+@import "../styles/colors.scss";
+
+.ant-modal-content {
+  width: 130%;
+  left: -15%;
+  background-color: $transparent-gray;
+  color: $gold;
+
+  .ant-modal-body .ant-btn {
+    background-color: $transparent-gray;
+    border: 1px solid $beige;
+    color: $beige;
+    &:hover {
+      border: 1px solid $gold;
+      color: $gold;
+    }
+  }
+}
+
+.ant-btn-primary {
+  background-color: $transparent-gray;
+  border: 1px solid $gold;
+  color: $gold;
+
+  &:hover {
+    background-color: $gold;
+    color: $white!important;
+  }
+}
+
+.ant-input, .ant-select-selector, .ant-select-selection-search-input {
+  border: 1px solid $gold;
+  color: $transparent-gray;
+}
+
+.ant-select-item-option-content {
+  color: $transparent-gray;
+}

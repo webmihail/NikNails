@@ -105,22 +105,6 @@ const CreateRecordForm = ({
       </div>
 
       <div className={styles.buttonGroup}>
-        <Button
-          type="primary"
-          onClick={() =>
-            dispatch(
-              changeModal({
-                type: 'CHANGE_FORM_MODAL',
-                payload: {
-                  isOpen: false,
-                  data: '',
-                },
-              }),
-            )
-          }
-        >
-          Закрыть
-        </Button>
         <Button type="primary" onClick={() => handleSubmit()}>
           Создать
         </Button>

@@ -11,7 +11,6 @@ import SignUpForm from '../SignUpForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthenticationState } from '../../types';
 import { setActiveTab } from '../../actions';
-import './authenticationModal.global.scss';
 
 const AuthenticationModal = () => {
   const headerLogo = document.querySelector('.header__logo');

@@ -1,3 +1,5 @@
+@import "../../../common/styles/colors.scss";
+
 .modalWrapper {
   padding-top: 5vh;
 }
@@ -18,7 +20,10 @@
 }
 
 .buttonChecked {
-  border: 1px solid #374856;
+  color: $transparent-gray!important;
+  border: 1px solid $white!important;
+  background-color: $gold-light!important;
+  user-select: none;
 }
 
 @media(max-width: 750px) {

@@ -1,25 +1,17 @@
+@import "../../../common/styles/colors.scss";
+
 .modalWrapper {
-  position: absolute;
-  min-width: 43vw;
-  top: 13%;
-  right: 32%;
-  bottom: 10%;
-  left: 32%;
-  padding: 8vh 3vw 5vh 3vw;
-  box-shadow: 0 10px 30px 0 rgba(127, 127, 127, 0.6);
-  background: rgb(255, 255, 255);
+  padding-top: 5vh;
 }
 
 .buttonsWrapper {
-  display: flex;
-  width: 100%;
   position: absolute;
+  width: 100%;
   top: 0;
   left: 0;
-}
-
-.buttonChecked {
-  border: 1px solid #374856;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Montserrat-Regular', sans-serif;
 }
 
 .button {
@@ -27,25 +19,21 @@
   height: 5vh;
 }
 
-Button {
-  width: 40%;
-}
-
-.closeButton {
-  position: relative;
-  top: 0;
-  left: 95%;
+.buttonChecked {
+  color: $transparent-gray!important;
+  border: 1px solid $white!important;
+  background-color: $gold-light!important;
+  user-select: none;
 }
 
 .title {
   margin-top: 40px;
   text-align: center;
-  border: 1px solid rgb(0, 0, 0);
+  border: 1px solid $gold;
 }
 
 @media(max-width: 750px) {
-  .modalWrapper {
-    right: 3%;
-    left: 3%;
+  .modal {
+    max-width: 70vw;
   }
 }
