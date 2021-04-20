@@ -5,6 +5,10 @@
       .slider__item {
         height: 12.5%;
         width: 100%;
+
+        &:hover {
+          flex-basis: 300%!important;
+        }
       }
     }
   }
