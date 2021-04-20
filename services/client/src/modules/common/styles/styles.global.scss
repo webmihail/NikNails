@@ -23,7 +23,7 @@
   color: $gold;
 
   &:hover {
-    background-color: $gold;
+    background-color: $gold!important;
     color: $white!important;
   }
 }
