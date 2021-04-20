@@ -147,6 +147,7 @@ body {
   align-items: center;
   position: relative;
   padding-top: 60px;
+  width: 100%;
   height: 100vh;
 }
 
@@ -175,7 +176,7 @@ body {
 }
 
 .screen__logo {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   width: 45%;
 	animation: pulse 4s infinite;
 }
@@ -222,7 +223,12 @@ body {
   color: $white;
 }
 
-.main__screen_2 {background: $gold-dark;}
+.main__screen_2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $gold-dark;
+}
 .main__screen_3 {
   background: $gold-dark;
   .price {

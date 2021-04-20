@@ -1,27 +1,63 @@
 .screen__slider {
-  margin: auto auto;
-  width: 100vw; 
-  height: 100vh;
-  overflow: hidden;
-  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
-  
-  li {
-    position: relative;
-    display: block;
-    width: 5vw;
-    float: left;
-    border-left: 1px solid #888;
-    box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.5);
-    transition: all 0.5s;
+  border: 5px solid $gold;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
 
-    &:hover {
-      width: 40vw;
-    }
+.slider__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 12.5%;
+  flex-basis: 25%;
+  border: 1px solid $gold;
+  transition: all 0.7s;
+  &:hover {
+    flex-basis: 300%;
   }
+}
 
-  img{
-    display: block;
-    width: 40vw;
-    height: 102vh;
-  }    
+.slider__item_1 { 
+  background: url('../images/for-slider/photo_2020-12-13 16.44.02.jpeg') no-repeat center center;
+  background-size: cover;
+}
+
+.slider__item_2 { 
+  background: url('../images/for-slider/photo_2020-06-09_23-44-05.jpg') no-repeat center center;
+  background-size: cover;
+}
+
+.slider__item_3 { 
+  background: url('../images/for-slider/photo_2020-12-13 16.44.06.jpeg') no-repeat center center;
+  background-size: cover;
+}
+
+.slider__item_4 { 
+  background: url('../images/for-slider/photo_2020-12-13 16.44.08.jpeg') no-repeat center center;
+  background-size: cover;
+}
+
+.slider__item_5 { 
+  background: url('../images/for-slider/photo_2020-12-13 16.44.09.jpeg') no-repeat center center;
+  background-size: cover;
+}
+
+.slider__item_6 { 
+  background: url('../images/for-slider/photo_2020-12-13 16.44.19.jpeg') no-repeat center center;
+  background-size: cover;
+}
+
+.slider__item_7 { 
+  background: url('../images/for-slider/photo_2020-12-13 16.44.17.jpeg') no-repeat center center;
+  background-size: cover;
+}
+
+.slider__item_8 { 
+  background: url('../images/for-slider/photo_2020-12-13 16.44.13.jpeg') no-repeat center center;
+  background-size: cover;
 }
