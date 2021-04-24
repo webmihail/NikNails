@@ -1,7 +1,7 @@
-import { TABS } from '../constants';
+import { AUTH_TABS } from '../constants';
 
 export interface AuthenticationState {
-  authenticationFormModalActiveTab: TABS;
+  authenticationFormModalActiveTab: AUTH_TABS;
 }
 
 export interface ActionProps {

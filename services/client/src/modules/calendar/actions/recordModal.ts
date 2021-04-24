@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 
-import { TABS } from '../constants';
+import { RECORD_TABS } from '../constants';
 
 interface ChangeModalOwnProps {
   type: string;
@@ -12,7 +12,7 @@ interface ChangeModalOwnProps {
 
 interface SetActiveTabOwnProps {
   type: string;
-  payload: TABS;
+  payload: RECORD_TABS;
 }
 
 export const changeModal = (values: ChangeModalOwnProps) => {

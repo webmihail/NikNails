@@ -1,8 +1,8 @@
-import { TABS } from '../constants';
+import { RECORD_TABS } from '../constants';
 import { ActionProps } from '../types';
 
 export const recordFormModalActiveTab = (
-  state: TABS = TABS.CREATE_PERSON_FORM,
+  state: RECORD_TABS = RECORD_TABS.CREATE_PERSON_FORM,
   action: ActionProps,
 ) => {
   switch (action.type) {

@@ -1,9 +1,9 @@
 import { Dispatch } from 'redux';
-import { TABS } from '../constants';
+import { AUTH_TABS } from '../constants';
 
 interface SetActiveTabOwnProps {
   type: string;
-  payload: TABS;
+  payload: AUTH_TABS;
 }
 
 export const setActiveTab = (values: SetActiveTabOwnProps) => {

@@ -1,7 +1,6 @@
 import { Moment } from 'moment';
 import { CALENDAR_TIME_STATUSES } from '../constants';
 import { RECORD_TYPES } from '../constants';
-import { TABS } from '../constants';
 
 export interface Person {
   id?: number;
@@ -57,20 +56,4 @@ export interface ScheduleSettings {
 
 export interface CalendarProps {
   scheduleSettings: ScheduleSettings;
-}
-
-export interface CalendarStore {
-  records: ScheduleData;
-  persons: GetPersonsByFilter;
-  calendar: CalendarProps;
-  loading: boolean;
-  recordFormModal: {
-    data: string;
-    isOpen: boolean;
-  };
-  recordInfoModal: {
-    data: Record;
-    isOpen: boolean;
-  };
-  recordFormModalActiveTab: TABS;
 }

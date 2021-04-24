@@ -1,11 +1,12 @@
 import React from 'react';
-import { Record, ScheduleSettings, CalendarStore } from '../../../calendar/types';
+import { Record, ScheduleSettings } from '../../../calendar/types';
 import { Spin, Button } from 'antd';
 import { LeftCircleOutlined, RightCircleOutlined } from '@ant-design/icons';
 import styles from './schedule.module.scss';
 import moment from 'moment';
 import { scheduleBuilder } from '../../utils';
 import { useSelector } from 'react-redux';
+import { AppStore } from '../../types';
 
 interface ScheduleProps {
   recordsData: any;
@@ -27,7 +28,7 @@ const Schedule = ({
   onFreeClick,
   onChangeDate,
 }: ScheduleProps) => {
-  const calendar = useSelector((state: CalendarStore) => state.calendar);
+  const calendar = useSelector((state: AppStore) => state.calendar);
 
   const converDateForSafari = (key: any) => {
     const formatDateForSafari = moment(key, 'YYYY-MM-DD HH:mm').toISOString();

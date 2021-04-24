@@ -1,8 +1,8 @@
-import { TABS } from '../constants';
+import { AUTH_TABS } from '../constants';
 import { ActionProps } from '../types';
 
 export const authenticationFormModalActiveTab = (
-  state: TABS = TABS.SIGN_IN_FORM,
+  state: AUTH_TABS = AUTH_TABS.SIGN_IN_FORM,
   action: ActionProps,
 ) => {
   switch (action.type) {

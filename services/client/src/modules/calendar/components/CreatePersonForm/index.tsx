@@ -9,7 +9,7 @@ import InputField from '../../../common/components/InputField';
 import { Person } from '../../types';
 import { phoneRegExp } from '../../../common/constants/regExps';
 import { createPerson } from '../../../../api/persons';
-import { TABS } from '../../constants';
+import { RECORD_TABS } from '../../constants';
 
 interface CreatePersonFormOwnProps {
   dispatch: (value: any) => void;
@@ -70,7 +70,7 @@ const CreatePersonFormWithFormik = withFormik<CreatePersonFormOwnProps, Person>(
     dispatch(
       setActiveTab({
         type: 'CREATE_RECORD_FORM',
-        payload: TABS.CREATE_RECORD_FORM,
+        payload: RECORD_TABS.CREATE_RECORD_FORM,
       }),
     );
   },

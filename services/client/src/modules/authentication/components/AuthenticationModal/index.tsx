@@ -3,20 +3,18 @@ import { Button, Modal } from 'antd';
 import { clickCounter } from '../../../common/utils/clickCounter';
 import styles from './authenticationModal.module.scss';
 import classnames from 'classnames';
-import { TABS } from '../../constants';
+import { AUTH_TABS } from '../../constants';
 import SignInForm from '../SignInForm';
 import SignUpForm from '../SignUpForm';
 //TODO: When we added recovery pass
 // import RecoveryPasswordForm from '../RecoveryPasswordForm';
 import { useDispatch, useSelector } from 'react-redux';
-import { AuthenticationState } from '../../types';
 import { setActiveTab } from '../../actions';
+import { AppStore } from '../../../common/types';
 
 const AuthenticationModal = () => {
   const headerLogo = document.querySelector('.header__logo');
-  const activeTab = useSelector(
-    (state: AuthenticationState) => state.authenticationFormModalActiveTab,
-  );
+  const activeTab = useSelector((state: AppStore) => state.authenticationFormModalActiveTab);
   const dispatch = useDispatch();
   const [isModalOpen, setOpenModal] = useState(false);
 
@@ -26,9 +24,9 @@ const AuthenticationModal = () => {
 
   const getForm = () => {
     switch (activeTab) {
-      case TABS.SIGN_IN_FORM:
+      case AUTH_TABS.SIGN_IN_FORM:
         return <SignInForm dispatch={dispatch} />;
-      case TABS.SIGN_UP_FORM:
+      case AUTH_TABS.SIGN_UP_FORM:
         return <SignUpForm dispatch={dispatch} />;
       //TODO: When we added recovery pass
       // case TABS.RECOVERY_PASSWORD_FORM:
@@ -46,7 +44,7 @@ const AuthenticationModal = () => {
         dispatch(
           setActiveTab({
             type: 'SIGN_IN_FORM',
-            payload: TABS.SIGN_IN_FORM,
+            payload: AUTH_TABS.SIGN_IN_FORM,
           }),
         );
 
@@ -62,13 +60,13 @@ const AuthenticationModal = () => {
         <div className={styles.buttonsWrapper}>
           <Button
             className={classnames(styles.button, {
-              [styles.buttonChecked]: TABS.SIGN_IN_FORM === activeTab,
+              [styles.buttonChecked]: AUTH_TABS.SIGN_IN_FORM === activeTab,
             })}
             onClick={() => {
               dispatch(
                 setActiveTab({
                   type: 'SIGN_IN_FORM',
-                  payload: TABS.SIGN_IN_FORM,
+                  payload: AUTH_TABS.SIGN_IN_FORM,
                 }),
               );
             }}
@@ -77,13 +75,13 @@ const AuthenticationModal = () => {
           </Button>
           <Button
             className={classnames(styles.button, {
-              [styles.buttonChecked]: TABS.SIGN_UP_FORM === activeTab,
+              [styles.buttonChecked]: AUTH_TABS.SIGN_UP_FORM === activeTab,
             })}
             onClick={() => {
               dispatch(
                 setActiveTab({
                   type: 'SIGN_UP_FORM',
-                  payload: TABS.SIGN_UP_FORM,
+                  payload: AUTH_TABS.SIGN_UP_FORM,
                 }),
               );
             }}

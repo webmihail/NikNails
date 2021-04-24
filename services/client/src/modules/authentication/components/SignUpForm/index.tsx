@@ -6,7 +6,7 @@ import InputField from '../../../common/components/InputField';
 import styles from './signUpForm.module.scss';
 import { Button } from 'antd';
 import { setActiveTab } from '../../actions';
-import { TABS } from '../../constants';
+import { AUTH_TABS } from '../../constants';
 
 interface SignUpFormOwnProps {
   dispatch: (value: any) => void;
@@ -73,7 +73,7 @@ const SignUpFormWithFormik = withFormik<SignUpFormOwnProps, User>({
     dispatch(
       setActiveTab({
         type: 'SIGN_IN_FORM',
-        payload: TABS.SIGN_IN_FORM,
+        payload: AUTH_TABS.SIGN_IN_FORM,
       }),
     );
   },

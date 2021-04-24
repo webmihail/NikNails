@@ -6,11 +6,12 @@ import styles from './createRecordForm.module.scss';
 import { Button } from 'antd';
 import { changeModal } from '../../actions';
 import { useSelector } from 'react-redux';
-import { Person, Record, CalendarStore } from '../../types';
+import { Person, Record } from '../../types';
 import SelectField from '../../../common/components/SelectField';
 import { getAllPersons } from '../../../../api/persons';
 import { createRecords } from '../../../../api/records';
 import { InputDelay } from '../../../common/utils';
+import { AppStore } from '../../../common/types';
 
 const inputDelay = new InputDelay();
 
@@ -27,13 +28,13 @@ const CreateRecordForm = ({
   setFieldValue,
   dispatch,
 }: FormikProps<Record> & CreateRecordFormOwnProps) => {
-  const recordFormModal = useSelector((state: CalendarStore) => state.recordFormModal);
+  const recordFormModal = useSelector((state: AppStore) => state.recordFormModal);
 
   useEffect(() => {
     setFieldValue('time', recordFormModal.data);
   }, [setFieldValue, recordFormModal.data]);
 
-  const persons = useSelector((state: CalendarStore) => state.persons);
+  const persons = useSelector((state: AppStore) => state.persons);
 
   return (
     <form onSubmit={handleSubmit}>

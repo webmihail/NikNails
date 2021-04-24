@@ -3,18 +3,18 @@ import Schedule from '../../../common/components/Schedule';
 import styles from './calendar.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeModal, setActiveTab, setCalendarBeginDate } from '../../actions';
-import { CalendarStore } from '../../types';
 import moment from 'moment';
 import CreateRecordModal from '../CreateRecordModal';
-import { TABS } from '../../constants';
 import { getAllRecords } from '../../../../api/records';
 import { setLoading } from '../../actions/loading';
 import InfoRecordModal from '../InfoRecordModal';
+import { AppStore } from '../../../common/types';
+import { RECORD_TABS } from '../../constants';
 
 const Calendar = () => {
-  const records = useSelector((state: CalendarStore) => state.records);
-  const calendar = useSelector((state: CalendarStore) => state.calendar);
-  const loading = useSelector((state: CalendarStore) => state.loading);
+  const records = useSelector((state: AppStore) => state.records);
+  const calendar = useSelector((state: AppStore) => state.calendar);
+  const loading = useSelector((state: AppStore) => state.loading);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const Calendar = () => {
           dispatch(
             setActiveTab({
               type: 'CREATE_PERSON_FORM',
-              payload: TABS.CREATE_PERSON_FORM,
+              payload: RECORD_TABS.CREATE_PERSON_FORM,
             }),
           );
         }}

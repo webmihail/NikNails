@@ -1,25 +1,25 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeModal, setActiveTab } from '../../actions';
-import { TABS } from '../../constants';
-import { CalendarStore } from '../../types';
+import { RECORD_TABS } from '../../constants';
 import CreateRecordForm from '../CreateRecordForm';
 import CreatePersonForm from '../CreatePersonForm';
 import styles from './createRecordForm.module.scss';
 import { Button, Modal } from 'antd';
 import classNames from 'classnames';
 import moment from 'moment';
+import { AppStore } from '../../../common/types';
 
 const CreateRecordModal = () => {
-  const recordFormModal = useSelector((state: CalendarStore) => state.recordFormModal);
-  const activeTab = useSelector((state: CalendarStore) => state.recordFormModalActiveTab);
+  const recordFormModal = useSelector((state: AppStore) => state.recordFormModal);
+  const activeTab = useSelector((state: AppStore) => state.recordFormModalActiveTab);
   const dispatch = useDispatch();
 
   const getForm = () => {
     switch (activeTab) {
-      case TABS.CREATE_PERSON_FORM:
+      case RECORD_TABS.CREATE_PERSON_FORM:
         return <CreatePersonForm dispatch={dispatch} />;
-      case TABS.CREATE_RECORD_FORM:
+      case RECORD_TABS.CREATE_RECORD_FORM:
         return (
           <div>
             <div className={styles.title}>{`Запись: ${moment(
@@ -42,7 +42,7 @@ const CreateRecordModal = () => {
         dispatch(
           setActiveTab({
             type: 'CREATE_PERSON_FORM',
-            payload: TABS.CREATE_PERSON_FORM,
+            payload: RECORD_TABS.CREATE_PERSON_FORM,
           }),
         );
 
@@ -66,13 +66,13 @@ const CreateRecordModal = () => {
         <div className={styles.buttonsWrapper}>
           <Button
             className={classNames(styles.button, {
-              [styles.buttonChecked]: TABS.CREATE_RECORD_FORM === activeTab,
+              [styles.buttonChecked]: RECORD_TABS.CREATE_RECORD_FORM === activeTab,
             })}
             onClick={() =>
               dispatch(
                 setActiveTab({
                   type: 'CREATE_RECORD_FORM',
-                  payload: TABS.CREATE_RECORD_FORM,
+                  payload: RECORD_TABS.CREATE_RECORD_FORM,
                 }),
               )
             }
@@ -82,13 +82,13 @@ const CreateRecordModal = () => {
 
           <Button
             className={classNames(styles.button, {
-              [styles.buttonChecked]: TABS.CREATE_PERSON_FORM === activeTab,
+              [styles.buttonChecked]: RECORD_TABS.CREATE_PERSON_FORM === activeTab,
             })}
             onClick={() =>
               dispatch(
                 setActiveTab({
                   type: 'CREATE_PERSON_FORM',
-                  payload: TABS.CREATE_PERSON_FORM,
+                  payload: RECORD_TABS.CREATE_PERSON_FORM,
                 }),
               )
             }
