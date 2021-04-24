@@ -1,5 +1,6 @@
 import moment from 'moment';
-import { ActionProps, CalendarProps } from '../types';
+import { ActionProps } from '../../common/types';
+import { CalendarProps } from '../types';
 
 const initialState: CalendarProps = {
   scheduleSettings: {

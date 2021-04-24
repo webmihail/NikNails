@@ -1,4 +1,5 @@
-import { ActionProps, Record } from '../types';
+import { ActionProps } from '../../common/types';
+import { Record } from '../types';
 
 interface ModalOwnProps {
   isOpen: boolean;

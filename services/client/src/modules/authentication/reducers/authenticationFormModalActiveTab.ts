@@ -1,5 +1,5 @@
+import { ActionProps } from '../../common/types';
 import { AUTH_TABS } from '../constants';
-import { ActionProps } from '../types';
 
 export const authenticationFormModalActiveTab = (
   state: AUTH_TABS = AUTH_TABS.SIGN_IN_FORM,

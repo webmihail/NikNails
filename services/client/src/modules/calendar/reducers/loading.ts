@@ -1,4 +1,4 @@
-import { ActionProps } from '../types';
+import { ActionProps } from '../../common/types';
 
 export const loading = (state: boolean = false, action: ActionProps) => {
   switch (action.type) {

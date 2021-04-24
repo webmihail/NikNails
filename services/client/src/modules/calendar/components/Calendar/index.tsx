@@ -10,6 +10,7 @@ import { setLoading } from '../../actions/loading';
 import InfoRecordModal from '../InfoRecordModal';
 import { AppStore } from '../../../common/types';
 import { RECORD_TABS } from '../../constants';
+import { localStorageUtil } from '../../../common/utils';
 
 const Calendar = () => {
   const records = useSelector((state: AppStore) => state.records);
@@ -19,6 +20,9 @@ const Calendar = () => {
 
   useEffect(() => {
     dispatch(getAllRecords());
+    if (new Date().getTime() > localStorageUtil.getStorage('authData')?.expirationDate) {
+      localStorageUtil.clearStorage();
+    }
   }, [dispatch]);
 
   return (

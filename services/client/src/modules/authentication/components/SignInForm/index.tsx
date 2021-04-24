@@ -5,6 +5,7 @@ import { SignInProps } from '../../types';
 import InputField from '../../../common/components/InputField';
 import styles from './signInForm.module.scss';
 import { Button } from 'antd';
+import { login } from '../../../../api/authentication';
 
 interface SignUpFormOwnProps {
   dispatch: (value: any) => void;
@@ -38,7 +39,7 @@ const SignInForm = ({
       </div>
       <div className={styles.buttonGroup}>
         <Button type="primary" onClick={() => handleSubmit()}>
-          Создать
+          Войти
         </Button>
       </div>
     </form>
@@ -48,12 +49,12 @@ const SignInForm = ({
 const SignUpFormWithFormik = withFormik<SignUpFormOwnProps, SignInProps>({
   enableReinitialize: true,
   mapPropsToValues: () => ({
-    firstName: '',
-    lastName: '',
     email: '',
     password: '',
   }),
-  handleSubmit: (values, { props: { dispatch } }) => {},
+  handleSubmit: (values, { props: { dispatch } }) => {
+    dispatch(login(values));
+  },
   validationSchema: yup.object().shape<SignInProps>({
     email: yup.string().email('Не похоже на Email!').required('Это поле не может быть пустым!'),
     password: yup.string().required('Это поле не может быть пустым!'),

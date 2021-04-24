@@ -1,3 +1,4 @@
+import * as moment from 'moment';
 import { Injectable } from '@nestjs/common';
 import { UserDTO } from 'src/users/dtos';
 import { UsersService } from 'src/users/users.service';
@@ -29,6 +30,7 @@ export class AuthService {
   ): Promise<{
     user: UserDTO;
     accessToken: string;
+    expirationDate: number;
   }> {
     const { id } = user;
     const payload = { sub: id };
@@ -36,6 +38,7 @@ export class AuthService {
     return {
       user,
       accessToken: this.jwtService.sign(payload),
+      expirationDate: moment(new Date()).valueOf() + 3600000
     };
   }
 }

@@ -15,6 +15,7 @@ export class AuthController {
   ): Promise<{
     user: UserDTO;
     accessToken: string;
+    expirationDate: number;
   }> {
     const data = await this.authService.login(user);
     return data;

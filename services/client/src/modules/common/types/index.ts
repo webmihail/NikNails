@@ -1,4 +1,5 @@
 import { AUTH_TABS } from '../../authentication/constants';
+import { User } from '../../authentication/types';
 import { RECORD_TABS } from '../../calendar/constants';
 import { CalendarProps, Record, GetPersonsByFilter, ScheduleData } from '../../calendar/types';
 
@@ -17,4 +18,10 @@ export interface AppStore {
   };
   recordFormModalActiveTab: RECORD_TABS;
   authenticationFormModalActiveTab: AUTH_TABS;
+  authentication: User;
+}
+
+export interface ActionProps {
+  type: string;
+  payload: any;
 }

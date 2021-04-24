@@ -41,11 +41,6 @@ export interface Record {
   type: RECORD_TYPES;
 }
 
-export interface ActionProps {
-  type: string;
-  payload: any;
-}
-
 export interface ScheduleSettings {
   currentDate: Moment;
   dateRange: number;

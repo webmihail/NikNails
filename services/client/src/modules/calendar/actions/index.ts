@@ -1,6 +1,6 @@
 import { setCalendarBeginDate } from './calendar';
 import { setActiveTab, changeModal } from './recordModal';
-import { getAllPersonsAction } from './persons';
+import { getAllPersonsAction, createPersonsAction } from './persons';
 import { getAllRecordsAction } from './records';
 
 export {
@@ -8,5 +8,6 @@ export {
   setActiveTab,
   changeModal,
   getAllPersonsAction,
+  createPersonsAction,
   getAllRecordsAction,
 };

@@ -8,7 +8,10 @@ import {
   persons,
 } from './modules/calendar/reducers';
 
-import { authenticationFormModalActiveTab } from './modules/authentication/reducers';
+import {
+  authenticationFormModalActiveTab,
+  authentication,
+} from './modules/authentication/reducers';
 
 import { combineReducers } from 'redux';
 
@@ -21,4 +24,5 @@ export const rootReducer = combineReducers({
   recordFormModalActiveTab,
   persons,
   authenticationFormModalActiveTab,
+  authentication,
 });

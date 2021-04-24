@@ -7,6 +7,7 @@ import styles from './signUpForm.module.scss';
 import { Button } from 'antd';
 import { setActiveTab } from '../../actions';
 import { AUTH_TABS } from '../../constants';
+import { registration } from '../../../../api/authentication';
 
 interface SignUpFormOwnProps {
   dispatch: (value: any) => void;
@@ -70,6 +71,7 @@ const SignUpFormWithFormik = withFormik<SignUpFormOwnProps, User>({
     password: '',
   }),
   handleSubmit: (values, { props: { dispatch } }) => {
+    dispatch(registration(values));
     dispatch(
       setActiveTab({
         type: 'SIGN_IN_FORM',
