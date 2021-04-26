@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeModal, setActiveTab } from '../../actions';
+import { changeToFormModal, setPersonsTab, setRecordsTab } from '../../actions';
 import { RECORD_TABS } from '../../constants';
 import CreateRecordForm from '../CreateRecordForm';
-import CreatePersonForm from '../CreatePersonForm';
+import CreatePersonForm from '../../../persons/components/CreatePersonForm';
 import styles from './createRecordForm.module.scss';
 import { Button, Modal } from 'antd';
 import classNames from 'classnames';
@@ -39,20 +39,12 @@ const CreateRecordModal = () => {
       centered={true}
       visible={recordFormModal.isOpen}
       onCancel={() => {
-        dispatch(
-          setActiveTab({
-            type: 'CREATE_PERSON_FORM',
-            payload: RECORD_TABS.CREATE_PERSON_FORM,
-          }),
-        );
+        dispatch(setPersonsTab());
 
         dispatch(
-          changeModal({
-            type: 'CHANGE_FORM_MODAL',
-            payload: {
-              isOpen: false,
-              data: '',
-            },
+          changeToFormModal({
+            isOpen: false,
+            data: '',
           }),
         );
       }}
@@ -68,14 +60,7 @@ const CreateRecordModal = () => {
             className={classNames(styles.button, {
               [styles.buttonChecked]: RECORD_TABS.CREATE_RECORD_FORM === activeTab,
             })}
-            onClick={() =>
-              dispatch(
-                setActiveTab({
-                  type: 'CREATE_RECORD_FORM',
-                  payload: RECORD_TABS.CREATE_RECORD_FORM,
-                }),
-              )
-            }
+            onClick={() => dispatch(setRecordsTab())}
           >
             Создать запись
           </Button>
@@ -84,14 +69,7 @@ const CreateRecordModal = () => {
             className={classNames(styles.button, {
               [styles.buttonChecked]: RECORD_TABS.CREATE_PERSON_FORM === activeTab,
             })}
-            onClick={() =>
-              dispatch(
-                setActiveTab({
-                  type: 'CREATE_PERSON_FORM',
-                  payload: RECORD_TABS.CREATE_PERSON_FORM,
-                }),
-              )
-            }
+            onClick={() => dispatch(setPersonsTab())}
           >
             Создать клиента
           </Button>

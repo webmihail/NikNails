@@ -6,11 +6,11 @@ export const authenticationFormModalActiveTab = (
   action: ActionProps,
 ) => {
   switch (action.type) {
-    case 'SIGN_IN_FORM':
+    case AUTH_TABS.SIGN_IN_FORM:
       return action.payload;
-    case 'SIGN_UP_FORM':
+    case AUTH_TABS.SIGN_UP_FORM:
       return action.payload;
-    case 'RECOVERY_PASSWORD_FORM':
+    case AUTH_TABS.RECOVERY_PASSWORD_FORM:
       return action.payload;
     default:
       return state;

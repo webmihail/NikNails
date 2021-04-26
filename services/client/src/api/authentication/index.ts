@@ -15,9 +15,7 @@ export const registration = (data: User) => {
   return (dispatch: Dispatch<any>) => {
     axios
       .post(`${settings.apiUrlV1}/api/v1/users`, data)
-      .then((res: AxiosResponse<User>) =>
-        dispatch(registrationAction({ type: 'REGISTRATION', payload: res.data })),
-      )
+      .then((res: AxiosResponse<User>) => dispatch(registrationAction(res.data)))
       .catch((error) => {
         if (error.response.data.statusCode === 404) {
           notification.error({
@@ -44,7 +42,7 @@ export const login = (data: SignInProps) => {
           expirationDate: res.data.expirationDate,
         });
 
-        dispatch(loginAction({ type: 'LOGIN', payload: res.data }));
+        dispatch(loginAction(res.data));
       })
       .catch((error) => {
         if (error.response.data.statusCode === 401) {
@@ -68,9 +66,7 @@ export const profile = (data: SignInProps) => {
       method: 'GET',
       url: `${settings.apiUrlV1}/api/v1/auth/profile?email=${data.email},password=${data.password}`,
     })
-      .then((res: AxiosResponse<User>) =>
-        dispatch(profileAction({ type: 'LOGIN', payload: res.data })),
-      )
+      .then((res: AxiosResponse<User>) => dispatch(profileAction(res.data)))
       .catch((error) => {
         if (error.response.data.statusCode === 401) {
           notification.error({

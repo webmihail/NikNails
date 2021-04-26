@@ -1,7 +1,10 @@
+import { Moment } from 'moment';
 import { AUTH_TABS } from '../../authentication/constants';
 import { User } from '../../authentication/types';
-import { RECORD_TABS } from '../../calendar/constants';
-import { CalendarProps, Record, GetPersonsByFilter, ScheduleData } from '../../calendar/types';
+import { CalendarProps } from '../../calendar/types';
+import { GetPersonsByFilter } from '../../persons/types';
+import { RECORD_TABS } from '../../records/constants';
+import { Record } from '../../records/types';
 
 export interface AppStore {
   records: ScheduleData;
@@ -13,12 +16,32 @@ export interface AppStore {
     isOpen: boolean;
   };
   recordInfoModal: {
-    data: Record;
+    data: Record | null;
     isOpen: boolean;
   };
   recordFormModalActiveTab: RECORD_TABS;
   authenticationFormModalActiveTab: AUTH_TABS;
   authentication: User;
+}
+
+export interface ScheduleData {
+  [date: string]: Record[];
+}
+
+export interface ScheduleSettings {
+  currentDate: Moment;
+  dateRange: number;
+  startTime: Moment;
+  endTime: Moment;
+  timeRange: number;
+}
+
+export interface ScheduleSettings {
+  currentDate: Moment;
+  dateRange: number;
+  startTime: Moment;
+  endTime: Moment;
+  timeRange: number;
 }
 
 export interface ActionProps {

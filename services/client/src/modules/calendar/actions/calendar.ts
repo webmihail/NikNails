@@ -1,15 +1,12 @@
 import { Moment } from 'moment';
 import { Dispatch } from 'redux';
+import { CALENDAR } from '../constants';
 
-export const setCalendarBeginDate = (value: Moment) => {
+export const setCalendarBeginDate = (values: Moment) => {
   return async (dispatch: Dispatch) => {
     dispatch({
-      type: 'SET_CALENDAR_BEGIN_DATE',
-      payload: value,
-    });
-    dispatch({
-      type: 'HIDE_LOADER',
-      payload: null,
+      type: CALENDAR.SET_CALENDAR_BEGIN_DATE,
+      payload: values,
     });
   };
 };

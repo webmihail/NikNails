@@ -4,7 +4,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import InfoList from '../../../common/components/InfoList';
 import { AppStore } from '../../../common/types';
-import { changeModal } from '../../actions';
+import { changeToInfoModal } from '../../actions';
+import { RECORD_TYPES, RECORD_TYPES_VALUES } from '../../constants';
 
 import styles from './infoRecordForm.module.scss';
 
@@ -14,10 +15,10 @@ const InfoRecordModal = () => {
 
   const getRecordTypes = (type: string) => {
     switch (type) {
-      case 'MANICURE':
-        return 'Маникюр';
-      case 'PEDICURE':
-        return 'Педикюр';
+      case RECORD_TYPES.MANICURE:
+        return RECORD_TYPES_VALUES.MANICURE;
+      case RECORD_TYPES.PEDICURE:
+        return RECORD_TYPES_VALUES.PEDICURE;
     }
   };
 
@@ -54,12 +55,9 @@ const InfoRecordModal = () => {
           type="primary"
           onClick={() =>
             dispatch(
-              changeModal({
-                type: 'CHANGE_INFO_MODAL',
-                payload: {
-                  isOpen: false,
-                  data: '',
-                },
+              changeToInfoModal({
+                isOpen: false,
+                data: '',
               }),
             )
           }

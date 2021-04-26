@@ -9,8 +9,8 @@ import SignUpForm from '../SignUpForm';
 //TODO: When we added recovery pass
 // import RecoveryPasswordForm from '../RecoveryPasswordForm';
 import { useDispatch, useSelector } from 'react-redux';
-import { setActiveTab } from '../../actions';
 import { AppStore } from '../../../common/types';
+import { setSignInTab, setSignUpTab } from '../../actions';
 
 const AuthenticationModal = () => {
   const headerLogo = document.querySelector('.header__logo');
@@ -41,12 +41,7 @@ const AuthenticationModal = () => {
       centered={true}
       visible={isModalOpen}
       onCancel={() => {
-        dispatch(
-          setActiveTab({
-            type: 'SIGN_IN_FORM',
-            payload: AUTH_TABS.SIGN_IN_FORM,
-          }),
-        );
+        dispatch(setSignInTab());
 
         setOpenModal(false);
       }}
@@ -63,12 +58,7 @@ const AuthenticationModal = () => {
               [styles.buttonChecked]: AUTH_TABS.SIGN_IN_FORM === activeTab,
             })}
             onClick={() => {
-              dispatch(
-                setActiveTab({
-                  type: 'SIGN_IN_FORM',
-                  payload: AUTH_TABS.SIGN_IN_FORM,
-                }),
-              );
+              dispatch(setSignInTab());
             }}
           >
             Авторизация
@@ -78,12 +68,7 @@ const AuthenticationModal = () => {
               [styles.buttonChecked]: AUTH_TABS.SIGN_UP_FORM === activeTab,
             })}
             onClick={() => {
-              dispatch(
-                setActiveTab({
-                  type: 'SIGN_UP_FORM',
-                  payload: AUTH_TABS.SIGN_UP_FORM,
-                }),
-              );
+              dispatch(setSignUpTab());
             }}
           >
             Регистрация

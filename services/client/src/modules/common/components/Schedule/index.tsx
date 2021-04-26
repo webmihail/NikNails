@@ -1,12 +1,12 @@
 import React from 'react';
-import { Record, ScheduleSettings } from '../../../calendar/types';
+import { Record } from '../../../records/types';
 import { Spin, Button } from 'antd';
 import { LeftCircleOutlined, RightCircleOutlined } from '@ant-design/icons';
 import styles from './schedule.module.scss';
 import moment from 'moment';
 import { scheduleBuilder } from '../../utils';
 import { useSelector } from 'react-redux';
-import { AppStore } from '../../types';
+import { AppStore, ScheduleSettings } from '../../types';
 
 interface ScheduleProps {
   recordsData: any;

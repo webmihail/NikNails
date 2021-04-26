@@ -1,7 +1,8 @@
 import { ActionProps } from '../../common/types';
+import { RECORD_MODAL } from '../constants';
 import { Record } from '../types';
 
-interface ModalOwnProps {
+interface RecordModalOwnProps {
   isOpen: boolean;
   data: Record | null;
 }
@@ -11,9 +12,9 @@ const initialState = {
   data: null,
 };
 
-export const recordInfoModal = (state: ModalOwnProps = initialState, action: ActionProps) => {
+export const recordInfoModal = (state: RecordModalOwnProps = initialState, action: ActionProps) => {
   switch (action.type) {
-    case 'CHANGE_INFO_MODAL':
+    case RECORD_MODAL.RECORD_INFO_MODAL:
       return action.payload;
     default:
       return state;

@@ -1,4 +1,4 @@
-import { ScheduleSettings, ScheduleData } from '../../calendar/types';
+import { ScheduleData, ScheduleSettings } from '../types';
 
 export const scheduleBuilder = (scheduleSettings: ScheduleSettings) => {
   let schedule: ScheduleData = {};

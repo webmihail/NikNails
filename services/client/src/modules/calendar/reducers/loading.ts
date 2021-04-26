@@ -1,11 +1,16 @@
-import { ActionProps } from '../../common/types';
+import { LOADER } from '../constants';
 
-export const loading = (state: boolean = false, action: ActionProps) => {
+interface LoadingOwnProps {
+  type: string;
+  payload: boolean;
+}
+
+export const loading = (state: boolean = false, action: LoadingOwnProps) => {
   switch (action.type) {
-    case 'SHOW_LOADER':
-      return true;
-    case 'HIDE_LOADER':
-      return false;
+    case LOADER.SHOW_LOADER:
+      return action.payload;
+    case LOADER.HIDE_LOADER:
+      return action.payload;
     default:
       return state;
   }

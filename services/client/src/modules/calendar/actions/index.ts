@@ -1,13 +1,4 @@
 import { setCalendarBeginDate } from './calendar';
-import { setActiveTab, changeModal } from './recordModal';
-import { getAllPersonsAction, createPersonsAction } from './persons';
-import { getAllRecordsAction } from './records';
+import { showLoader, hideLoader } from './loading';
 
-export {
-  setCalendarBeginDate,
-  setActiveTab,
-  changeModal,
-  getAllPersonsAction,
-  createPersonsAction,
-  getAllRecordsAction,
-};
+export { setCalendarBeginDate, showLoader, hideLoader };

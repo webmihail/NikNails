@@ -1,12 +1,13 @@
+import { loading, calendar } from './modules/calendar/reducers';
+
+import { persons } from './modules/persons/reducers';
+
 import {
   records,
-  loading,
   recordFormModal,
   recordInfoModal,
-  calendar,
   recordFormModalActiveTab,
-  persons,
-} from './modules/calendar/reducers';
+} from './modules/records/reducers';
 
 import {
   authenticationFormModalActiveTab,
@@ -17,12 +18,12 @@ import { combineReducers } from 'redux';
 
 export const rootReducer = combineReducers({
   records,
-  loading,
-  calendar,
   recordFormModal,
   recordInfoModal,
   recordFormModalActiveTab,
-  persons,
+  loading,
+  calendar,
   authenticationFormModalActiveTab,
   authentication,
+  persons,
 });

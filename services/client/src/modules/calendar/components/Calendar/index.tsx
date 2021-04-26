@@ -2,15 +2,13 @@ import React, { useEffect } from 'react';
 import Schedule from '../../../common/components/Schedule';
 import styles from './calendar.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeModal, setActiveTab, setCalendarBeginDate } from '../../actions';
+import { hideLoader, setCalendarBeginDate } from '../../actions';
 import moment from 'moment';
-import CreateRecordModal from '../CreateRecordModal';
 import { getAllRecords } from '../../../../api/records';
-import { setLoading } from '../../actions/loading';
-import InfoRecordModal from '../InfoRecordModal';
 import { AppStore } from '../../../common/types';
-import { RECORD_TABS } from '../../constants';
 import { localStorageUtil } from '../../../common/utils';
+import { changeToFormModal, setRecordsTab } from '../../../records/actions';
+import { showLoader } from '../../actions';
 
 const Calendar = () => {
   const records = useSelector((state: AppStore) => state.records);
@@ -32,36 +30,30 @@ const Calendar = () => {
         loading={loading}
         recordsData={records}
         onResetDate={() => {
-          dispatch(setLoading('SHOW_LOADER'));
+          dispatch(showLoader());
           setTimeout(() => {
             dispatch(setCalendarBeginDate(moment()));
+            dispatch(hideLoader());
           }, 300);
         }}
         onChangeDate={(amount: number) => {
-          dispatch(setLoading('SHOW_LOADER'));
+          dispatch(showLoader());
           setTimeout(() => {
             dispatch(
               setCalendarBeginDate(calendar.scheduleSettings.currentDate.add(amount, 'days')),
             );
+            dispatch(hideLoader());
           }, 300);
         }}
         onFreeClick={(data: string, time: string) => {
           dispatch(
-            changeModal({
-              type: 'CHANGE_FORM_MODAL',
-              payload: {
-                isOpen: true,
-                data: data + ' ' + time,
-              },
+            changeToFormModal({
+              isOpen: true,
+              data: data + ' ' + time,
             }),
           );
 
-          dispatch(
-            setActiveTab({
-              type: 'CREATE_PERSON_FORM',
-              payload: RECORD_TABS.CREATE_PERSON_FORM,
-            }),
-          );
+          dispatch(setRecordsTab());
         }}
         //TODO: Need it when we get OWNER RORE
         // onBusyClick={(record: Record) =>
@@ -76,9 +68,6 @@ const Calendar = () => {
         //   )
         // }
       />
-
-      <CreateRecordModal />
-      <InfoRecordModal />
     </div>
   );
 };

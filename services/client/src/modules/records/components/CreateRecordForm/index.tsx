@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
 import { withFormik, FormikProps } from 'formik';
 import * as yup from 'yup';
-
+import { Record } from '../../types';
 import styles from './createRecordForm.module.scss';
 import { Button } from 'antd';
-import { changeModal } from '../../actions';
 import { useSelector } from 'react-redux';
-import { Person, Record } from '../../types';
 import SelectField from '../../../common/components/SelectField';
 import { getAllPersons } from '../../../../api/persons';
 import { createRecords } from '../../../../api/records';
 import { InputDelay } from '../../../common/utils';
 import { AppStore } from '../../../common/types';
+import { Person } from '../../../persons/types';
+import { changeToFormModal } from '../../actions';
+import { RECORD_STATUS, RECORD_TYPES, RECORD_TYPES_VALUES } from '../../constants';
 
 const inputDelay = new InputDelay();
 
@@ -94,8 +95,8 @@ const CreateRecordForm = ({
           value={values.type ? values.type : undefined}
           allowClear={true}
           options={[
-            { value: 'MANICURE', name: 'Маникюр' },
-            { value: 'PEDICURE', name: 'Педикюр' },
+            { value: RECORD_TYPES.MANICURE, name: RECORD_TYPES_VALUES.MANICURE },
+            { value: RECORD_TYPES.PEDICURE, name: RECORD_TYPES_VALUES.PEDICURE },
           ]}
           errorMessage={touched.type && errors.type}
           onBlur={() => setFieldTouched('type')}
@@ -118,19 +119,16 @@ const CreateRecordFormWithFormik = withFormik<CreateRecordFormOwnProps, any>({
   enableReinitialize: true,
   mapPropsToValues: () => ({
     personId: null,
-    type: 'MANICURE',
-    status: 'FREE',
+    type: RECORD_TYPES.MANICURE,
+    status: RECORD_STATUS.FREE,
     time: '',
   }),
   handleSubmit: (values, { props: { dispatch } }) => {
-    dispatch(createRecords({ ...values, status: 'BUSY' }));
+    dispatch(createRecords({ ...values, status: RECORD_STATUS.BUSY }));
     dispatch(
-      changeModal({
-        type: 'CHANGE_FORM_MODAL',
-        payload: {
-          isOpen: false,
-          data: '',
-        },
+      changeToFormModal({
+        isOpen: false,
+        data: '',
       }),
     );
   },

@@ -1,4 +1,11 @@
-import { setActiveTab } from './authenticationModal';
+import { setSignInTab, setSignUpTab, setRecoveryTab } from './authenticationModal';
 import { registrationAction, loginAction, profileAction } from './authentication';
 
-export { setActiveTab, registrationAction, loginAction, profileAction };
+export {
+  setSignInTab,
+  setSignUpTab,
+  setRecoveryTab,
+  registrationAction,
+  loginAction,
+  profileAction,
+};

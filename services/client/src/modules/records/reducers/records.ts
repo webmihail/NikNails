@@ -1,11 +1,11 @@
-import { ScheduleData } from '../types';
-import { ActionProps } from '../../common/types';
+import { ActionProps, ScheduleData } from '../../common/types';
+import { RECORD } from '../constants';
 
 export const records = (state: ScheduleData = {}, action: ActionProps) => {
   switch (action.type) {
-    case 'GET_ALL_RECORDS':
+    case RECORD.GET_ALL_RECORDS:
       return action.payload;
-    case 'CREATE_RECORD':
+    case RECORD.CREATE_RECORD:
       return action.payload;
     default:
       return state;

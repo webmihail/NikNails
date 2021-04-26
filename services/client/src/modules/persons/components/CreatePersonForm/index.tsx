@@ -1,15 +1,13 @@
 import React from 'react';
 import { withFormik, FormikProps } from 'formik';
 import * as yup from 'yup';
-
 import styles from './createPersonForm.module.scss';
 import { Button } from 'antd';
-import { setActiveTab } from '../../actions';
 import InputField from '../../../common/components/InputField';
 import { Person } from '../../types';
-import { phoneRegExp } from '../../../common/constants/regExps';
+import { phoneRegExp } from '../../../common/constants';
 import { createPerson } from '../../../../api/persons';
-import { RECORD_TABS } from '../../constants';
+import { setRecordsTab } from '../../../records/actions';
 
 interface CreatePersonFormOwnProps {
   dispatch: (value: any) => void;
@@ -67,12 +65,7 @@ const CreatePersonFormWithFormik = withFormik<CreatePersonFormOwnProps, Person>(
   }),
   handleSubmit: (values, { props: { dispatch } }) => {
     dispatch(createPerson(values));
-    dispatch(
-      setActiveTab({
-        type: 'CREATE_RECORD_FORM',
-        payload: RECORD_TABS.CREATE_RECORD_FORM,
-      }),
-    );
+    dispatch(setRecordsTab());
   },
   validationSchema: yup.object().shape<Person>({
     phoneNumber: yup

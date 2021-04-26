@@ -1,5 +1,6 @@
 import moment from 'moment';
 import { ActionProps } from '../../common/types';
+import { CALENDAR } from '../constants';
 import { CalendarProps } from '../types';
 
 const initialState: CalendarProps = {
@@ -14,7 +15,7 @@ const initialState: CalendarProps = {
 
 export const calendar = (state: CalendarProps = initialState, action: ActionProps) => {
   switch (action.type) {
-    case 'SET_CALENDAR_BEGIN_DATE':
+    case CALENDAR.SET_CALENDAR_BEGIN_DATE:
       return {
         scheduleSettings: { ...state.scheduleSettings, currentDate: action.payload },
       };
