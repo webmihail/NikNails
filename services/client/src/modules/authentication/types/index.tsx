@@ -9,8 +9,12 @@ export interface User extends SignInProps {
   lastName: string;
 }
 
+export interface AccessToken {
+  token: string;
+  expirationDate: number;
+}
+
 export interface Login {
   user: User;
-  accessToken: string;
-  expirationDate: number;
+  accessToken: AccessToken;
 }

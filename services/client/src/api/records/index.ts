@@ -8,7 +8,7 @@ import settings from '../../settings';
 export const getAllRecords = () => {
   return async (dispatch: Dispatch<any>): Promise<void> => {
     try {
-      const { data } = await axios.get(`${settings.apiUrlV1}/api/v1/records`);
+      const { data }: { data: Record[] } = await axios.get(`${settings.apiUrlV1}/api/v1/records`);
       dispatch(getAllRecordsAction(data));
     } catch (error) {
       notification.error({

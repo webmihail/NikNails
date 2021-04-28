@@ -1,9 +1,9 @@
-import * as moment from 'moment';
 import { Injectable } from '@nestjs/common';
 import { UserDTO } from 'src/users/dtos';
 import { UsersService } from 'src/users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcrypt';
+import { AccessTokenDTO } from './dtos';
 
 @Injectable()
 export class AuthService {
@@ -29,16 +29,18 @@ export class AuthService {
     user: UserDTO,
   ): Promise<{
     user: UserDTO;
-    accessToken: string;
-    expirationDate: number;
+    accessToken: AccessTokenDTO;
   }> {
     const { id } = user;
     const payload = { sub: id };
+    const token = this.jwtService.sign(payload);
 
     return {
       user,
-      accessToken: this.jwtService.sign(payload),
-      expirationDate: moment(new Date()).valueOf() + 3600000
+      accessToken: {
+        token,
+        expirationDate: this.jwtService.decode(token)['exp']
+      },
     };
   }
 }

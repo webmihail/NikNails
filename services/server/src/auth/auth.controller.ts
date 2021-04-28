@@ -2,6 +2,7 @@ import { UseGuards, Controller, Post, Get } from '@nestjs/common';
 import { User } from 'src/common/decorators';
 import { UserDTO } from 'src/users/dtos';
 import { AuthService } from './auth.service';
+import { AccessTokenDTO } from './dtos';
 import { JwtAuthGuard, LocalAuthGuard } from './guards';
 
 @Controller('auth')
@@ -14,8 +15,7 @@ export class AuthController {
     @User() user: UserDTO,
   ): Promise<{
     user: UserDTO;
-    accessToken: string;
-    expirationDate: number;
+    accessToken: AccessTokenDTO;
   }> {
     const data = await this.authService.login(user);
     return data;
@@ -29,13 +29,13 @@ export class AuthController {
 
   @UseGuards(JwtAuthGuard)
   @Get('refresh')
-  refreshToken(
+  async refreshToken(
     @User() user: UserDTO,
   ): Promise<{
     user: UserDTO;
-    accessToken: string;
+    accessToken: AccessTokenDTO;
   }> {
-    const data = this.authService.login(user);
+    const data = await this.authService.login(user);
     return data;
   }
 }

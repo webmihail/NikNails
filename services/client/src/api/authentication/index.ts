@@ -7,7 +7,7 @@ import {
   profileAction,
   setSignInTab,
 } from '../../modules/authentication/actions';
-import { SignInProps, User } from '../../modules/authentication/types';
+import { Login, SignInProps, User } from '../../modules/authentication/types';
 import { localStorageUtil } from '../../modules/common/utils';
 import { authAxios } from '../../modules/common/utils';
 import settings from '../../settings';
@@ -15,7 +15,10 @@ import settings from '../../settings';
 export const registration = (values: User) => {
   return async (dispatch: Dispatch<any>): Promise<void> => {
     try {
-      const { data } = await axios.post(`${settings.apiUrlV1}/api/v1/users`, values);
+      const { data }: { data: User } = await axios.post(
+        `${settings.apiUrlV1}/api/v1/users`,
+        values,
+      );
       dispatch(registrationAction(data));
       dispatch(setSignInTab());
     } catch (error) {
@@ -37,11 +40,14 @@ export const registration = (values: User) => {
 export const login = (values: SignInProps) => {
   return async (dispatch: Dispatch<any>): Promise<void> => {
     try {
-      const { data } = await axios.post(`${settings.apiUrlV1}/api/v1/auth/login`, values);
+      const { data }: { data: Login } = await axios.post(
+        `${settings.apiUrlV1}/api/v1/auth/login`,
+        values,
+      );
 
       localStorageUtil.setStorage('authData', {
-        token: data.accessToken,
-        expirationDate: data.expirationDate,
+        token: data.accessToken.token,
+        expirationDate: data.accessToken.expirationDate,
       });
 
       dispatch(loginAction(data));
@@ -64,7 +70,7 @@ export const login = (values: SignInProps) => {
 export const profile = (values: SignInProps) => {
   return async (dispatch: Dispatch<any>): Promise<void> => {
     try {
-      const { data } = await authAxios({
+      const { data }: { data: User } = await authAxios({
         method: 'GET',
         url: `${settings.apiUrlV1}/api/v1/auth/profile?email=${values.email},password=${values.password}`,
       });

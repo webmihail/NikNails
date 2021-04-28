@@ -14,7 +14,7 @@ import settings from 'settings';
     }),
     JwtModule.register({
       secret: settings.jwtProps.secret,
-      signOptions: { expiresIn: '60m' },
+      signOptions: { expiresIn: '1m' },
     }),
     UsersModule,
   ],

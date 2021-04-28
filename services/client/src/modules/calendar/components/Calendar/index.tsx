@@ -18,7 +18,7 @@ const Calendar = () => {
 
   useEffect(() => {
     dispatch(getAllRecords());
-    if (new Date().getTime() > localStorageUtil.getStorage('authData')?.expirationDate) {
+    if (new Date().getTime() > localStorageUtil.getStorage('authData')?.expirationDate * 1000) {
       localStorageUtil.clearStorage();
     }
   }, [dispatch]);

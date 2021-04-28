@@ -9,7 +9,10 @@ import settings from '../../settings';
 export const getAllPersons = (filter: PersonsFilter) => {
   return async (dispatch: Dispatch<any>): Promise<void> => {
     try {
-      const { data } = await axios.post(`${settings.apiUrlV1}/api/v1/persons/filter`, filter);
+      const { data }: { data: Person[] } = await axios.post(
+        `${settings.apiUrlV1}/api/v1/persons/filter`,
+        filter,
+      );
       dispatch(getAllPersonsAction(data));
     } catch (error) {
       notification.error({
@@ -23,7 +26,10 @@ export const getAllPersons = (filter: PersonsFilter) => {
 export const createPerson = (values: Person) => {
   return async (dispatch: Dispatch<any>): Promise<void> => {
     try {
-      const { data } = await axios.post(`${settings.apiUrlV1}/api/v1/persons`, values);
+      const { data }: { data: Person } = await axios.post(
+        `${settings.apiUrlV1}/api/v1/persons`,
+        values,
+      );
       dispatch(createPersonsAction(data));
       dispatch(setRecordsTab());
     } catch (error) {
