@@ -7,7 +7,6 @@ import InputField from '../../../common/components/InputField';
 import { Person } from '../../types';
 import { phoneRegExp } from '../../../common/constants';
 import { createPerson } from '../../../../api/persons';
-import { setRecordsTab } from '../../../records/actions';
 
 interface CreatePersonFormOwnProps {
   dispatch: (value: any) => void;
@@ -65,7 +64,6 @@ const CreatePersonFormWithFormik = withFormik<CreatePersonFormOwnProps, Person>(
   }),
   handleSubmit: (values, { props: { dispatch } }) => {
     dispatch(createPerson(values));
-    dispatch(setRecordsTab());
   },
   validationSchema: yup.object().shape<Person>({
     phoneNumber: yup

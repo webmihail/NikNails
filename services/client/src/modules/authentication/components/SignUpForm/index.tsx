@@ -6,7 +6,6 @@ import InputField from '../../../common/components/InputField';
 import styles from './signUpForm.module.scss';
 import { Button } from 'antd';
 import { registration } from '../../../../api/authentication';
-import { setSignInTab } from '../../actions';
 
 interface SignUpFormOwnProps {
   dispatch: (value: any) => void;
@@ -71,7 +70,6 @@ const SignUpFormWithFormik = withFormik<SignUpFormOwnProps, User>({
   }),
   handleSubmit: (values, { props: { dispatch } }) => {
     dispatch(registration(values));
-    dispatch(setSignInTab());
   },
   validationSchema: yup.object().shape<User>({
     firstName: yup.string().required('Это поле не может быть пустым!'),

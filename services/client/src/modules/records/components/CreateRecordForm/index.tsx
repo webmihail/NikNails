@@ -11,7 +11,6 @@ import { createRecords } from '../../../../api/records';
 import { InputDelay } from '../../../common/utils';
 import { AppStore } from '../../../common/types';
 import { Person } from '../../../persons/types';
-import { changeToFormModal } from '../../actions';
 import { RECORD_STATUS, RECORD_TYPES, RECORD_TYPES_VALUES } from '../../constants';
 
 const inputDelay = new InputDelay();
@@ -125,12 +124,6 @@ const CreateRecordFormWithFormik = withFormik<CreateRecordFormOwnProps, any>({
   }),
   handleSubmit: (values, { props: { dispatch } }) => {
     dispatch(createRecords({ ...values, status: RECORD_STATUS.BUSY }));
-    dispatch(
-      changeToFormModal({
-        isOpen: false,
-        data: '',
-      }),
-    );
   },
   validationSchema: yup.object().shape<any>({
     personId: yup.number().nullable().required('Это поле не может быть пустым!'),
