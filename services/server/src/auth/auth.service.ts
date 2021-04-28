@@ -3,7 +3,7 @@ import { UserDTO } from 'src/users/dtos';
 import { UsersService } from 'src/users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcrypt';
-import { AccessTokenDTO } from './dtos';
+import { TokenDTO } from './dtos';
 
 @Injectable()
 export class AuthService {
@@ -29,7 +29,7 @@ export class AuthService {
     user: UserDTO,
   ): Promise<{
     user: UserDTO;
-    accessToken: AccessTokenDTO;
+    accessToken: TokenDTO;
   }> {
     const { id } = user;
     const payload = { sub: id };
@@ -39,7 +39,7 @@ export class AuthService {
       user,
       accessToken: {
         token,
-        expirationDate: this.jwtService.decode(token)['exp']
+        expirationDate: this.jwtService.decode(token)['exp'],
       },
     };
   }

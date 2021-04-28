@@ -7,6 +7,7 @@ import {
   profileAction,
   setSignInTab,
 } from '../../modules/authentication/actions';
+import { logOutAction, refreshAction } from '../../modules/authentication/actions/authentication';
 import { Login, SignInProps, User } from '../../modules/authentication/types';
 import { localStorageUtil } from '../../modules/common/utils';
 import { authAxios } from '../../modules/common/utils';
@@ -19,7 +20,7 @@ export const registration = (values: User) => {
         `${settings.apiUrlV1}/api/v1/users`,
         values,
       );
-      dispatch(registrationAction(data));
+      dispatch(registrationAction({ user: { ...data } }));
       dispatch(setSignInTab());
     } catch (error) {
       if (error.response.data.statusCode === 404) {
@@ -45,12 +46,12 @@ export const login = (values: SignInProps) => {
         values,
       );
 
+      dispatch(loginAction({ user: data.user, isLogged: true }));
+
       localStorageUtil.setStorage('authData', {
         token: data.accessToken.token,
         expirationDate: data.accessToken.expirationDate,
       });
-
-      dispatch(loginAction(data));
     } catch (error) {
       if (error.response.data.statusCode === 401) {
         notification.error({
@@ -67,19 +68,54 @@ export const login = (values: SignInProps) => {
   };
 };
 
-export const profile = (values: SignInProps) => {
+export const logOut = () => {
+  return async (dispatch: Dispatch<any>): Promise<void> => {
+    localStorageUtil.clearStorage();
+    dispatch(logOutAction());
+  };
+};
+
+export const profile = () => {
   return async (dispatch: Dispatch<any>): Promise<void> => {
     try {
       const { data }: { data: User } = await authAxios({
         method: 'GET',
-        url: `${settings.apiUrlV1}/api/v1/auth/profile?email=${values.email},password=${values.password}`,
+        url: `${settings.apiUrlV1}/api/v1/auth/profile`,
       });
-      dispatch(profileAction(data));
+      dispatch(profileAction({ user: { ...data }, isLogged: true }));
     } catch (error) {
       if (error.response.data.statusCode === 401) {
+        dispatch(logOut());
+      } else {
+        notification.error({
+          message: `Ошибка ${error.response.data.statusCode}!`,
+          description: 'Что-то пошло не так, мы скоро это устраним!',
+        });
+      }
+    }
+  };
+};
+
+export const refresh = () => {
+  return async (dispatch: Dispatch<any>): Promise<void> => {
+    try {
+      const { data }: { data: Login } = await authAxios({
+        method: 'GET',
+        url: `${settings.apiUrlV1}/api/v1/auth/refresh`,
+      });
+
+      dispatch(refreshAction({ user: { ...data }, isLogged: true }));
+
+      localStorageUtil.setStorage('authData', {
+        token: data.accessToken.token,
+        expirationDate: data.accessToken.expirationDate,
+      });
+    } catch (error) {
+      if (error.response.data.statusCode === 401) {
+        dispatch(logOut());
         notification.error({
           message: 'Ошибка проверки входа!',
-          description: 'Похоже что вам нужно залогинитьс!',
+          description: 'Похоже что вам нужно залогиниться!',
         });
       } else {
         notification.error({

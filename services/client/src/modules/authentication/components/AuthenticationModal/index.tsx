@@ -11,10 +11,13 @@ import SignUpForm from '../SignUpForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppStore } from '../../../common/types';
 import { setSignInTab, setSignUpTab } from '../../actions';
+import goldUserImg from '../../images/goldUser.png';
+import { logOut } from '../../../../api/authentication';
 
 const AuthenticationModal = () => {
   const headerLogo = document.querySelector('.header__logo');
   const activeTab = useSelector((state: AppStore) => state.authenticationFormModalActiveTab);
+  const userIsLogged = useSelector((state: AppStore) => state.authentication.isLogged);
   const dispatch = useDispatch();
   const [isModalOpen, setOpenModal] = useState(false);
 
@@ -51,30 +54,31 @@ const AuthenticationModal = () => {
       footer={null}
       destroyOnClose={true}
     >
-      <div className={styles.modalWrapper}>
-        <div className={styles.buttonsWrapper}>
-          <Button
-            className={classnames(styles.button, {
-              [styles.buttonChecked]: AUTH_TABS.SIGN_IN_FORM === activeTab,
-            })}
-            onClick={() => {
-              dispatch(setSignInTab());
-            }}
-          >
-            Авторизация
-          </Button>
-          <Button
-            className={classnames(styles.button, {
-              [styles.buttonChecked]: AUTH_TABS.SIGN_UP_FORM === activeTab,
-            })}
-            onClick={() => {
-              dispatch(setSignUpTab());
-            }}
-          >
-            Регистрация
-          </Button>
-          {/* TODO: When we added recovery pass */}
-          {/* <Button
+      {!userIsLogged ? (
+        <div className={styles.modalWrapper}>
+          <div className={styles.buttonsWrapper}>
+            <Button
+              className={classnames(styles.button, {
+                [styles.buttonChecked]: AUTH_TABS.SIGN_IN_FORM === activeTab,
+              })}
+              onClick={() => {
+                dispatch(setSignInTab());
+              }}
+            >
+              Авторизация
+            </Button>
+            <Button
+              className={classnames(styles.button, {
+                [styles.buttonChecked]: AUTH_TABS.SIGN_UP_FORM === activeTab,
+              })}
+              onClick={() => {
+                dispatch(setSignUpTab());
+              }}
+            >
+              Регистрация
+            </Button>
+            {/* TODO: When we added recovery pass */}
+            {/* <Button
             className={classnames(styles.button, {
               [styles.buttonChecked]: TABS.RECOVERY_PASSWORD_FORM === activeTab,
             })}
@@ -89,10 +93,16 @@ const AuthenticationModal = () => {
           >
             Восстановление пароля
           </Button> */}
-        </div>
+          </div>
 
-        {getForm()}
-      </div>
+          {getForm()}
+        </div>
+      ) : (
+        <div className={styles.loggedModalWrapper}>
+          <img src={goldUserImg} alt="gold user img" />
+          <Button onClick={() => dispatch(logOut())}>Выйти</Button>
+        </div>
+      )}
     </Modal>
   );
 };

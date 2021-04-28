@@ -4,6 +4,20 @@
   padding-top: 5vh;
 }
 
+.loggedModalWrapper {
+  width: 50%;
+  height: 50%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+
+  button {
+    margin-top: 40px;
+  }
+}
+
 .buttonsWrapper {
   position: absolute;
   width: 100%;

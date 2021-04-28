@@ -4,7 +4,7 @@ import {
   MaxLength,
 } from 'class-validator';
 
-export class AccessTokenDTO {
+export class TokenDTO {
   @IsString()
   @MaxLength(255)
   token: string;

@@ -6,9 +6,10 @@ import { hideLoader, setCalendarBeginDate } from '../../actions';
 import moment from 'moment';
 import { getAllRecords } from '../../../../api/records';
 import { AppStore } from '../../../common/types';
-import { localStorageUtil } from '../../../common/utils';
 import { changeToFormModal, setRecordsTab } from '../../../records/actions';
 import { showLoader } from '../../actions';
+import { profile } from '../../../../api/authentication';
+import { checkAccessTokenExpDate } from '../../../authentication/utils';
 
 const Calendar = () => {
   const records = useSelector((state: AppStore) => state.records);
@@ -18,9 +19,8 @@ const Calendar = () => {
 
   useEffect(() => {
     dispatch(getAllRecords());
-    if (new Date().getTime() > localStorageUtil.getStorage('authData')?.expirationDate * 1000) {
-      localStorageUtil.clearStorage();
-    }
+    dispatch(checkAccessTokenExpDate());
+    dispatch(profile());
   }, [dispatch]);
 
   return (

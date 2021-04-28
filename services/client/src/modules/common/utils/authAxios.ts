@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
+import { localStorageUtil } from '.';
 
 export const authAxios = (options: AxiosRequestConfig) => {
   return axios({
@@ -6,7 +7,9 @@ export const authAxios = (options: AxiosRequestConfig) => {
     url: options.url,
     data: options.data,
     headers: {
-      Authorization: window.localStorage.getItem('accessToken'),
+      Authorization: localStorageUtil.getStorage('authData')
+        ? `Bearer ${localStorageUtil.getStorage('authData').token}`
+        : '',
     },
   });
 };

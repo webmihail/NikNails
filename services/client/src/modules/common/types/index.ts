@@ -21,7 +21,10 @@ export interface AppStore {
   };
   recordFormModalActiveTab: RECORD_TABS;
   authenticationFormModalActiveTab: AUTH_TABS;
-  authentication: User;
+  authentication: {
+    user: User;
+    isLogged: boolean;
+  };
 }
 
 export interface ScheduleData {

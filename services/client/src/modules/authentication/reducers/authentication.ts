@@ -1,14 +1,22 @@
-import { ActionProps } from '../../common/types';
 import { AUTHENTICATION } from '../constants';
-import { User } from '../types';
+import { AuthenticationActionProps, AuthenticationProps } from '../types';
 
-export const authentication = (state: User | {} = {}, action: ActionProps) => {
+const initialState = { user: {}, isLogged: false };
+
+export const authentication = (
+  state: AuthenticationProps = initialState,
+  action: AuthenticationActionProps,
+) => {
   switch (action.type) {
     case AUTHENTICATION.REGISTRATION:
       return action.payload;
     case AUTHENTICATION.LOGIN:
-      return { ...action.payload.user };
+      return action.payload;
     case AUTHENTICATION.PROFILE:
+      return action.payload;
+    case AUTHENTICATION.REFRESH:
+      return action.payload;
+    case AUTHENTICATION.LOGOUT:
       return action.payload;
     default:
       return state;

@@ -1,3 +1,13 @@
+export interface AuthenticationProps {
+  user: User | {};
+  isLogged?: boolean;
+}
+
+export interface AuthenticationActionProps {
+  type: string;
+  payload: AuthenticationProps;
+}
+
 export interface SignInProps {
   email: string;
   password: string;
